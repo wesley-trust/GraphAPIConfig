@@ -25,14 +25,12 @@ steps:
     targetType: 'inline'
     script: |
       . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Import-WTCAPolicy.ps1
-            
-            ls $(Agent.BuildDirectory)
 
             Import-WTCAPolicy `
               -TenantDomain $(TenantDomain) `
               -ClientID $(ClientID) `
               -ClientSecret $(ClientSecret) `
-              -Path $(Agent.BuildDirectory)\AzureAD\ConditionalAccess `
+              -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess `
               -UpdateExistingPolicies `
               -RemoveExistingPolicies `
               -Force
