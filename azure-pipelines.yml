@@ -26,23 +26,23 @@ steps:
     downloadPath: '$(System.ArtifactsDirectory)'
 - task: ExtractFiles@1
   inputs:
-    archiveFilePatterns: '**/*.zip'
-    destinationFolder: '$(System.ArtifactsDirectory)\GitHub'
+    archiveFilePatterns: '$(System.ArtifactsDirectory)/*.zip'
+    destinationFolder: '$(System.ArtifactsDirectory)/GitHub'
     cleanDestinationFolder: true
     overwriteExistingFiles: false
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
-      . \GraphAPI\Public\AzureAD\ConditionalAccess\Import-WTCAPolicy.ps1
+      . /GraphAPI/Public/AzureAD/ConditionalAccess/Import-WTCAPolicy.ps1
       
       Import-WTCAPolicy `
         -TenantDomain $(TenantDomain) `
         -ClientID $(ClientID) `
         -ClientSecret $(ClientSecret) `
-        -Path \AzureAD\ConditionalAccess `
+        -Path $(Agent.BuildDirectory)/AzureAD/ConditionalAccess `
         -UpdateExistingPolicies `
         -RemoveExistingPolicies `
         -Force
     pwsh: true
-    workingDirectory: '$(System.ArtifactsDirectory)\GitHub'
+    workingDirectory: '$(System.ArtifactsDirectory)/GitHub'
