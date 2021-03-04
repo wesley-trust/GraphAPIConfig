@@ -12,32 +12,44 @@ pool:
 steps:
 - script: echo Execute Pipeline
   displayName: 'Execute Pipeline'
+
 - task: DownloadGitHubRelease@0
   inputs:
     connection: 'wesley-trust-PAT-Full'
     userRepository: 'wesley-trust/GraphAPI'
     defaultVersionType: 'latest'
+    itemPattern: '*.zip'
     downloadPath: '$(System.ArtifactsDirectory)'
+
 - task: DownloadGitHubRelease@0
   inputs:
     connection: 'wesley-trust-PAT-Full'
     userRepository: 'wesley-trust/ToolKit'
     defaultVersionType: 'latest'
+    itemPattern: '*.zip'
     downloadPath: '$(System.ArtifactsDirectory)'
+
 - task: ExtractFiles@1
   inputs:
     archiveFilePatterns: '$(System.ArtifactsDirectory)/*.zip'
     destinationFolder: '$(System.ArtifactsDirectory)/GitHub'
     cleanDestinationFolder: true
     overwriteExistingFiles: false
+
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'ls $(System.ArtifactsDirectory)'
+    script: |
+      . $(System.ArtifactsDirectory)/GitHub/GraphAPI/Public/AzureAD/ConditionalAccess/Import-WTCAPolicy.ps1
+            
+            Import-WTCAPolicy `
+              -TenantDomain $(TenantDomain) `
+              -ClientID $(ClientID) `
+              -ClientSecret $(ClientSecret) `
+              -Path $(Agent.BuildDirectory)/AzureAD/ConditionalAccess `
+              -UpdateExistingPolicies `
+              -RemoveExistingPolicies `
+              -Force
     pwsh: true
     workingDirectory: '$(System.ArtifactsDirectory)/GitHub'
-
-
-
-
 
