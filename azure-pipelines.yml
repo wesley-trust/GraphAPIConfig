@@ -26,7 +26,7 @@ steps:
     downloadPath: '$(System.ArtifactsDirectory)'
 - task: ExtractFiles@1
   inputs:
-    archiveFilePatterns: '**/*.zip'
+    archiveFilePatterns: '$(System.ArtifactsDirectory)/*.zip'
     destinationFolder: '$(System.ArtifactsDirectory)/GitHub'
     cleanDestinationFolder: true
     overwriteExistingFiles: false
