@@ -26,11 +26,13 @@ steps:
     script: |
       . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Import-WTCAPolicy.ps1
             
+            ls $(Agent.BuildDirectory)
+
             Import-WTCAPolicy `
               -TenantDomain $(TenantDomain) `
               -ClientID $(ClientID) `
               -ClientSecret $(ClientSecret) `
-              -Path $(Agent.BuildDirectory)/AzureAD/ConditionalAccess `
+              -Path $(Agent.BuildDirectory)\AzureAD\ConditionalAccess `
               -UpdateExistingPolicies `
               -RemoveExistingPolicies `
               -Force
