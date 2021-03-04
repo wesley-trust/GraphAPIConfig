@@ -34,7 +34,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      . /GraphAPI/Public/AzureAD/ConditionalAccess/Import-WTCAPolicy.ps1
+      . $(System.ArtifactsDirectory)/GitHub/GraphAPI/Public/AzureAD/ConditionalAccess/Import-WTCAPolicy.ps1
       
       Import-WTCAPolicy `
         -TenantDomain $(TenantDomain) `
