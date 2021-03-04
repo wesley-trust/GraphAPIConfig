@@ -20,6 +20,7 @@ steps:
   inputs:
     script: 'git clone https://github.com/wesley-trust/ToolKit.git'
     workingDirectory: '$(System.ArtifactsDirectory)'
+
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
@@ -36,4 +37,6 @@ steps:
               -Force
     pwsh: true
     workingDirectory: '$(System.ArtifactsDirectory)'
-
+  env:
+    CLIENTID: $(ClientID)
+    CLIENTSECRET: $(ClientSecret)
