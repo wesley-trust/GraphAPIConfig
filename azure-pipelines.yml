@@ -26,7 +26,7 @@ steps:
     script: |
       . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Import-WTCAPolicy.ps1
             Write-Host "$(TenantDomain)"
-            Write-Host "$(ClientID)""
+            Write-Host "$(ClientID)"
             Import-WTCAPolicy `
               -TenantDomain $(TenantDomain) `
               -ClientID $(ClientID) `
