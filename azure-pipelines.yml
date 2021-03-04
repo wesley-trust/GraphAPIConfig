@@ -16,16 +16,18 @@ steps:
 - task: DownloadGitHubRelease@0
   inputs:
     connection: 'wesley-trust-PAT-Full'
-    userRepository: 'wesley-trust/GraphAPI'
-    defaultVersionType: 'latest'
+    userRepository: 'wesley-trust/ToolKit'
+    defaultVersionType: 'specificVersion'
+    version: '39287989'
     itemPattern: '*.zip'
     downloadPath: '$(System.ArtifactsDirectory)'
 
 - task: DownloadGitHubRelease@0
   inputs:
     connection: 'wesley-trust-PAT-Full'
-    userRepository: 'wesley-trust/ToolKit'
-    defaultVersionType: 'latest'
+    userRepository: 'wesley-trust/GraphAPI'
+    defaultVersionType: 'specificVersion'
+    version: '39285972'
     itemPattern: '*.zip'
     downloadPath: '$(System.ArtifactsDirectory)'
 
