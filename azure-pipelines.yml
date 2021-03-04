@@ -22,15 +22,6 @@ steps:
     itemPattern: '*.zip'
     downloadPath: '$(System.ArtifactsDirectory)'
 
-- task: DownloadGitHubRelease@0
-  inputs:
-    connection: 'wesley-trust-PAT-Full'
-    userRepository: 'wesley-trust/GraphAPI'
-    defaultVersionType: 'specificVersion'
-    version: '39285972'
-    itemPattern: '*.zip'
-    downloadPath: '$(System.ArtifactsDirectory)'
-
 - task: ExtractFiles@1
   inputs:
     archiveFilePatterns: '$(System.ArtifactsDirectory)/*.zip'
