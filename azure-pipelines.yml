@@ -33,17 +33,11 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: |
-      ls $(System.ArtifactsDirectory)
-      . $(System.ArtifactsDirectory)/GitHub/GraphAPI/Public/AzureAD/ConditionalAccess/Import-WTCAPolicy.ps1
-      
-      Import-WTCAPolicy `
-        -TenantDomain $(TenantDomain) `
-        -ClientID $(ClientID) `
-        -ClientSecret $(ClientSecret) `
-        -Path $(Agent.BuildDirectory)/AzureAD/ConditionalAccess `
-        -UpdateExistingPolicies `
-        -RemoveExistingPolicies `
-        -Force
+    script: 'ls $(System.ArtifactsDirectory)'
     pwsh: true
     workingDirectory: '$(System.ArtifactsDirectory)/GitHub'
+
+
+
+
+
