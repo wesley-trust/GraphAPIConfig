@@ -40,3 +40,9 @@ steps:
   env:
     CLIENTID: $(ClientID)
     CLIENTSECRET: $(ClientSecret)
+- task: CmdLine@2
+  inputs:
+    script: 'git commit -a -m "Commit configuration changes post deployment [skip ci]"'
+- task: CmdLine@2
+  inputs:
+    script: 'git push'
