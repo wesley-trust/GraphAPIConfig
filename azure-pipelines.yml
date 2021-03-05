@@ -51,4 +51,4 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'git push'
+    script: 'git push origin HEAD:main'
