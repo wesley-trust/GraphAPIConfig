@@ -4,53 +4,68 @@ trigger:
 
 pool:
   vmImage: windows-latest
+stages:
+- stage: 'Apply'
+  jobs:
+  - deployment: Apply
+    continueOnError: false
+    environment: production
+    strategy:
+     runOnce:
+       deploy:
+        steps:
+            - script: echo Execute Apply Stage
+              displayName: 'Execute Apply Stage'
+            - task: CmdLine@2
+              displayName: 'Clone GraphAPI repo'
+              inputs:
+                script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+                workingDirectory: '$(System.ArtifactsDirectory)'
+            - task: CmdLine@2
+              displayName: 'Clone ToolKit repo'
+              inputs:
+                script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+                workingDirectory: '$(System.ArtifactsDirectory)'
 
-steps:
-- script: echo Execute Pipeline
-  displayName: 'Execute Pipeline'
-- task: CmdLine@2
-  inputs:
-    script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
-    workingDirectory: '$(System.ArtifactsDirectory)'
-- task: CmdLine@2
-  inputs:
-    script: 'git clone https://github.com/wesley-trust/ToolKit.git'
-    workingDirectory: '$(System.ArtifactsDirectory)'
+            - task: PowerShell@2
+              displayName: 'Import Conditional Access Policies'
+              inputs:
+                targetType: 'inline'
+                script: |
+                  . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Import-WTCAPolicy.ps1
 
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Import-WTCAPolicy.ps1
+                        Import-WTCAPolicy `
+                          -TenantDomain $(TenantDomain) `
+                          -ClientID ${env:CLIENTID} `
+                          -ClientSecret ${env:CLIENTSECRET} `
+                          -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess `
+                          -UpdateExistingPolicies `
+                          -RemoveExistingPolicies `
+                          -Force
+                pwsh: true
+                workingDirectory: '$(System.ArtifactsDirectory)'
+              env:
+                CLIENTID: $(ClientID)
+                CLIENTSECRET: $(ClientSecret)
 
-            Import-WTCAPolicy `
-              -TenantDomain $(TenantDomain) `
-              -ClientID ${env:CLIENTID} `
-              -ClientSecret ${env:CLIENTSECRET} `
-              -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess `
-              -UpdateExistingPolicies `
-              -RemoveExistingPolicies `
-              -Force
-    pwsh: true
-    workingDirectory: '$(System.ArtifactsDirectory)'
-  env:
-    CLIENTID: $(ClientID)
-    CLIENTSECRET: $(ClientSecret)
+            - task: CmdLine@2
+              displayName: 'Set Git config email'
+              inputs:
+                script: 'git config user.email AzurePipeline@wesleytrust.com'
 
-- task: CmdLine@2
-  inputs:
-    script: 'git config user.email AzurePipeline@wesleytrust.com'
+            - task: CmdLine@2
+              displayName: 'Set Git config username'
+              inputs:
+                script: 'git config user.name AzurePipeline'
 
-- task: CmdLine@2
-  inputs:
-    script: 'git config user.name AzurePipeline'
+            - task: CmdLine@2
+              displayName: 'Commit changes to CA policies'
+              inputs:
+                script: 'git commit -a -m "Commit configuration changes post deployment [skip ci]"'
 
-- task: CmdLine@2
-  inputs:
-    script: 'git commit -a -m "Commit configuration changes post deployment [skip ci]"'
-
-- task: CmdLine@2
-  inputs:
-    script: 'git push https://%GITHUBPAT%@github.com/wesley-trust/GraphAPIConfig.git HEAD:main'
-  env:
-    GITHUBPAT: $(GitHubPAT)
+            - task: CmdLine@2
+              displayName: 'Push commit to GitHub'
+              inputs:
+                script: 'git push https://%GITHUBPAT%@github.com/wesley-trust/GraphAPIConfig.git HEAD:main'
+              env:
+                GITHUBPAT: $(GitHubPAT)
