@@ -39,8 +39,16 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: |
-      git config user.email AzurePipeline@wesleytrust.com
-      git config user.name AzurePipeline
-      git commit -a -m "Commit configuration changes post deployment [skip ci]"
-      git push
+    script: 'git config user.email AzurePipeline@wesleytrust.com'
+
+- task: CmdLine@2
+  inputs:
+    script: 'git config user.name AzurePipeline'
+
+- task: CmdLine@2
+  inputs:
+    script: 'git commit -a -m "Commit configuration changes post deployment [skip ci]"'
+
+- task: CmdLine@2
+  inputs:
+    script: 'git push'
