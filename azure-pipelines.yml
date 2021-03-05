@@ -51,6 +51,6 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'git push https://%GITHUBPAT%@github.com/wesley-trust/GraphAPIConfig.git'
+    script: 'git push https://%GITHUBPAT%@github.com/wesley-trust/GraphAPIConfig.git HEAD:main'
   env:
     GITHUBPAT: $(GitHubPAT)
