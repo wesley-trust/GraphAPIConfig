@@ -1,8 +1,8 @@
 {
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
-  "id": "52662273-0970-4227-ac8e-04effd73a318",
+  "id": "51725523-b4a2-4eab-93e2-b3a15b4b74f6",
   "displayName": "REF-11;ENV-P;VER-2; Require MFA, for administrators, for all cloud apps",
-  "createdDateTime": "2021-03-04T13:19:58.9214911Z",
+  "createdDateTime": "2021-03-05T14:04:17.0725461Z",
   "modifiedDateTime": null,
   "state": "disabled",
   "sessionControls": null,
@@ -29,10 +29,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "dd09706b-cf95-4bad-b5a6-3e176b051476"
+        "c091a9e1-7348-4b22-a414-f72204e7041e"
       ],
       "excludeGroups": [
-        "19d13670-bf11-40e2-a9fd-52ca038ae649"
+        "a5e1e8bc-ae57-4851-9585-08ad22896b27"
       ],
       "includeRoles": [
         "fe930be7-5e62-47db-91af-98c3a49a38b1",

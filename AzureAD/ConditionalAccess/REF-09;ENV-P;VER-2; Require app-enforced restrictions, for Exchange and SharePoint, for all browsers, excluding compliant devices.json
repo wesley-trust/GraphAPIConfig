@@ -1,8 +1,8 @@
 {
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
-  "id": "b68163a6-9dbc-4eb4-8434-ee6db037a053",
+  "id": "c3d110a0-5d34-4e8b-8b3c-520baefc3e26",
   "displayName": "REF-09;ENV-P;VER-2; Require app-enforced restrictions, for Exchange and SharePoint, for all browsers, excluding compliant devices",
-  "createdDateTime": "2021-03-04T13:19:54.7600242Z",
+  "createdDateTime": "2021-03-05T14:04:12.7996571Z",
   "modifiedDateTime": null,
   "state": "disabled",
   "grantControls": null,
@@ -29,10 +29,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "bc94b7d0-b106-43a8-a6fb-c1244c8b037d"
+        "f18f52ff-52e2-4197-a698-a0cf12e903b9"
       ],
       "excludeGroups": [
-        "b09928a1-5bef-4eb7-b1b7-27e8f65bf933"
+        "c3380a3b-e011-45fb-b634-9da36a8f5d75"
       ],
       "includeRoles": [],
       "excludeRoles": []

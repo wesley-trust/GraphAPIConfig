@@ -1,8 +1,8 @@
 {
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
-  "id": "dcbbeb7e-6d07-47d2-9e1a-ee59f84f94ce",
+  "id": "cc4e3cfd-c86e-4f67-a34f-8245abfce4f3",
   "displayName": "REF-02;ENV-P;VER-2; Block access, for registering security information, for any location, excluding trusted or named locations, hybrid joined or compliant devices",
-  "createdDateTime": "2021-03-04T13:19:40.286157Z",
+  "createdDateTime": "2021-03-05T14:03:58.928761Z",
   "modifiedDateTime": null,
   "state": "disabled",
   "sessionControls": null,
@@ -27,10 +27,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "e1c3642c-1b0b-4b2e-a52e-1536bc55ea2e"
+        "4c8a9e86-381f-409e-ab4e-ea9fced0ade3"
       ],
       "excludeGroups": [
-        "b523523e-e12d-4023-84ec-a1a55b84ea19"
+        "11ae5ab6-7ee3-484c-833c-19c168f2d194"
       ],
       "includeRoles": [],
       "excludeRoles": []
