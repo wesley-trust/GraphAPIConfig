@@ -1,7 +1,7 @@
 {
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "id": "a791c638-cce7-4611-9730-d07d395d1f9a",
-  "displayName": "REF-01;ENV-P;VER-2; Block access, for all cloud apps, for any location, excluding trusted or named locations",
+  "displayName": "REF-01;ENV-P;VER-2; Test update of name",
   "createdDateTime": "2021-03-05T14:03:57.3148782Z",
   "modifiedDateTime": null,
   "state": "disabled",
