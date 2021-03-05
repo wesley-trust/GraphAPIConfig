@@ -14,8 +14,10 @@ stages:
      runOnce:
        deploy:
         steps:
+            - checkout: self
             - script: echo Execute Apply Stage
               displayName: 'Execute Apply Stage'
+            - checkout: self
             - task: CmdLine@2
               displayName: 'Clone GraphAPI repo'
               inputs:
