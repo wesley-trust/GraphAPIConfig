@@ -97,3 +97,4 @@ stages:
         CLIENTID: $(ClientID)
         CLIENTSECRET: $(ClientSecret)
         GITHUBPAT: $(GitHubPAT)
+        REPOHOME: $(Build.Repository.LocalPath)
