@@ -1,7 +1,8 @@
 {
-  "id": "005ca732-7628-4cdb-b5df-907ceeab466a",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
+  "id": "c3bc34cd-a5e5-4c55-bd19-28c405c7490a",
   "displayName": "REF-01;ENV-P;VER-2; Block access, for all cloud apps, for any location, excluding trusted or named locations",
-  "createdDateTime": "2021-03-05T19:04:06.8476806Z",
+  "createdDateTime": "2021-03-06T20:09:36.311224Z",
   "modifiedDateTime": null,
   "state": "disabled",
   "sessionControls": null,
@@ -27,10 +28,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "4ba71032-0272-4617-8203-11e4dffaa26e"
+        "04cd8897-48b7-4760-9e3d-d91e6b9dd2df"
       ],
       "excludeGroups": [
-        "ac6bab63-930c-451a-957c-c615c6c0b334"
+        "030f1513-a0a8-489e-8f68-1770f117f2d5"
       ],
       "includeRoles": [],
       "excludeRoles": []
