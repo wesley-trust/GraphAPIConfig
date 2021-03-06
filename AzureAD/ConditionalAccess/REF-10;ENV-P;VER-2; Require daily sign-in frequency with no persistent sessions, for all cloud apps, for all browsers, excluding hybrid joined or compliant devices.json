@@ -1,8 +1,8 @@
 {
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
-  "id": "29e8bdb9-36e1-46a5-b053-43c2c2e7a885",
+  "id": "54b4d347-4664-4775-86ef-2d96d8e1e134",
   "displayName": "REF-10;ENV-P;VER-2; Require daily sign-in frequency with no persistent sessions, for all cloud apps, for all browsers, excluding hybrid joined or compliant devices",
-  "createdDateTime": "2021-03-06T20:16:30.3042086Z",
+  "createdDateTime": "2021-03-06T20:43:31.4965228Z",
   "modifiedDateTime": null,
   "state": "disabled",
   "grantControls": null,
@@ -28,10 +28,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "9967423d-3b97-4da9-bdec-8f10be46fa0f"
+        "b285b566-9786-45cf-9ccb-4b1fccb9d236"
       ],
       "excludeGroups": [
-        "2c12a8e0-256c-4105-85de-af7c343ab98b"
+        "3766eb9d-b9f9-4c7a-a5ea-f9eca90323f1"
       ],
       "includeRoles": [],
       "excludeRoles": []
