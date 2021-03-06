@@ -7,7 +7,7 @@ pool:
 stages:
 - stage: 'Validate'
   jobs:
-  - job: Validate
+  - job: Import
     continueOnError: false
     steps:
     - task: CmdLine@2
@@ -31,7 +31,7 @@ stages:
         workingDirectory: '$(System.ArtifactsDirectory)'
 - stage: 'Plan'
   jobs:
-  - job: Plan
+  - job: Evaluate
     continueOnError: false
     steps:
     - task: CmdLine@2
@@ -64,7 +64,7 @@ stages:
         CLIENTSECRET: $(ClientSecret)
 - stage: 'Apply'
   jobs:
-  - job: Apply
+  - job: Deploy
     continueOnError: false
     steps:
     - task: CmdLine@2
