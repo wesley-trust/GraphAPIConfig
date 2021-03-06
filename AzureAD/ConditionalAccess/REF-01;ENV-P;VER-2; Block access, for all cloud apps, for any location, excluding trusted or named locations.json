@@ -1,6 +1,6 @@
 {
   "id": "005ca732-7628-4cdb-b5df-907ceeab466a",
-  "displayName": "REF-01;ENV-P;VER-2; Block access, for all cloud apps, for any location, excluding trusted or named locations.json",
+  "displayName": "REF-01;ENV-P;VER-2; Block access, for all cloud apps, for any location, excluding trusted or named locations",
   "createdDateTime": "2021-03-05T19:04:06.8476806Z",
   "modifiedDateTime": null,
   "state": "disabled",
