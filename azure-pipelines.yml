@@ -31,8 +31,7 @@ steps:
               -Force
     pwsh: true
     workingDirectory: '$(System.ArtifactsDirectory)'
-      env:
-        GITHUBPAT: $(GitHubPAT)
   env:
     CLIENTID: $(ClientID)
     CLIENTSECRET: $(ClientSecret)
+    GITHUBPAT: $(GitHubPAT)
