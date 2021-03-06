@@ -1,8 +1,8 @@
 {
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
-  "id": "e78c23ea-db62-46e9-917e-72ad3da42212",
+  "id": "02a5fec5-fd0c-4709-a300-9cc7086590b2",
   "displayName": "REF-12;ENV-P;VER-2; Require MFA, for Azure Management",
-  "createdDateTime": "2021-03-05T19:04:29.7065881Z",
+  "createdDateTime": "2021-03-06T20:16:35.3161134Z",
   "modifiedDateTime": null,
   "state": "disabled",
   "sessionControls": null,
@@ -29,10 +29,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "0f4f5a4d-1088-4b69-bf75-83338943e9eb"
+        "be47f183-ac5f-4ae8-95e4-d91bda74e9d4"
       ],
       "excludeGroups": [
-        "909d85c0-51dc-49aa-9446-aa0a255e7003"
+        "68556ae2-dfe0-49ce-ab24-5e32edcc9cee"
       ],
       "includeRoles": [],
       "excludeRoles": []
