@@ -1,7 +1,6 @@
 {
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
-  "id": "9ff71955-c331-4044-81a6-b63b65adcaff",
-  "displayName": "REF-02;ENV-P;VER-2; Block access, for registering security information, for any location, excluding trusted or named locations, hybrid joined or compliant devices",
+  "displayName": "REF-02;ENV-P;VER-2; I'm new",
   "createdDateTime": "2021-03-06T20:09:37.923916Z",
   "modifiedDateTime": null,
   "state": "disabled",
