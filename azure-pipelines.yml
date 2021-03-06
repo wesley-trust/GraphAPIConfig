@@ -4,34 +4,95 @@ trigger:
 pool:
   vmImage: windows-latest
 
-steps:
-- script: echo Execute Pipeline
-  displayName: 'Execute Pipeline'
-- task: CmdLine@2
-  inputs:
-    script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
-    workingDirectory: '$(System.ArtifactsDirectory)'
-- task: CmdLine@2
-  inputs:
-    script: 'git clone https://github.com/wesley-trust/ToolKit.git'
-    workingDirectory: '$(System.ArtifactsDirectory)'
+stages:
+- stage: 'Validate'
+  jobs:
+  - job: Validate
+    continueOnError: false
+    steps:
+    - task: CmdLine@2
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: CmdLine@2
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
 
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTCAPolicyImport.ps1
-            Invoke-WTCAPolicyImport `
-              -TenantDomain $(TenantDomain) `
-              -ClientID ${env:CLIENTID} `
-              -ClientSecret ${env:CLIENTSECRET} `
-              -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess `
-              -UpdateExistingPolicies `
-              -RemoveExistingPolicies `
-              -Force
-    pwsh: true
-    workingDirectory: '$(System.ArtifactsDirectory)'
-  env:
-    CLIENTID: $(ClientID)
-    CLIENTSECRET: $(ClientSecret)
-    GITHUBPAT: $(GitHubPAT)
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTCAPolicyImport.ps1
+                Invoke-WTCAPolicyImport `
+                  -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess `
+                  -Stage Validate
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
+- stage: 'Plan'
+  jobs:
+  - job: Plan
+    continueOnError: false
+    steps:
+    - task: CmdLine@2
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: CmdLine@2
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTCAPolicyImport.ps1
+                Invoke-WTCAPolicyImport `
+                  -TenantDomain $(TenantDomain) `
+                  -ClientID ${env:CLIENTID} `
+                  -ClientSecret ${env:CLIENTSECRET} `
+                  -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess `
+                  -UpdateExistingPolicies `
+                  -RemoveExistingPolicies `
+                  -Force `
+                  -Stage Plan
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
+      env:
+        CLIENTID: $(ClientID)
+        CLIENTSECRET: $(ClientSecret)
+- stage: 'Apply'
+  jobs:
+  - job: Apply
+    continueOnError: false
+    steps:
+    - task: CmdLine@2
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: CmdLine@2
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTCAPolicyImport.ps1
+                Invoke-WTCAPolicyImport `
+                  -TenantDomain $(TenantDomain) `
+                  -ClientID ${env:CLIENTID} `
+                  -ClientSecret ${env:CLIENTSECRET} `
+                  -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess `
+                  -UpdateExistingPolicies `
+                  -RemoveExistingPolicies `
+                  -Force `
+                  -Stage Apply
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
+      env:
+        CLIENTID: $(ClientID)
+        CLIENTSECRET: $(ClientSecret)
+        GITHUBPAT: $(GitHubPAT)
