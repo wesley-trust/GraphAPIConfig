@@ -1,0 +1,56 @@
+{
+  "id": "005ca732-7628-4cdb-b5df-907ceeab466a",
+  "displayName": "REF-01;ENV-P;VER-2; Block access, for all cloud apps, for any location, excluding trusted or named locations",
+  "createdDateTime": "2021-03-05T19:04:06.8476806Z",
+  "modifiedDateTime": null,
+  "state": "disabled",
+  "sessionControls": null,
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "all"
+    ],
+    "platforms": null,
+    "deviceStates": null,
+    "devices": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "4ba71032-0272-4617-8203-11e4dffaa26e"
+      ],
+      "excludeGroups": [
+        "ac6bab63-930c-451a-957c-c615c6c0b334"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "locations": {
+      "includeLocations": [
+        "All"
+      ],
+      "excludeLocations": [
+        "00000000-0000-0000-0000-000000000000",
+        "18f36a1c-c03c-42bf-bb76-c8c48773f5d6"
+      ]
+    }
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "block"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
+  "id": "2b453aaa-a244-4f5a-848f-541f043112d6",
+  "displayName": "REF-05;ENV-P;VER-2; Require MFA, for all cloud apps, for any location, excluding trusted locations, hybrid joined or compliant devices",
+  "createdDateTime": "2021-03-05T19:04:14.9071615Z",
+  "modifiedDateTime": null,
+  "state": "disabled",
+  "sessionControls": null,
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "all"
+    ],
+    "platforms": null,
+    "deviceStates": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "d39115ed-013a-4344-af49-78463954cc03"
+      ],
+      "excludeGroups": [
+        "f771d74e-72de-44ec-8a17-de8986f7b3c3"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "locations": {
+      "includeLocations": [
+        "All"
+      ],
+      "excludeLocations": [
+        "AllTrusted"
+      ]
+    },
+    "devices": {
+      "includeDeviceStates": [],
+      "excludeDeviceStates": [],
+      "includeDevices": [
+        "All"
+      ],
+      "excludeDevices": [
+        "Compliant",
+        "DomainJoined"
+      ],
+      "deviceFilter": null
+    }
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "mfa"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  }
+}
