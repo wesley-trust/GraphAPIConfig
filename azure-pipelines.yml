@@ -89,7 +89,8 @@ stages:
                   -UpdateExistingPolicies `
                   -RemoveExistingPolicies `
                   -Force `
-                  -Stage Apply
+                  -Stage Apply `
+                  -Pipeline
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
       env:
