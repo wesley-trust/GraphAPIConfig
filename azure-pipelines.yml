@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  vmImage: windows-latest
+  vmImage: 'windows-latest'
 
 stages:
 - stage: 'Validate'
@@ -21,7 +21,7 @@ stages:
         script: 'git clone https://github.com/wesley-trust/ToolKit.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
     - task: PowerShell@2
-      name: Invoke-WTValidateCAPolicy
+      name: InvokeWTValidateCAPolicy
       inputs:
         targetType: 'inline'
         script: |
@@ -35,80 +35,86 @@ stages:
         workingDirectory: '$(System.ArtifactsDirectory)'
 - stage: 'Plan'
   jobs:
-  - job: Evaluate
+  - deployment: Plan
     continueOnError: false
-    environment: Staging
     variables:
-      ValidateCAPolicies: $[ stageDependencies.validate.import.outputs['Invoke-WTValidateCAPolicy.ValidateCAPolicies'] ]
-    steps:
-    - task: CmdLine@2
-      name: CloneGraphAPI
-      inputs:
-        script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
-        workingDirectory: '$(System.ArtifactsDirectory)'
-    - task: CmdLine@2
-      name: CloneToolKit
-      inputs:
-        script: 'git clone https://github.com/wesley-trust/ToolKit.git'
-        workingDirectory: '$(System.ArtifactsDirectory)'
-    - task: PowerShell@2
-      name: Invoke-WTPlanCAPolicy
-      inputs:
-        targetType: 'inline'
-        script: |
-          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
-                $PlanCAPolicies = Invoke-WTPlanCAPolicy `
-                  -TenantDomain $(TenantDomain) `
-                  -ClientID ${env:CLIENTID} `
-                  -ClientSecret ${env:CLIENTSECRET} `
-                  -ConditionalAccessPolicies $(ValidateCAPolicies) `
-                  -UpdateExistingPolicies `
-                  -RemoveExistingPolicies `
-                  -Force
-                    
-          Write-Host "Output Variable"
-          Write-Host "##vso[task.setvariable variable=PlanCAPolicies;isOutput=true;]$PlanCAPolicies"
-        pwsh: true
-        workingDirectory: '$(System.ArtifactsDirectory)'
-      env:
-        CLIENTID: $(ClientID)
-        CLIENTSECRET: $(ClientSecret)
+      ValidateCAPolicies: $[ stageDependencies.validate.import.outputs['InvokeWTValidateCAPolicy.ValidateCAPolicies'] ]
+    environment: staging
+    strategy:
+     runOnce:
+       deploy:
+        steps:
+          - task: CmdLine@2
+            name: CloneGraphAPI
+            inputs:
+              script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: CmdLine@2
+            name: CloneToolKit
+            inputs:
+              script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: PowerShell@2
+            name: InvokeWTPlanCAPolicy
+            inputs:
+              targetType: 'inline'
+              script: |
+                . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
+                      $PlanCAPolicies = Invoke-WTPlanCAPolicy `
+                        -TenantDomain $(TenantDomain) `
+                        -ClientID ${env:CLIENTID} `
+                        -ClientSecret ${env:CLIENTSECRET} `
+                        -ConditionalAccessPolicies $(ValidateCAPolicies) `
+                        -UpdateExistingPolicies `
+                        -RemoveExistingPolicies `
+                        -Force
+                          
+                Write-Host "Output Variable"
+                Write-Host "##vso[task.setvariable variable=PlanCAPolicies;isOutput=true;]$PlanCAPolicies"
+              pwsh: true
+              workingDirectory: '$(System.ArtifactsDirectory)'
+            env:
+              CLIENTID: $(ClientID)
+              CLIENTSECRET: $(ClientSecret)
 - stage: 'Apply'
   jobs:
-  - job: Deploy
+  - deployment: Deploy
     continueOnError: false
-    environment: Production
     variables:
-      ValidateCAPolicies: $[ stageDependencies.plan.evaluate.outputs['Invoke-WTPlanCAPolicy.PlanCAPolicies'] ]
-    steps:
-    - task: CmdLine@2
-      name: CloneGraphAPI
-      inputs:
-        script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
-        workingDirectory: '$(System.ArtifactsDirectory)'
-    - task: CmdLine@2
-      name: CloneToolKit
-      inputs:
-        script: 'git clone https://github.com/wesley-trust/ToolKit.git'
-        workingDirectory: '$(System.ArtifactsDirectory)'
-    - task: PowerShell@2
-      name: Invoke-WTApplyCAPolicy
-      inputs:
-        targetType: 'inline'
-        script: |
-          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTApplyCAPolicy.ps1
-                Invoke-WTApplyCAPolicy `
-                  -TenantDomain $(TenantDomain) `
-                  -ClientID ${env:CLIENTID} `
-                  -ClientSecret ${env:CLIENTSECRET} `
-                  -ConditionalAccessPolicies $(PlanCAPolicies) `
-                  -UpdateExistingPolicies `
-                  -RemoveExistingPolicies `
-                  -Pipeline
-        pwsh: true
-        workingDirectory: '$(System.ArtifactsDirectory)'
-      env:
-        CLIENTID: $(ClientID)
-        CLIENTSECRET: $(ClientSecret)
-        GITHUBPAT: $(GitHubPAT)
-        REPOHOME: $(Build.Repository.LocalPath)
+      ValidateCAPolicies: $[ stageDependencies.plan.evaluate.outputs['InvokeWTPlanCAPolicy.PlanCAPolicies'] ]
+    environment: production
+    strategy:
+     runOnce:
+       deploy:
+        steps:
+          - task: CmdLine@2
+            name: CloneGraphAPI
+            inputs:
+              script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: CmdLine@2
+            name: CloneToolKit
+            inputs:
+              script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: PowerShell@2
+            name: InvokeWTApplyCAPolicy
+            inputs:
+              targetType: 'inline'
+              script: |
+                . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTApplyCAPolicy.ps1
+                      Invoke-WTApplyCAPolicy `
+                        -TenantDomain $(TenantDomain) `
+                        -ClientID ${env:CLIENTID} `
+                        -ClientSecret ${env:CLIENTSECRET} `
+                        -ConditionalAccessPolicies $(PlanCAPolicies) `
+                        -UpdateExistingPolicies `
+                        -RemoveExistingPolicies `
+                        -Pipeline
+              pwsh: true
+              workingDirectory: '$(System.ArtifactsDirectory)'
+            env:
+              CLIENTID: $(ClientID)
+              CLIENTSECRET: $(ClientSecret)
+              GITHUBPAT: $(GitHubPAT)
+              REPOHOME: $(Build.Repository.LocalPath)
