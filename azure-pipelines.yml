@@ -28,8 +28,8 @@ stages:
           . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTValidateCAPolicy.ps1
                 $ValidateCAPolicies = Invoke-WTValidateCAPolicy `
                   -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess
-          
-          Write-Host "Output Variable"
+          $ValidateCAPolicies
+          break
           Write-Host "##vso[task.setvariable variable=ValidateCAPolicies;isOutput=true;]$ValidateCAPolicies"
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
@@ -38,7 +38,7 @@ stages:
   - deployment: Evaluate
     continueOnError: false
     variables:
-      ValidateCAPolicies: stageDependencies.validate.import.outputs['InvokeWTValidateCAPolicy.ValidateCAPolicies']
+      ValidateCAPolicies: $[ stageDependencies.validate.import.outputs['InvokeWTValidateCAPolicy.ValidateCAPolicies'] ]
     environment: staging
     strategy:
      runOnce:
