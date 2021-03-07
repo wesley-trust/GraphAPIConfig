@@ -37,7 +37,7 @@ stages:
   - deployment: Evaluate
     continueOnError: false
     variables:
-      ValidateObject: $[ stageDependencies.validate.import.outputs['InvokeWTValidateCAPolicy.ValidateCAPolicies'] ]
+     ValidateCAPolicies: $[ stageDependencies.validate.import.outputs['InvokeWTValidateCAPolicy.ValidateObject'] ]
     environment: staging
     strategy:
      runOnce:
@@ -58,14 +58,15 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                Write-Host ${env:ValidateCAPolicies}
+                Write-Host ${env:VALIDATECAPOLICIES}
+                break
 
                 . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
                       $PlanCAPolicies = Invoke-WTPlanCAPolicy `
                         -TenantDomain $(TenantDomain) `
                         -ClientID ${env:CLIENTID} `
                         -ClientSecret ${env:CLIENTSECRET} `
-                        -ConditionalAccessPolicies ${env:ValidateCAPolicies} `
+                        -ConditionalAccessPolicies ${env:VALIDATECAPOLICIES} `
                         -UpdateExistingPolicies `
                         -RemoveExistingPolicies `
                         -Force
@@ -77,7 +78,7 @@ stages:
             env:
               CLIENTID: $(ClientID)
               CLIENTSECRET: $(ClientSecret)
-              ValidateCAPolicies: $(ValidateCAPolicies)
+              VALIDATECAPOLICIES: $(ValidateCAPolicies)
 - stage: 'Apply'
   jobs:
   - deployment: Deploy
