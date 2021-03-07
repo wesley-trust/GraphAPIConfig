@@ -35,7 +35,7 @@ stages:
         workingDirectory: '$(System.ArtifactsDirectory)'
 - stage: 'Plan'
   jobs:
-  - deployment: Plan
+  - deployment: Evaluate
     continueOnError: false
     variables:
       ValidateCAPolicies: $[ stageDependencies.validate.import.outputs['InvokeWTValidateCAPolicy.ValidateCAPolicies'] ]
@@ -59,14 +59,14 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                Write-Host $(ValidateCAPolicies)
+                Write-Host ${env:ValidateCAPolicies}
                 break
                 . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
                       $PlanCAPolicies = Invoke-WTPlanCAPolicy `
                         -TenantDomain $(TenantDomain) `
                         -ClientID ${env:CLIENTID} `
                         -ClientSecret ${env:CLIENTSECRET} `
-                        -ConditionalAccessPolicies $(ValidateCAPolicies) `
+                        -ConditionalAccessPolicies ${env:ValidateCAPolicies} `
                         -UpdateExistingPolicies `
                         -RemoveExistingPolicies `
                         -Force
@@ -78,6 +78,7 @@ stages:
             env:
               CLIENTID: $(ClientID)
               CLIENTSECRET: $(ClientSecret)
+              ValidateCAPolicies: $(ValidateCAPolicies)
 - stage: 'Apply'
   jobs:
   - deployment: Deploy
@@ -109,7 +110,7 @@ stages:
                         -TenantDomain $(TenantDomain) `
                         -ClientID ${env:CLIENTID} `
                         -ClientSecret ${env:CLIENTSECRET} `
-                        -ConditionalAccessPolicies $(PlanCAPolicies) `
+                        -ConditionalAccessPolicies ${env:PlanCAPolicies} `
                         -UpdateExistingPolicies `
                         -RemoveExistingPolicies `
                         -Pipeline
@@ -120,3 +121,4 @@ stages:
               CLIENTSECRET: $(ClientSecret)
               GITHUBPAT: $(GitHubPAT)
               REPOHOME: $(Build.Repository.LocalPath)
+              PlanCAPolicies: $(PlanCAPolicies)
