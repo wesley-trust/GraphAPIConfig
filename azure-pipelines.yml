@@ -11,52 +11,63 @@ stages:
     continueOnError: false
     steps:
     - task: CmdLine@2
+      name: CloneGraphAPI
       inputs:
         script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
     - task: CmdLine@2
+      name: CloneToolKit
       inputs:
         script: 'git clone https://github.com/wesley-trust/ToolKit.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
-
     - task: PowerShell@2
+      name: Invoke-WTValidateCAPolicy
       inputs:
         targetType: 'inline'
         script: |
-          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTCAPolicyImport.ps1
-                Invoke-WTCAPolicyImport `
-                  -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess `
-                  -Stage Validate
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTValidateCAPolicy.ps1
+                $ValidateCAPolicies = Invoke-WTValidateCAPolicy `
+                  -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess
+          
+          Write-Host "Output Variable"
+          Write-Host "##vso[task.setvariable variable=ValidateCAPolicies;isOutput=true;]$ValidateCAPolicies"
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
 - stage: 'Plan'
   jobs:
   - job: Evaluate
     continueOnError: false
+    environment: Staging
+    variables:
+      ValidateCAPolicies: $[ stageDependencies.validate.import.outputs['Invoke-WTValidateCAPolicy.ValidateCAPolicies'] ]
     steps:
     - task: CmdLine@2
+      name: CloneGraphAPI
       inputs:
         script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
     - task: CmdLine@2
+      name: CloneToolKit
       inputs:
         script: 'git clone https://github.com/wesley-trust/ToolKit.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
-
     - task: PowerShell@2
+      name: Invoke-WTPlanCAPolicy
       inputs:
         targetType: 'inline'
         script: |
-          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTCAPolicyImport.ps1
-                Invoke-WTCAPolicyImport `
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
+                $PlanCAPolicies = Invoke-WTPlanCAPolicy `
                   -TenantDomain $(TenantDomain) `
                   -ClientID ${env:CLIENTID} `
                   -ClientSecret ${env:CLIENTSECRET} `
-                  -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess `
+                  -ConditionalAccessPolicies $(ValidateCAPolicies) `
                   -UpdateExistingPolicies `
                   -RemoveExistingPolicies `
-                  -Force `
-                  -Stage Plan
+                  -Force
+                    
+          Write-Host "Output Variable"
+          Write-Host "##vso[task.setvariable variable=PlanCAPolicies;isOutput=true;]$PlanCAPolicies"
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
       env:
@@ -66,30 +77,33 @@ stages:
   jobs:
   - job: Deploy
     continueOnError: false
+    environment: Production
+    variables:
+      ValidateCAPolicies: $[ stageDependencies.plan.evaluate.outputs['Invoke-WTPlanCAPolicy.PlanCAPolicies'] ]
     steps:
     - task: CmdLine@2
+      name: CloneGraphAPI
       inputs:
         script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
     - task: CmdLine@2
+      name: CloneToolKit
       inputs:
         script: 'git clone https://github.com/wesley-trust/ToolKit.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
-
     - task: PowerShell@2
+      name: Invoke-WTApplyCAPolicy
       inputs:
         targetType: 'inline'
         script: |
-          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTCAPolicyImport.ps1
-                Invoke-WTCAPolicyImport `
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTApplyCAPolicy.ps1
+                Invoke-WTApplyCAPolicy `
                   -TenantDomain $(TenantDomain) `
                   -ClientID ${env:CLIENTID} `
                   -ClientSecret ${env:CLIENTSECRET} `
-                  -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess `
+                  -ConditionalAccessPolicies $(PlanCAPolicies) `
                   -UpdateExistingPolicies `
                   -RemoveExistingPolicies `
-                  -Force `
-                  -Stage Apply `
                   -Pipeline
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
