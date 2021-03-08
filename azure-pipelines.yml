@@ -39,13 +39,4 @@ stages:
   jobs:
   - job: Evaluate
     steps:
-    - task: PowerShell@2
-      name: InvokeWTValidateCAPolicy
-      inputs:
-        targetType: 'inline'
-        script: |
-          Write-Host $env:CAPOLICIES
-        pwsh: true
-        workingDirectory: '$(System.ArtifactsDirectory)'
-      env:
-        CAPOLICIES: $(ValidateCAPolicies)
+    - script: echo $(ValidateCAPolicies)
