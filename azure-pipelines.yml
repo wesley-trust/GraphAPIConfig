@@ -37,7 +37,7 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                Write-Host ${env:VALIDATECAPOLICIES}
+                Write-Host $(${env:VALIDATECAPOLICIES})
                 Write-Host $(ValidateCAPolicies)
 
               pwsh: true
