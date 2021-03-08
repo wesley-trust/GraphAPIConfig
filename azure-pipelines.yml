@@ -1,49 +1,16 @@
-trigger:
-- main
-
-pool:
-  vmImage: 'windows-latest'
-
 stages:
-- stage: 'Validate'
+- stage: A
   jobs:
-  - job: 'Import'
-    continueOnError: false
+  - job: A1
     steps:
-    - task: PowerShell@2
-      name: 'InvokeWTValidateCAPolicy'
-      inputs:
-        targetType: 'inline'
-        script: |
-          #$ValidateCAPolicies = "Variable from Stage Validate"
-          #echo $ValidateCAPolicies
-          echo "##vso[task.setvariable variable=ValidateObject;isOutput=true;]Variable from Stage Validate"
+     - bash: echo "##vso[task.setvariable variable=myStageOutputVar;isOutput=true]this is a stage output var"
+       name: printvar
 
-        pwsh: true
-        workingDirectory: '$(System.ArtifactsDirectory)'
-- stage: 'Plan'
+- stage: B
+  dependsOn: A
   variables:
-    ValidateCAPolicies: $[ stageDependencies.validate.import.outputs['InvokeWTValidateCAPolicy.ValidateObject'] ]
+    myVarfromStageA: $[ stageDependencies.A.A1.outputs['printvar.myStageOutputVar'] ]
   jobs:
-  - deployment: 'Evaluate'
-    continueOnError: false
-    environment: 'staging'
-    strategy:
-     runOnce:
-       deploy:
-        steps:
-          - task: PowerShell@2
-            name: 'InvokeWTPlanCAPolicy'
-            inputs:
-              targetType: 'inline'
-              script: |
-                Write-Host "$(${env:VALIDATECAPOLICIES})"
-                Write-Host "$($env:VALIDATECAPOLICIES)"
-                Write-Host "$(ValidateCAPolicies)"
-
-              pwsh: true
-              workingDirectory: '$(System.ArtifactsDirectory)'
-            env:
-              CLIENTID: $(ClientID)
-              CLIENTSECRET: $(ClientSecret)
-              VALIDATECAPOLICIES: $(ValidateCAPolicies)
+  - job: B1
+    steps:
+    - script: echo $(myVarfromStageA)
