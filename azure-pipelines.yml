@@ -48,7 +48,7 @@ stages:
     strategy:
      runOnce:
        deploy:
-                steps:
+        steps:
           - task: CmdLine@2
             name: CloneGraphAPI
             inputs:
