@@ -25,9 +25,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          $ValidateCAPolicies = @{
-            Name = "Value"
-          }
+          $ValidateCAPolicies = "Test"
           Write-Host '##vso[task.setvariable variable=ValidateObject;isOutput=true]$ValidateCAPolicies'
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
