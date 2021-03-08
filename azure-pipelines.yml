@@ -38,4 +38,6 @@ stages:
   jobs:
   - job: Evaluate
     steps:
-    - script: echo $(ValidateCAPolicies)
+    - script: |
+      echo $(ValidateCAPolicies)
+      echo %VALIDATECAPOLICIES%
