@@ -26,7 +26,8 @@ stages:
         targetType: 'inline'
         script: |
           $ValidateCAPolicies = @{Name = "Value"} | ConvertTo-Json
-          Write-Host "##vso[task.setvariable variable=ValidateObject;isOutput=true]'$ValidateCAPolicies'"
+          $ValidateCAPolicies.Replace('"',"'")
+          Write-Host "##vso[task.setvariable variable=ValidateObject;isOutput=true]$ValidateCAPolicies"
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
 - stage: Plan
