@@ -31,7 +31,7 @@ stages:
 
           # Convert to pass objects as encoded string in pipeline variable
           if ($ValidateCAPolicies){
-            $ValidateCAPolicies = $ValidateCAPolicies | ConvertTo-Json
+            $ValidateCAPolicies = $ValidateCAPolicies | ConvertTo-Json -Depth 10
             $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetBytes($ValidateCAPolicies)
             $ValidateCAPolicies =[Convert]::ToBase64String($ValidateCAPolicies)
 
@@ -71,7 +71,7 @@ stages:
                 if ($ValidateCAPolicies){
                   $ValidateCAPolicies = "$(ValidateCAPolicies)"
                   $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($ValidateCAPolicies))
-                  $ValidateCAPolicies = $ValidateCAPolicies | ConvertFrom-JSON
+                  $ValidateCAPolicies = $ValidateCAPolicies | ConvertFrom-JSON -Depth 10
                 }
                 
                 . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
