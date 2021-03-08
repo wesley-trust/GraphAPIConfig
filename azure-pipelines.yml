@@ -26,6 +26,7 @@ stages:
         targetType: 'inline'
         script: |
           $ValidateCAPolicies = "Variable from Stage Validate"
+          echo $ValidateCAPolicies
           echo "##vso[task.setvariable variable=ValidateObject;isOutput=true;]$ValidateCAPolicies"
           
           <#. $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTValidateCAPolicy.ps1
