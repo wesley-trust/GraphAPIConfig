@@ -39,4 +39,6 @@ stages:
   jobs:
   - job: Evaluate
     steps:
-    - script: echo $(ValidateCAPolicies)
+    - script: echo %CAPOLICIES%
+      env:
+        CAPOLICIES: $(ValidateCAPolicies)
