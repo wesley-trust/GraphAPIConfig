@@ -44,6 +44,8 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          Write-Host "$(ValidateCAPolicies)"
+          Write-Host $env:CAPOLICIES
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
+        env:
+          CAPOLICIES: $(ValidateCAPolicies)
