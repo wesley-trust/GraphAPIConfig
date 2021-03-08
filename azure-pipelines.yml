@@ -47,5 +47,5 @@ stages:
           Write-Host $env:CAPOLICIES
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
-        env:
-          CAPOLICIES: $(ValidateCAPolicies)
+      env:
+        CAPOLICIES: $(ValidateCAPolicies)
