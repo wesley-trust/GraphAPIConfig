@@ -12,16 +12,19 @@ stages:
     steps:
     - task: CmdLine@2
       name: CloneGraphAPI
+      displayName: Clone Graph API repo
       inputs:
         script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
     - task: CmdLine@2
       name: CloneToolKit
+      displayName: Clone Toolkit repo
       inputs:
         script: 'git clone https://github.com/wesley-trust/ToolKit.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
     - task: PowerShell@2
       name: InvokeWTValidateCAPolicy
+      displayName: Invoke-WTValidateCAPolicy
       inputs:
         targetType: 'inline'
         script: |
@@ -56,16 +59,19 @@ stages:
         steps:
           - task: CmdLine@2
             name: CloneGraphAPI
+            displayName: Clone Graph API repo
             inputs:
               script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
               workingDirectory: '$(System.ArtifactsDirectory)'
           - task: CmdLine@2
             name: CloneToolKit
+            displayName: Clone Toolkit repo
             inputs:
               script: 'git clone https://github.com/wesley-trust/ToolKit.git'
               workingDirectory: '$(System.ArtifactsDirectory)'
           - task: PowerShell@2
             name: InvokeWTPlanCAPolicy
+            displayName: Invoke-WTPlanCAPolicy
             inputs:
               targetType: 'inline'
               script: |
@@ -85,7 +91,7 @@ stages:
                 
                 if ($PlanCAPolicies){
                   
-                  # Set Apply vaiable to true
+                  # Set Apply variable to true
                   echo "##vso[task.setvariable variable=Apply;isOutput=true;]$true"
                   
                   # Convert to JSON and export
@@ -104,7 +110,8 @@ stages:
 - stage: Apply
   dependsOn: Plan
   variables:
-    ValidateCAPolicies: $[ stageDependencies.plan.evaluate.outputs['InvokeWTPlanCAPolicy.Apply'] ]
+    Apply: $[ stageDependencies.plan.evaluate.outputs['InvokeWTPlanCAPolicy.Apply'] ]
+  condition: and(succeeded(), eq(variables.Apply, true))
   jobs:
   - deployment: Deploy
     continueOnError: false
@@ -115,16 +122,19 @@ stages:
         steps:
           - task: CmdLine@2
             name: CloneGraphAPI
+            displayName: Clone Graph API repo
             inputs:
               script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
               workingDirectory: '$(System.ArtifactsDirectory)'
           - task: CmdLine@2
             name: CloneToolKit
+            displayName: Clone Toolkit repo
             inputs:
               script: 'git clone https://github.com/wesley-trust/ToolKit.git'
               workingDirectory: '$(System.ArtifactsDirectory)'
           - task: PowerShell@2
             name: InvokeWTApplyCAPolicy
+            displayName: Invoke-WTApplyCAPolicy
             inputs:
               targetType: 'inline'
               script: |
