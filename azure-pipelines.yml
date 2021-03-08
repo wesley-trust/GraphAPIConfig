@@ -46,7 +46,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          $DecodeValidateCAPolicies = $(ValidateCAPolicies)
+          $DecodeValidateCAPolicies = "$(ValidateCAPolicies)"
           $DecodeValidateCAPolicies = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($DecodeValidateCAPolicies))
           $DecodeValidateCAPolicies = $DecodeValidateCAPolicies | ConvertFrom-JSON
           $DecodeValidateCAPolicies
