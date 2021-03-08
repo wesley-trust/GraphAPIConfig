@@ -149,6 +149,7 @@ stages:
                         -ConditionalAccessPolicies $PlanCAPolicies `
                         -UpdateExistingPolicies `
                         -RemoveExistingPolicies `
+                        -Path $(Build.SourcesDirectory)\AzureAD\ConditionalAccess `
                         -Pipeline
               pwsh: true
               workingDirectory: '$(System.ArtifactsDirectory)'
@@ -156,4 +157,4 @@ stages:
               CLIENTID: $(ClientID)
               CLIENTSECRET: $(ClientSecret)
               GITHUBPAT: $(GitHubPAT)
-              REPOHOME: $(Build.Repository.LocalPath)
+              REPOHOME: $(Build.SourcesDirectory)
