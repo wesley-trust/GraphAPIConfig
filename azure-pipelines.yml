@@ -8,7 +8,18 @@ stages:
 - stage: Validate
   jobs:
   - job: Import
+    continueOnError: false
     steps:
+    - task: CmdLine@2
+      name: CloneGraphAPI
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: CmdLine@2
+      name: CloneToolKit
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
     - task: PowerShell@2
       name: InvokeWTValidateCAPolicy
       inputs:
