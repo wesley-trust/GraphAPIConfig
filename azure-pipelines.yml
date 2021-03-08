@@ -22,6 +22,6 @@ stages:
   variables:
     ValidateCAPolicies: $[ stageDependencies.Validate.Import.outputs['InvokeWTValidateCAPolicy.ValidateObject'] ]
   jobs:
-  - job: B1
+  - job: Evaluate
     steps:
-    - script: echo $(myVarfromStageA)
+    - script: echo $(ValidateCAPolicies)
