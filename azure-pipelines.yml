@@ -70,11 +70,6 @@ stages:
               targetType: 'inline'
               script: |
                 
-                # Test 
-                ls $(Pipeline.Workspace)
-                ls $(Pipeline.Workspace)\Validate
-                break
-
                 # Import and convert policies from JSON
                 $ValidateCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
                 
