@@ -64,10 +64,6 @@ stages:
             inputs:
               script: 'git clone https://github.com/wesley-trust/ToolKit.git'
               workingDirectory: '$(System.ArtifactsDirectory)'
-          - task: DownloadPipelineArtifact@2
-            inputs:
-              buildType: 'current'
-              targetPath: '$(Pipeline.Workspace)'
           - task: PowerShell@2
             name: InvokeWTPlanCAPolicy
             inputs:
