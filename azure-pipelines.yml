@@ -41,6 +41,6 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          $(ValidateCAPolicies) | ConvertFrom-JSON
+          $(ValidateCAPolicies)
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
