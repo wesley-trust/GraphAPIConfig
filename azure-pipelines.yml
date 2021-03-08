@@ -111,7 +111,6 @@ stages:
   dependsOn: Plan
   variables:
     Apply: $[ stageDependencies.plan.evaluate.outputs['InvokeWTPlanCAPolicy.Apply'] ]
-  condition: and(succeeded(), eq(variables.Apply, true))
   jobs:
   - deployment: Deploy
     continueOnError: false
