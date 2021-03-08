@@ -39,4 +39,4 @@ stages:
   jobs:
   - job: Evaluate
     steps:
-    - script: $(ValidateCAPolicies)
+    - script: echo $(ValidateCAPolicies)
