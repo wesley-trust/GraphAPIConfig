@@ -29,9 +29,9 @@ stages:
 
           $ValidateCAPolicies = @{Name = "Value"} | ConvertTo-Json
           $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetBytes($ValidateCAPolicies)
-          $ValidateCAPolicies =[Convert]::ToBase64String($ValidateCAPolicies)
+          $EncodeValidateCAPolicies =[Convert]::ToBase64String($ValidateCAPolicies)
 
-          Write-Host "##vso[task.setvariable variable=ValidateObject;isOutput=true]$ValidateCAPolicies"
+          Write-Host "##vso[task.setvariable variable=ValidateObject;isOutput=true]$EncodeValidateCAPolicies"
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
 - stage: Plan
@@ -46,9 +46,9 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          $ValidateCAPolicies = $(ValidateCAPolicies)
-          $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($ValidateCAPolicies))
-          $ValidateCAPolicies = $ValidateCAPolicies | ConvertFrom-JSON
-          $ValidateCAPolicies
+          $DecodeValidateCAPolicies = $(ValidateCAPolicies)
+          $DecodeValidateCAPolicies = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($DecodeValidateCAPolicies))
+          $DecodeValidateCAPolicies = $DecodeValidateCAPolicies | ConvertFrom-JSON
+          $DecodeValidateCAPolicies
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
