@@ -15,9 +15,9 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          $ValidateCAPolicies = "Variable from Stage Validate"
-          echo $ValidateCAPolicies
-          echo "##vso[task.setvariable variable=ValidateObject;isOutput=true;]$ValidateCAPolicies"
+          #$ValidateCAPolicies = "Variable from Stage Validate"
+          #echo $ValidateCAPolicies
+          echo "##vso[task.setvariable variable=ValidateObject;isOutput=true;]Variable from Stage Validate"
 
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
