@@ -25,9 +25,12 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          $ValidateCAPolicies = @{Name = "Value"}
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTValidateCAPolicy.ps1
+          $ValidateCAPolicies = Invoke-WTValidateCAPolicy `
+            -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess
 
-          #$ValidateCAPolicies = @{Name = "Value"} | ConvertTo-Json
+          # Convert to pass objects as encoded string in pipeline variable
+          $ValidateCAPolicies = $ValidateCAPolicies | ConvertTo-Json
           $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetBytes($ValidateCAPolicies)
           $ValidateCAPolicies =[Convert]::ToBase64String($ValidateCAPolicies)
 
@@ -46,6 +49,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
+          # Decode policies
           $ValidateCAPolicies = "$(ValidateCAPolicies)"
           $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($ValidateCAPolicies))
           #$ValidateCAPolicies = $ValidateCAPolicies | ConvertFrom-JSON
