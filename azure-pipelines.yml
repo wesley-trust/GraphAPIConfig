@@ -99,5 +99,52 @@ stages:
           - task: PublishPipelineArtifact@1
             inputs:
               targetPath: '$(Pipeline.Workspace)\Plan.json'
-              artifact: 'Plan'
+              artifact: 'Evaluate'
               publishLocation: 'pipeline'
+- stage: Apply
+  dependsOn: Plan
+  variables:
+    ValidateCAPolicies: $[ stageDependencies.plan.evaluate.outputs['InvokeWTPlanCAPolicy.Apply'] ]
+  jobs:
+  - deployment: Deploy
+    continueOnError: false
+    environment: production
+    strategy:
+     runOnce:
+       deploy:
+        steps:
+          - task: CmdLine@2
+            name: CloneGraphAPI
+            inputs:
+              script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: CmdLine@2
+            name: CloneToolKit
+            inputs:
+              script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: PowerShell@2
+            name: InvokeWTApplyCAPolicy
+            inputs:
+              targetType: 'inline'
+              script: |
+                
+                # Import and convert policies from JSON
+                $PlanCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Evaluate\Plan.json | ConvertFrom-Json -Depth 10
+                
+                . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTApplyCAPolicy.ps1
+                      Invoke-WTApplyCAPolicy `
+                        -TenantDomain $(TenantDomain) `
+                        -ClientID ${env:CLIENTID} `
+                        -ClientSecret ${env:CLIENTSECRET} `
+                        -ConditionalAccessPolicies $PlanCAPolicies `
+                        -UpdateExistingPolicies `
+                        -RemoveExistingPolicies `
+                        -Pipeline
+              pwsh: true
+              workingDirectory: '$(System.ArtifactsDirectory)'
+            env:
+              CLIENTID: $(ClientID)
+              CLIENTSECRET: $(ClientSecret)
+              GITHUBPAT: $(GitHubPAT)
+              REPOHOME: $(Build.Repository.LocalPath)
