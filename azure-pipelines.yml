@@ -30,11 +30,13 @@ stages:
             -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess
 
           # Convert to pass objects as encoded string in pipeline variable
-          $ValidateCAPolicies = $ValidateCAPolicies | ConvertTo-Json
-          $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetBytes($ValidateCAPolicies)
-          $ValidateCAPolicies =[Convert]::ToBase64String($ValidateCAPolicies)
+          if ($ValidateCAPolicies){
+            $ValidateCAPolicies = $ValidateCAPolicies | ConvertTo-Json
+            $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetBytes($ValidateCAPolicies)
+            $ValidateCAPolicies =[Convert]::ToBase64String($ValidateCAPolicies)
 
-          Write-Host "##vso[task.setvariable variable=ValidateObject;isOutput=true]$ValidateCAPolicies"
+            Write-Host "##vso[task.setvariable variable=ValidateObject;isOutput=true]$ValidateCAPolicies"
+          }
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
 - stage: Plan
@@ -66,9 +68,11 @@ stages:
               script: |
                 
                 # Decode policies
-                $ValidateCAPolicies = "$(ValidateCAPolicies)"
-                $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($ValidateCAPolicies))
-                $ValidateCAPolicies = $ValidateCAPolicies | ConvertFrom-JSON
+                if ($ValidateCAPolicies){
+                  $ValidateCAPolicies = "$(ValidateCAPolicies)"
+                  $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($ValidateCAPolicies))
+                  $ValidateCAPolicies = $ValidateCAPolicies | ConvertFrom-JSON
+                }
                 
                 . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
                   $PlanCAPolicies = Invoke-WTPlanCAPolicy `
