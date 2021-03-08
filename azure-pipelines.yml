@@ -40,7 +40,7 @@ stages:
     - task: PublishPipelineArtifact@1
       inputs:
         targetPath: '$(Pipeline.Workspace)\Validate.json'
-        artifact: 'Validate'
+        artifact: 'Import'
         publishLocation: 'pipeline'
 - stage: Plan
   dependsOn: Validate
@@ -76,7 +76,7 @@ stages:
                 break
 
                 # Import and convert policies from JSON
-                $ValidateCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Validate.json | ConvertFrom-Json -Depth 10
+                $ValidateCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
                 
                 . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
                   $PlanCAPolicies = Invoke-WTPlanCAPolicy `
