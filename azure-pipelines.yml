@@ -27,12 +27,12 @@ stages:
         script: |
           $ValidateCAPolicies = "Variable from Stage Validate"
           echo "##vso[task.setvariable variable=ValidateObject;isOutput=true;]$ValidateCAPolicies"
-          break
-          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTValidateCAPolicy.ps1
+          
+          <#. $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTValidateCAPolicy.ps1
                 $ValidateCAPolicies = Invoke-WTValidateCAPolicy `
                   -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess
 
-          echo "##vso[task.setvariable variable=ValidateObject;isOutput=true;]$ValidateCAPolicies"
+          echo "##vso[task.setvariable variable=ValidateObject;isOutput=true;]$ValidateCAPolicies"#>
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
 - stage: 'Plan'
@@ -63,9 +63,8 @@ stages:
               script: |
                 Write-Host ${env:VALIDATECAPOLICIES}
                 Write-Host $(ValidateCAPolicies)
-                break
 
-                . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
+                <#. $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
                       $PlanCAPolicies = Invoke-WTPlanCAPolicy `
                         -TenantDomain $(TenantDomain) `
                         -ClientID ${env:CLIENTID} `
@@ -75,7 +74,7 @@ stages:
                         -RemoveExistingPolicies `
                         -Force
 
-                echo "##vso[task.setvariable variable=PlanCAPolicies;isOutput=true;]$PlanCAPolicies"
+                echo "##vso[task.setvariable variable=PlanCAPolicies;isOutput=true;]$PlanCAPolicies"#>
               pwsh: true
               workingDirectory: '$(System.ArtifactsDirectory)'
             env:
