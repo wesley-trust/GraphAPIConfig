@@ -28,7 +28,7 @@ stages:
           . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTValidateCAPolicy.ps1
           $ValidateCAPolicies = Invoke-WTValidateCAPolicy `
             -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess
-
+          $ValidateCAPolicies = "Testing pass variable"
           echo "##vso[task.setvariable variable=ValidateObject;isOutput=true]$ValidateCAPolicies"
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
@@ -39,6 +39,4 @@ stages:
   jobs:
   - job: Evaluate
     steps:
-    - script: echo %CAPOLICIES%
-      env:
-        CAPOLICIES: $(ValidateCAPolicies)
+    - script: $(ValidateCAPolicies)
