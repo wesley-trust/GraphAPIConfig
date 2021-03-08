@@ -36,8 +36,11 @@ stages:
   jobs:
   - job: Evaluate
     steps:
-    - script: |
-        echo $(ValidateCAPolicies)
-        echo %VALIDATECAPOLICIES%
-      env:
-        VALIDATECAPOLICIES: $(ValidateCAPolicies)
+    - task: PowerShell@2
+      name: InvokeWTValidateCAPolicy
+      inputs:
+        targetType: 'inline'
+        script: |
+          $(ValidateCAPolicies) | ConvertFrom-JSON
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
