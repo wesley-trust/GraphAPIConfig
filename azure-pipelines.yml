@@ -52,7 +52,7 @@ stages:
           # Decode policies
           $ValidateCAPolicies = "$(ValidateCAPolicies)"
           $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($ValidateCAPolicies))
-          #$ValidateCAPolicies = $ValidateCAPolicies | ConvertFrom-JSON
+          $ValidateCAPolicies = $ValidateCAPolicies | ConvertFrom-JSON
           $ValidateCAPolicies
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
