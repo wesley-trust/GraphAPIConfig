@@ -42,17 +42,47 @@ stages:
   variables:
     ValidateCAPolicies: $[ stageDependencies.Validate.Import.outputs['InvokeWTValidateCAPolicy.ValidateObject'] ]
   jobs:
-  - job: Evaluate
-    steps:
-    - task: PowerShell@2
-      name: InvokeWTValidateCAPolicy
-      inputs:
-        targetType: 'inline'
-        script: |
-          # Decode policies
-          $ValidateCAPolicies = "$(ValidateCAPolicies)"
-          $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($ValidateCAPolicies))
-          $ValidateCAPolicies = $ValidateCAPolicies | ConvertFrom-JSON
-          $ValidateCAPolicies
-        pwsh: true
-        workingDirectory: '$(System.ArtifactsDirectory)'
+  - deployment: Evaluate
+    continueOnError: false
+    environment: staging
+    strategy:
+     runOnce:
+       deploy:
+                steps:
+          - task: CmdLine@2
+            name: CloneGraphAPI
+            inputs:
+              script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: CmdLine@2
+            name: CloneToolKit
+            inputs:
+              script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: PowerShell@2
+            name: InvokeWTPlanCAPolicy
+            inputs:
+              targetType: 'inline'
+              script: |
+                
+                # Decode policies
+                $ValidateCAPolicies = "$(ValidateCAPolicies)"
+                $ValidateCAPolicies = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($ValidateCAPolicies))
+                $ValidateCAPolicies = $ValidateCAPolicies | ConvertFrom-JSON
+                
+                . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
+                  $PlanCAPolicies = Invoke-WTPlanCAPolicy `
+                    -TenantDomain $(TenantDomain) `
+                    -ClientID ${env:CLIENTID} `
+                    -ClientSecret ${env:CLIENTSECRET} `
+                    -ConditionalAccessPolicies $ValidateCAPolicies `
+                    -UpdateExistingPolicies `
+                    -RemoveExistingPolicies `
+                    -Force
+
+                echo "##vso[task.setvariable variable=PlanCAPolicies;isOutput=true;]$PlanCAPolicies"
+              pwsh: true
+              workingDirectory: '$(System.ArtifactsDirectory)'
+            env:
+              CLIENTID: $(ClientID)
+              CLIENTSECRET: $(ClientSecret)
