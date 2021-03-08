@@ -62,6 +62,7 @@ stages:
               targetType: 'inline'
               script: |
                 Write-Host ${env:VALIDATECAPOLICIES}
+                Write-Host $(ValidateCAPolicies)
                 break
 
                 . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
