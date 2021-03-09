@@ -119,6 +119,7 @@ stages:
      runOnce:
        deploy:
         steps:
+          - checkout: self
           - task: CmdLine@2
             name: CloneGraphAPI
             displayName: Clone Graph API repo
@@ -149,26 +150,11 @@ stages:
                         -ConditionalAccessPolicies $PlanCAPolicies `
                         -UpdateExistingPolicies `
                         -RemoveExistingPolicies `
-                        -Path $(Build.SourcesDirectory)\AzureAD\ConditionalAccess
+                        -Path $(Build.SourcesDirectory)\AzureAD\ConditionalAccess `
+                        -Pipeline
               pwsh: true
               workingDirectory: '$(System.ArtifactsDirectory)'
             env:
               CLIENTID: $(ClientID)
               CLIENTSECRET: $(ClientSecret)
-              GITHUBPAT: $(GitHubPAT)
-          - task: PowerShell@2
-            name: CommitConfig
-            displayName: Commit and Push GitHub Config
-            inputs:
-              targetType: 'inline'
-              script: |
-                
-                # Commit and push config changes
-                git config user.email AzurePipeline@wesleytrust.com
-                git config user.name AzurePipeline
-                git commit -a -m "Commit configuration changes post deployment [skip ci]"
-                git push https://${ENV:GITHUBPAT}@github.com/wesley-trust/GraphAPIConfig.git HEAD:main
-              pwsh: true
-              workingDirectory: '$(Build.SourcesDirectory)'
-            env:
               GITHUBPAT: $(GitHubPAT)
