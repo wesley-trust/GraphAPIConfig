@@ -1,11 +1,8 @@
 {
+  "REF": "06",
+  "VER": "2",
+  "ENV": "P",
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
-  "id": "ed0f802d-9dfc-489d-a748-740fb049674e",
-  "displayName": "REF-06;ENV-P;VER-2; Require hybrid joined or compliant device, for all cloud apps, for all desktop devices",
-  "createdDateTime": "2021-03-09T14:21:52.4652884Z",
-  "modifiedDateTime": null,
-  "state": "disabled",
-  "sessionControls": null,
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -28,10 +25,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "2687d58b-e620-487e-bb34-1fa243b94366"
+        "502eedff-a719-4ae8-904c-ba00710ffe5e"
       ],
       "excludeGroups": [
-        "efeac071-d8ec-4491-899e-2ac7123d25f2"
+        "e5724b4d-abb1-46a7-8ba1-f67d653af1d0"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -47,6 +44,8 @@
       ]
     }
   },
+  "createdDateTime": "2021-03-10T20:06:11.1284117Z",
+  "displayName": "REF-06;ENV-P;VER-2; Require hybrid joined or compliant device, for all cloud apps, for all desktop devices",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
@@ -55,5 +54,9 @@
     ],
     "customAuthenticationFactors": [],
     "termsOfUse": []
-  }
+  },
+  "id": "e6f6abe9-7950-4453-87e7-a148fba10312",
+  "modifiedDateTime": null,
+  "sessionControls": null,
+  "state": "disabled"
 }
