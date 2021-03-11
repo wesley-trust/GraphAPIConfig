@@ -32,7 +32,7 @@ stages:
           # Dot source and execute function
           . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTValidateCAPolicy.ps1
           $ValidateCAPolicies = Invoke-WTValidateCAPolicy `
-            -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess
+            -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess\Policies
           
           # If there are policies, convert to JSON and export
           if ($ValidateCAPolicies){
