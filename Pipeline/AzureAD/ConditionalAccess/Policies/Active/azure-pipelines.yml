@@ -30,7 +30,7 @@ stages:
         script: |
           
           # Dot source and execute function
-          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTValidateCAPolicy.ps1
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTValidateCAPolicy.ps1
           $ValidateCAPolicies = Invoke-WTValidateCAPolicy `
             -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess\Policies
           
@@ -79,7 +79,7 @@ stages:
                 # Import and convert policies from JSON
                 $ValidateCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
                 
-                . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTPlanCAPolicy.ps1
+                . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTPlanCAPolicy.ps1
                   $PlanCAPolicies = Invoke-WTPlanCAPolicy `
                     -TenantDomain $(TenantDomain) `
                     -ClientID ${env:CLIENTID} `
@@ -142,7 +142,7 @@ stages:
                 # Import and convert policies from JSON
                 $PlanCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Evaluate\Plan.json | ConvertFrom-Json -Depth 10
                 
-                . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Invoke-WTApplyCAPolicy.ps1
+                . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTApplyCAPolicy.ps1
                       Invoke-WTApplyCAPolicy `
                         -TenantDomain $(TenantDomain) `
                         -ClientID ${env:CLIENTID} `
