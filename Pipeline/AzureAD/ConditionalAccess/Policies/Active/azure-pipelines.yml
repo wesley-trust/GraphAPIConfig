@@ -108,9 +108,8 @@ stages:
                 # If there are policies
                 if ($PlanCAPolicies.RemovePolicies -or $PlanCAPolicies.UpdatePolicies -or $PlanCAPolicies.RemovePolicies){
 
-                  # Set Apply variable to true
-                  Write-Host "##vso[task.setvariable variable=Apply;isOutput=true;]'ShouldRun'"
-                  echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]'123'"
+                  # Set ShouldRun variable to true, for apply stage
+                  Write-Host "##vso[task.setvariable variable=ShouldRun;isOutput=true;]true"
 
                   # Convert to JSON and export
                   $PlanCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Plan.json
@@ -127,11 +126,7 @@ stages:
               publishLocation: 'pipeline'
 - stage: Apply
   dependsOn: Plan
-  variables:
-    Apply: $[ stageDependencies.plan.evaluate.outputs['InvokeWTPlanCAPolicy.Apply'] ]
-    ShouldRun: $[ stageDependencies.plan.evaluate.outputs['InvokeWTPlanCAPolicy.Apply'] ]
-    ShouldRun2: $[ stageDependencies.plan.evaluate.outputs['InvokeWTPlanCAPolicy.ShouldRun'] ]
-  #condition: and(succeeded(), eq(variables.Apply))
+  condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.InvokeWTPlanCAPolicy.ShouldRun'], 'true'))
   jobs:
   - deployment: Deploy
     continueOnError: false
@@ -160,21 +155,6 @@ stages:
               targetType: 'inline'
               script: |
 
-                Write-Host "Start"
-                $(Apply)
-                Write-Host "$(Apply)"
-                ${env:APPLY}
-                Write-Host ${env:APPLY}
-                $(ShouldRun)
-                Write-Host "$(ShouldRun)"
-                ${env:SHOULDRUN}
-                Write-Host ${env:SHOULDRUN}
-                $(ShouldRun2)
-                Write-Host "$(ShouldRun2)"
-                ${env:SHOULDRUN2}
-                Write-Host ${env:SHOULDRUN2}
-                Write-Host "End"
-                break
                 # Import and convert policies from JSON, should they exist
                 $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
                 if ($TestPath){
@@ -199,6 +179,3 @@ stages:
               CLIENTSECRET: $(ClientSecret)
               GITHUBPAT: $(GitHubPAT)
               REPOHOME: $(Build.Repository.LocalPath)
-              APPLY: $(Apply)
-              SHOULDRUN: $($ShouldRun)
-              SHOULDRUN2: $($ShouldRun)
