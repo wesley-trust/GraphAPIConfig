@@ -40,7 +40,7 @@ stages:
             if (!$TestPath){
               New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
             }
-            $ValidateCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Validate.json
+            $ValidateCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Validate.json
           }
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
