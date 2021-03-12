@@ -16,7 +16,6 @@
     "clientApplications": null,
     "applications": {
       "includeApplications": [
-        "All"
       ],
       "excludeApplications": [],
       "includeUserActions": [],

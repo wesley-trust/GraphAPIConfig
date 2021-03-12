@@ -36,7 +36,6 @@
     }
   },
   "createdDateTime": "2021-03-12T17:29:19.076433Z",
-  "displayName": "REF-12;ENV-P;VER-2; Require MFA, for Azure Management",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
@@ -45,7 +44,6 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "ebeb382b-817e-45ac-a6a4-d86a66e10dcc",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
