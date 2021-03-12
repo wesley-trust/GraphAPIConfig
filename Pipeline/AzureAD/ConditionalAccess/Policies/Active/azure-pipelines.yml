@@ -28,13 +28,13 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          
+
           # Dot source and execute function
           . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTValidateCAPolicy.ps1
           $ValidateCAPolicies = Invoke-WTValidateCAPolicy `
             -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess\Policies
           
-          # Create directory for artifact
+          # Create directory for artifact, if it does not exist
           $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
           if (!$TestPath){
             New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
@@ -81,13 +81,13 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                
+
                 # Import and convert policies from JSON
                 $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
-                if (!$TestPath){
+                if ($TestPath){
                     $ValidateCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
                 }
-                
+
                 # Dot source and execute function
                 . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTPlanCAPolicy.ps1
                   $PlanCAPolicies = Invoke-WTPlanCAPolicy `
@@ -99,7 +99,7 @@ stages:
                     -RemoveExistingPolicies `
                     -Force
                 
-                # Create directory for artifact
+                # Create directory for artifact, if it does not exist
                 $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
                 if (!$TestPath){
                     New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
@@ -155,10 +155,10 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                
+
                 # Import and convert policies from JSON
                 $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
-                if (!$TestPath){
+                if ($TestPath){
                     $PlanCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Evaluate\Plan.json | ConvertFrom-Json -Depth 10
                 }
                 
