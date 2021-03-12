@@ -10,4 +10,5 @@ JSON Definitions of:
 - Validating the input
 - Evaluation the input to create a plan for approval
 - Deploying to an environment, applying the plan
+
 [![Build Status](https://dev.azure.com/wesleytrust/GraphAPI/_apis/build/status/wesley-trust.GraphAPIConfig?branchName=main)](https://dev.azure.com/wesleytrust/GraphAPI/_build/latest?definitionId=2&branchName=main)
