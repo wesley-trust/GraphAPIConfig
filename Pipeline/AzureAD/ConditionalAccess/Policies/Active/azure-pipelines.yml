@@ -126,7 +126,7 @@ stages:
               publishLocation: 'pipeline'
 - stage: Apply
   dependsOn: Plan
-  condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.InvokeWTPlanCAPolicy.ShouldRun'], 'true'))
+  condition: and(succeeded(), eq(dependencies.Plan.outputs['InvokeWTPlanCAPolicy.ShouldRun'], 'true'))
   jobs:
   - deployment: Deploy
     continueOnError: false
