@@ -34,16 +34,16 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "a1702424-ac4a-4f71-b77c-d3ebb51b4a50"
+        "304ec7ab-4d94-465e-8559-850a05e28023"
       ],
       "excludeGroups": [
-        "8c16adee-ce58-4433-a28a-a9b6b25ac83d"
+        "0ac0612e-f76f-49fc-8cc9-938c5b4313ff"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-03-10T20:06:05.6589979Z",
+  "createdDateTime": "2021-03-12T17:29:02.1078603Z",
   "displayName": "REF-03;ENV-P;VER-2; Block access, for guests, for all cloud apps, except approved collaboration apps",
   "grantControls": {
     "operator": "OR",
@@ -53,7 +53,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "871eb9d5-c8ad-4a6e-922c-cb8b9edf154a",
+  "id": "92a26437-709c-4128-a000-c6aef9ad5182",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

@@ -25,10 +25,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "6a05ebad-a69b-46c8-9483-43c422a97834"
+        "8dd29635-5113-454a-a188-912105ceaee0"
       ],
       "excludeGroups": [
-        "c0fc2d31-ba46-41df-b66c-adbdfd61afea"
+        "250ad201-0492-469c-ae99-ac5f918f3163"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -43,7 +43,7 @@
       ]
     }
   },
-  "createdDateTime": "2021-03-10T20:06:14.6736402Z",
+  "createdDateTime": "2021-03-12T17:29:11.5132408Z",
   "displayName": "REF-08;ENV-P;VER-2; Require app protection policy or compliant device, for Exchange and SharePoint, for all mobile devices",
   "grantControls": {
     "operator": "OR",
@@ -54,7 +54,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "3f1ead1b-8b3f-4af7-acad-a8f21984f7cb",
+  "id": "4040a912-1faf-4abe-9e13-714f84769bc1",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

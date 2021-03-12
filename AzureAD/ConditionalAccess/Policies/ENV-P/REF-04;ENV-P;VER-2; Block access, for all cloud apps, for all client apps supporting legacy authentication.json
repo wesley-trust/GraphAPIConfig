@@ -27,16 +27,16 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "f71dafd8-f11d-4a1f-8e85-aee3089299a2"
+        "b64b95dc-8c84-448b-b7e7-de0c1819f9ee"
       ],
       "excludeGroups": [
-        "b95544ad-871e-4f64-9f7a-65b088b9cce1"
+        "ac1bf712-b819-4e88-a0b4-d9c35383e374"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-03-10T20:06:07.7840549Z",
+  "createdDateTime": "2021-03-12T17:29:04.4047964Z",
   "displayName": "REF-04;ENV-P;VER-2; Block access, for all cloud apps, for all client apps supporting legacy authentication",
   "grantControls": {
     "operator": "OR",
@@ -46,7 +46,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "df5bac08-ce83-49cb-9054-4c52ebd3364b",
+  "id": "f4174eb0-33e7-4d2a-9963-55d542399a40",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

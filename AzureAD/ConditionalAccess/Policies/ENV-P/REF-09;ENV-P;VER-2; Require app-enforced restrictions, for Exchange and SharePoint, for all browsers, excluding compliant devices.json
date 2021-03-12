@@ -26,10 +26,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "511d5684-61fa-4935-82b8-925065bd23d6"
+        "3a1df506-6a6c-47e6-b9ad-08a2b90977a4"
       ],
       "excludeGroups": [
-        "a45e233b-c1a7-4e9c-8480-74b6fe3e4c2c"
+        "4fb5c8bf-808c-458f-9d9e-02f3abf80239"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -47,10 +47,10 @@
       "deviceFilter": null
     }
   },
-  "createdDateTime": "2021-03-10T20:06:16.3780264Z",
+  "createdDateTime": "2021-03-12T17:29:13.2007615Z",
   "displayName": "REF-09;ENV-P;VER-2; Require app-enforced restrictions, for Exchange and SharePoint, for all browsers, excluding compliant devices",
   "grantControls": null,
-  "id": "107821b3-9cf1-4d9c-9955-6c791750d865",
+  "id": "ec37b9e7-cf3e-47a1-a670-d2910953f1d5",
   "modifiedDateTime": null,
   "sessionControls": {
     "cloudAppSecurity": null,
