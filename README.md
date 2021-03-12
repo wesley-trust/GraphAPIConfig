@@ -2,7 +2,9 @@
 Configuration files for deployment with the GraphAPI
 ## Azure AD
 ### Conditional Access
-[![Build Status](https://dev.azure.com/wesleytrust/GraphAPI/_apis/build/status/wesley-trust.GraphAPIConfig?branchName=main)](https://dev.azure.com/wesleytrust/GraphAPI/_build/latest?definitionId=2&branchName=main)
+| Policies | Locations |
+|:---|:---|
+|[![Build Status](https://dev.azure.com/wesleytrust/GraphAPI/_apis/build/status/wesley-trust.GraphAPIConfig?branchName=main)](https://dev.azure.com/wesleytrust/GraphAPI/_build/latest?definitionId=2&branchName=main)|
 
 JSON Definitions of:
 - Conditional Access Policies
