@@ -95,7 +95,9 @@ stages:
                   echo "##vso[task.setvariable variable=Apply;isOutput=true;]$true"
                   
                   # Convert to JSON and export
-                  $PlanCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Plan.json
+                  if ($PlanCAPolicies){
+                    $PlanCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Plan.json
+                  }
                 }
               pwsh: true
               workingDirectory: '$(System.ArtifactsDirectory)'
