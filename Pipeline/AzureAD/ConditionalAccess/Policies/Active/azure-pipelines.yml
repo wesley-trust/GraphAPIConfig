@@ -57,6 +57,11 @@ stages:
   - job: Evaluate
     continueOnError: false
     steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        artifactName: 'Import'
+        targetPath: '$(Pipeline.Workspace)'
     - task: CmdLine@2
       name: CloneGraphAPI
       displayName: Clone Graph API repo
