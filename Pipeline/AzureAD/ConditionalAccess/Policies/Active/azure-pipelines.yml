@@ -54,70 +54,70 @@ stages:
 - stage: Plan
   dependsOn: Validate
   jobs:
-    job: Evaluate
+  - job: Evaluate
     continueOnError: false
-      steps:
-        - task: CmdLine@2
-          name: CloneGraphAPI
-          displayName: Clone Graph API repo
-          inputs:
-            script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
-            workingDirectory: '$(System.ArtifactsDirectory)'
-        - task: CmdLine@2
-          name: CloneToolKit
-          displayName: Clone Toolkit repo
-          inputs:
-            script: 'git clone https://github.com/wesley-trust/ToolKit.git'
-            workingDirectory: '$(System.ArtifactsDirectory)'
-        - task: PowerShell@2
-          name: InvokeWTPlanCAPolicy
-          displayName: Invoke-WTPlanCAPolicy
-          inputs:
-            targetType: 'inline'
-            script: |
+    steps:
+    - task: CmdLine@2
+      name: CloneGraphAPI
+      displayName: Clone Graph API repo
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: CmdLine@2
+      name: CloneToolKit
+      displayName: Clone Toolkit repo
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PowerShell@2
+      name: InvokeWTPlanCAPolicy
+      displayName: Invoke-WTPlanCAPolicy
+      inputs:
+        targetType: 'inline'
+        script: |
 
-              # Import and convert policies from JSON, should they exist
-              $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
-              if ($TestPath){
-                  $ValidateCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
-              }
+          # Import and convert policies from JSON, should they exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
+          if ($TestPath){
+              $ValidateCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
+          }
 
-              # Dot source and execute function
-              . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTPlanCAPolicy.ps1
-                $PlanCAPolicies = Invoke-WTPlanCAPolicy `
-                  -TenantDomain $(TenantDomain) `
-                  -ClientID ${env:CLIENTID} `
-                  -ClientSecret ${env:CLIENTSECRET} `
-                  -ConditionalAccessPolicies $ValidateCAPolicies `
-                  -UpdateExistingPolicies `
-                  -RemoveExistingPolicies `
-                  -Force
+          # Dot source and execute function
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTPlanCAPolicy.ps1
+            $PlanCAPolicies = Invoke-WTPlanCAPolicy `
+              -TenantDomain $(TenantDomain) `
+              -ClientID ${env:CLIENTID} `
+              -ClientSecret ${env:CLIENTSECRET} `
+              -ConditionalAccessPolicies $ValidateCAPolicies `
+              -UpdateExistingPolicies `
+              -RemoveExistingPolicies `
+              -Force
 
-              # Create directory for artifact, if it does not exist
-              $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
-              if (!$TestPath){
-                  New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
-              }
+          # Create directory for artifact, if it does not exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+          if (!$TestPath){
+              New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+          }
 
-              # If there are policies
-              if ($PlanCAPolicies.RemovePolicies -or $PlanCAPolicies.UpdatePolicies -or $PlanCAPolicies.RemovePolicies){
+          # If there are policies
+          if ($PlanCAPolicies.RemovePolicies -or $PlanCAPolicies.UpdatePolicies -or $PlanCAPolicies.RemovePolicies){
 
-                # Set ShouldRun variable to true, for apply stage
-                echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]true"
+            # Set ShouldRun variable to true, for apply stage
+            echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]true"
 
-                # Convert to JSON and export
-                $PlanCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Plan.json
-              }
-            pwsh: true
-            workingDirectory: '$(System.ArtifactsDirectory)'
-          env:
-            CLIENTID: $(ClientID)
-            CLIENTSECRET: $(ClientSecret)
-        - task: PublishPipelineArtifact@1
-          inputs:
-            targetPath: '$(Pipeline.Workspace)\Output'
-            artifact: 'Evaluate'
-            publishLocation: 'pipeline'
+            # Convert to JSON and export
+            $PlanCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Plan.json
+          }
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
+      env:
+        CLIENTID: $(ClientID)
+        CLIENTSECRET: $(ClientSecret)
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)\Output'
+        artifact: 'Evaluate'
+        publishLocation: 'pipeline'
 - stage: Apply
   dependsOn: Plan
   condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.InvokeWTPlanCAPolicy.ShouldRun'], 'true'))
