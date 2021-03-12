@@ -87,7 +87,7 @@ stages:
                 if ($TestPath){
                     $ValidateCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
                 }
-                Write-Host "I'm before the function is called"
+
                 # Dot source and execute function
                 . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTPlanCAPolicy.ps1
                   $PlanCAPolicies = Invoke-WTPlanCAPolicy `
@@ -98,19 +98,19 @@ stages:
                     -UpdateExistingPolicies `
                     -RemoveExistingPolicies `
                     -Force
-                 Write-Host "I'm after the function is called"
+
                 # Create directory for artifact, if it does not exist
                 $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
                 if (!$TestPath){
                     New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
                 }
-                Write-Host "I'm before the if statement"
+
                 # If there are policies
                 if ($PlanCAPolicies.RemovePolicies -or $PlanCAPolicies.UpdatePolicies -or $PlanCAPolicies.RemovePolicies){
-                Write-Host "I'm after the if statement"
+
                   # Set Apply variable to true
-                  Write-Host "##vso[task.setvariable variable=Apply;isOutput=true;]$true"
-                  Write-Host "##vso[task.setvariable variable=ShouldRun;isOutput=true;]$true"
+                  Write-Host "##vso[task.setvariable variable=Apply;isOutput=true;]ShouldRun"
+                  echo "##vso[task.setvariable variable=ShouldRun;isOutput=true;]123"
 
                   # Convert to JSON and export
                   $PlanCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Plan.json
