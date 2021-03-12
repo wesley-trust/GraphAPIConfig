@@ -34,12 +34,14 @@ stages:
           $ValidateCAPolicies = Invoke-WTValidateCAPolicy `
             -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess\Policies
           
+          # Create directory for artifact
+          $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+          if (!$TestPath){
+            New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+          }
+
           # If there are policies, convert to JSON and export
           if ($ValidateCAPolicies){
-            $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
-            if (!$TestPath){
-              New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
-            }
             $ValidateCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Validate.json
           }
         pwsh: true
@@ -81,8 +83,12 @@ stages:
               script: |
                 
                 # Import and convert policies from JSON
-                $ValidateCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
+                $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
+                if (!$TestPath){
+                    $ValidateCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
+                }
                 
+                # Dot source and execute function
                 . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTPlanCAPolicy.ps1
                   $PlanCAPolicies = Invoke-WTPlanCAPolicy `
                     -TenantDomain $(TenantDomain) `
@@ -93,19 +99,20 @@ stages:
                     -RemoveExistingPolicies `
                     -Force
                 
+                # Create directory for artifact
+                $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+                if (!$TestPath){
+                    New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+                }
+                
+                # If there are policies
                 if ($PlanCAPolicies){
                   
                   # Set Apply variable to true
                   echo "##vso[task.setvariable variable=Apply;isOutput=true;]$true"
                   
                   # Convert to JSON and export
-                  if ($PlanCAPolicies){
-                    $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
-                    if (!$TestPath){
-                      New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
-                    }
-                    $PlanCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Plan.json
-                  }
+                  $PlanCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Plan.json
                 }
               pwsh: true
               workingDirectory: '$(System.ArtifactsDirectory)'
@@ -150,8 +157,12 @@ stages:
               script: |
                 
                 # Import and convert policies from JSON
-                $PlanCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Evaluate\Plan.json | ConvertFrom-Json -Depth 10
+                $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
+                if (!$TestPath){
+                    $PlanCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Evaluate\Plan.json | ConvertFrom-Json -Depth 10
+                }
                 
+                # Dot source and execute function
                 . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTApplyCAPolicy.ps1
                       Invoke-WTApplyCAPolicy `
                         -TenantDomain $(TenantDomain) `
