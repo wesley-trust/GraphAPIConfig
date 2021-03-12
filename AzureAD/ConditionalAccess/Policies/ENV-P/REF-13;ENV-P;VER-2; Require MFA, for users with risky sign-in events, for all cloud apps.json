@@ -39,7 +39,7 @@
     }
   },
   "createdDateTime": "2021-03-10T20:06:23.6126043Z",
-  "displayName": "REF-13;ENV-P;VER-2; Require MFA, for users with risky sign-in events, for all cloud apps",
+  "displayName": "REF-13;ENV-P;VER-2; Update name",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
