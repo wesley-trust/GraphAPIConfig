@@ -128,7 +128,7 @@ stages:
   dependsOn: Plan
   variables:
     Apply: $[ stageDependencies.plan.evaluate.outputs['InvokeWTPlanCAPolicy.Apply'] ]
-  condition: and(succeeded(), eq(variables.Apply))
+  #condition: and(succeeded(), eq(variables.Apply))
   jobs:
   - deployment: Deploy
     continueOnError: false
@@ -157,6 +157,9 @@ stages:
               targetType: 'inline'
               script: |
 
+                $(Apply)
+                Write-Host $(Apply)
+                break
                 # Import and convert policies from JSON, should they exist
                 $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
                 if ($TestPath){
