@@ -168,7 +168,7 @@ stages:
                         -ConditionalAccessPolicies $PlanCAPolicies `
                         -UpdateExistingPolicies `
                         -RemoveExistingPolicies `
-                        -Path $(Build.SourcesDirectory)\AzureAD\ConditionalAccess `
+                        -Path $(Build.SourcesDirectory)\AzureAD\ConditionalAccess\Policies `
                         -Pipeline
               pwsh: true
               workingDirectory: '$(System.ArtifactsDirectory)'
