@@ -36,13 +36,17 @@ stages:
           
           # If there are policies, convert to JSON and export
           if ($ValidateCAPolicies){
+            $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+            if (!$TestPath){
+              New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+            }
             $ValidateCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Validate.json
           }
         pwsh: true
         workingDirectory: '$(System.ArtifactsDirectory)'
     - task: PublishPipelineArtifact@1
       inputs:
-        targetPath: '$(Pipeline.Workspace)\Validate.json'
+        targetPath: '$(Pipeline.Workspace)\Output'
         artifact: 'Import'
         publishLocation: 'pipeline'
 - stage: Plan
@@ -96,7 +100,11 @@ stages:
                   
                   # Convert to JSON and export
                   if ($PlanCAPolicies){
-                    $PlanCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Plan.json
+                    $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+                    if (!$TestPath){
+                      New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+                    }
+                    $PlanCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Plan.json
                   }
                 }
               pwsh: true
@@ -106,7 +114,7 @@ stages:
               CLIENTSECRET: $(ClientSecret)
           - task: PublishPipelineArtifact@1
             inputs:
-              targetPath: '$(Pipeline.Workspace)\Plan.json'
+              targetPath: '$(Pipeline.Workspace)\Output'
               artifact: 'Evaluate'
               publishLocation: 'pipeline'
 - stage: Apply
