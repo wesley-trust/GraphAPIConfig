@@ -109,8 +109,8 @@ stages:
                 if ($PlanCAPolicies.RemovePolicies -or $PlanCAPolicies.UpdatePolicies -or $PlanCAPolicies.RemovePolicies){
 
                   # Set Apply variable to true
-                  Write-Host "##vso[task.setvariable variable=Apply;isOutput=true;]ShouldRun"
-                  echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]123"
+                  Write-Host "##vso[task.setvariable variable=Apply;isOutput=true;]'ShouldRun'"
+                  echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]'123'"
 
                   # Convert to JSON and export
                   $PlanCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Plan.json
