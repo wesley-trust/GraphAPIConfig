@@ -6,7 +6,7 @@ JSON Definitions of:
 - Conditional Access Policies
 - Conditional Access Locations
 - Groups
-### CI/CD Pipeline
+#### CI/CD Pipeline
 - Validating the input
 - Evaluation the input to create a plan for approval
 - Deploying to an environment, applying the plan
