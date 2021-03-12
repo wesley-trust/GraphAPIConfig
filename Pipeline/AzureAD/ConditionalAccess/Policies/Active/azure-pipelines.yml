@@ -163,10 +163,16 @@ stages:
                 Write-Host "Start"
                 $(Apply)
                 Write-Host "$(Apply)"
+                ${env:APPLY}
+                Write-Host ${env:APPLY}
                 $(ShouldRun)
                 Write-Host "$(ShouldRun)"
+                ${env:SHOULDRUN}
+                Write-Host ${env:SHOULDRUN}
                 $(ShouldRun2)
                 Write-Host "$(ShouldRun2)"
+                ${env:SHOULDRUN2}
+                Write-Host ${env:SHOULDRUN2}
                 Write-Host "End"
                 break
                 # Import and convert policies from JSON, should they exist
@@ -193,3 +199,6 @@ stages:
               CLIENTSECRET: $(ClientSecret)
               GITHUBPAT: $(GitHubPAT)
               REPOHOME: $(Build.Repository.LocalPath)
+              APPLY: $(Apply)
+              SHOULDRUN: $($ShouldRun)
+              SHOULDRUN2: $($ShouldRun)
