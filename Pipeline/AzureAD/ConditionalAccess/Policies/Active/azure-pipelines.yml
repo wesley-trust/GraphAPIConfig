@@ -82,7 +82,7 @@ stages:
               targetType: 'inline'
               script: |
 
-                # Import and convert policies from JSON
+                # Import and convert policies from JSON, should they exist
                 $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
                 if ($TestPath){
                     $ValidateCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
@@ -157,7 +157,7 @@ stages:
               targetType: 'inline'
               script: |
 
-                # Import and convert policies from JSON
+                # Import and convert policies from JSON, should they exist
                 $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
                 if ($TestPath){
                     $PlanCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Evaluate\Plan.json | ConvertFrom-Json -Depth 10
