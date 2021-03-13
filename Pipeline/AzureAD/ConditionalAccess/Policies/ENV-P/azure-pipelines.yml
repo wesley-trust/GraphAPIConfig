@@ -1,0 +1,179 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+stages:
+- stage: Validate
+  jobs:
+  - job: Import
+    continueOnError: false
+    steps:
+    - task: CmdLine@2
+      name: CloneGraphAPI
+      displayName: Clone Graph API repo
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: CmdLine@2
+      name: CloneToolKit
+      displayName: Clone Toolkit repo
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PowerShell@2
+      name: InvokeWTValidateCAPolicy
+      displayName: Invoke-WTValidateCAPolicy
+      inputs:
+        targetType: 'inline'
+        script: |
+
+          # Dot source and execute function
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTValidateCAPolicy.ps1
+          $ValidateCAPolicies = Invoke-WTValidateCAPolicy `
+            -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess\Policies
+          
+          # Create directory for artifact, if it does not exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+          if (!$TestPath){
+            New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+          }
+
+          # If there are policies, convert to JSON and export
+          if ($ValidateCAPolicies){
+            $ValidateCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Validate.json
+          }
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)\Output'
+        artifact: 'Import'
+        publishLocation: 'pipeline'
+- stage: Plan
+  dependsOn: Validate
+  jobs:
+  - job: Evaluate
+    continueOnError: false
+    steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        targetPath: '$(Pipeline.Workspace)'
+    - task: CmdLine@2
+      name: CloneGraphAPI
+      displayName: Clone Graph API repo
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: CmdLine@2
+      name: CloneToolKit
+      displayName: Clone Toolkit repo
+      inputs:
+        script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PowerShell@2
+      name: InvokeWTPlanCAPolicy
+      displayName: Invoke-WTPlanCAPolicy
+      inputs:
+        targetType: 'inline'
+        script: |
+
+          # Import and convert policies from JSON, should they exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
+          if ($TestPath){
+              $ValidateCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
+          }
+
+          # Dot source and execute function
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTPlanCAPolicy.ps1
+            $PlanCAPolicies = Invoke-WTPlanCAPolicy `
+              -TenantDomain $(TenantDomain) `
+              -ClientID ${env:CLIENTID} `
+              -ClientSecret ${env:CLIENTSECRET} `
+              -ConditionalAccessPolicies $ValidateCAPolicies `
+              -UpdateExistingPolicies `
+              -RemoveExistingPolicies `
+              -Force
+
+          # Create directory for artifact, if it does not exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+          if (!$TestPath){
+              New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+          }
+
+          # If there are policies
+          if ($PlanCAPolicies.RemovePolicies -or $PlanCAPolicies.UpdatePolicies -or $PlanCAPolicies.CreatePolicies){
+
+            # Set ShouldRun variable to true, for apply stage
+            echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]true"
+
+            # Convert to JSON and export
+            $PlanCAPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Plan.json
+          }
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
+      env:
+        CLIENTID: $(ClientID)
+        CLIENTSECRET: $(ClientSecret)
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)\Output'
+        artifact: 'Evaluate'
+        publishLocation: 'pipeline'
+- stage: Apply
+  dependsOn: Plan
+  condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.InvokeWTPlanCAPolicy.ShouldRun'], 'true'))
+  jobs:
+  - deployment: Deploy
+    continueOnError: false
+    environment: Production
+    strategy:
+     runOnce:
+       deploy:
+        steps:
+          - checkout: self
+          - task: CmdLine@2
+            name: CloneGraphAPI
+            displayName: Clone Graph API repo
+            inputs:
+              script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: CmdLine@2
+            name: CloneToolKit
+            displayName: Clone Toolkit repo
+            inputs:
+              script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: PowerShell@2
+            name: InvokeWTApplyCAPolicy
+            displayName: Invoke-WTApplyCAPolicy
+            inputs:
+              targetType: 'inline'
+              script: |
+
+                # Import and convert policies from JSON, should they exist
+                $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
+                if ($TestPath){
+                    $PlanCAPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Evaluate\Plan.json | ConvertFrom-Json -Depth 10
+                }
+                
+                # Dot source and execute function
+                . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTApplyCAPolicy.ps1
+                      Invoke-WTApplyCAPolicy `
+                        -TenantDomain $(TenantDomain) `
+                        -ClientID ${env:CLIENTID} `
+                        -ClientSecret ${env:CLIENTSECRET} `
+                        -ConditionalAccessPolicies $PlanCAPolicies `
+                        -UpdateExistingPolicies `
+                        -RemoveExistingPolicies `
+                        -Path $(Build.SourcesDirectory)\AzureAD\ConditionalAccess\Policies `
+                        -Pipeline
+              pwsh: true
+              workingDirectory: '$(System.ArtifactsDirectory)'
+            env:
+              CLIENTID: $(ClientID)
+              CLIENTSECRET: $(ClientSecret)
+              GITHUBPAT: $(GitHubPAT)
+              REPOHOME: $(Build.Repository.LocalPath)
