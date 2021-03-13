@@ -1,6 +1,3 @@
-trigger:
-- $(TriggerBranch)
-
 pool:
   vmImage: 'windows-latest'
 
