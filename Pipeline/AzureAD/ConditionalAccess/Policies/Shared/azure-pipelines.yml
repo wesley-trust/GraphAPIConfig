@@ -13,13 +13,13 @@ stages:
       name: CloneGraphAPI
       displayName: Clone Graph API repo
       inputs:
-        script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
     - task: CmdLine@2
       name: CloneToolKit
       displayName: Clone Toolkit repo
       inputs:
-        script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/ToolKit.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
     - task: PowerShell@2
       name: InvokeWTValidateCAPolicy
@@ -66,13 +66,13 @@ stages:
       name: CloneGraphAPI
       displayName: Clone Graph API repo
       inputs:
-        script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
     - task: CmdLine@2
       name: CloneToolKit
       displayName: Clone Toolkit repo
       inputs:
-        script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/ToolKit.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
     - task: PowerShell@2
       name: InvokeWTPlanCAPolicy
@@ -141,13 +141,13 @@ stages:
             name: CloneGraphAPI
             displayName: Clone Graph API repo
             inputs:
-              script: 'git clone https://github.com/wesley-trust/GraphAPI.git'
+              script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
               workingDirectory: '$(System.ArtifactsDirectory)'
           - task: CmdLine@2
             name: CloneToolKit
             displayName: Clone Toolkit repo
             inputs:
-              script: 'git clone https://github.com/wesley-trust/ToolKit.git'
+              script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/ToolKit.git'
               workingDirectory: '$(System.ArtifactsDirectory)'
           - task: PowerShell@2
             name: InvokeWTApplyCAPolicy
@@ -180,3 +180,4 @@ stages:
               CLIENTSECRET: $(ClientSecret)
               GITHUBPAT: $(GitHubPAT)
               REPOHOME: $(Build.Repository.LocalPath)
+              BRANCH: $(Branch)
