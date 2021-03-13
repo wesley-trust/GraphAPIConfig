@@ -1,10 +1,12 @@
-pool:
-  vmImage: 'windows-latest'
 
 stages:
 - stage: Validate
+  pool:
+    vmImage: 'windows-latest'
   jobs:
   - job: Import
+    pool:
+      vmImage: 'windows-latest'
     continueOnError: false
     steps:
     - task: CmdLine@2
@@ -49,6 +51,8 @@ stages:
         artifact: 'Import'
         publishLocation: 'pipeline'
 - stage: Plan
+  pool:
+    vmImage: 'windows-latest'
   dependsOn: Validate
   jobs:
   - job: Evaluate
@@ -120,6 +124,8 @@ stages:
         artifact: 'Evaluate'
         publishLocation: 'pipeline'
 - stage: Apply
+  pool:
+    vmImage: 'windows-latest'
   dependsOn: Plan
   condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.InvokeWTPlanCAPolicy.ShouldRun'], 'true'))
   jobs:
