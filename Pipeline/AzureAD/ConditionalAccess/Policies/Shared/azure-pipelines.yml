@@ -131,7 +131,7 @@ stages:
   jobs:
   - deployment: Deploy
     continueOnError: false
-    environment: Production
+    environment: $(Environment)
     strategy:
      runOnce:
        deploy:
