@@ -1,0 +1,9 @@
+# Trigger builds on commits and merges to branch
+trigger:
+  - develop
+
+# Do not trigger builds on PRs
+pr: none
+
+extends:
+  template: ../Shared/azure-pipelines.yml
