@@ -1,0 +1,68 @@
+{
+  "REF": "10",
+  "VER": "2",
+  "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "browser"
+    ],
+    "platforms": null,
+    "locations": null,
+    "deviceStates": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "8364f6c7-689f-4c25-96b9-3ff7fd60010e"
+      ],
+      "excludeGroups": [
+        "4c2e2466-b568-472e-a4a9-c62bc631b903"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "devices": {
+      "includeDeviceStates": [],
+      "excludeDeviceStates": [],
+      "includeDevices": [
+        "All"
+      ],
+      "excludeDevices": [
+        "Compliant",
+        "DomainJoined"
+      ],
+      "deviceFilter": null
+    }
+  },
+  "createdDateTime": "2021-03-12T17:29:15.6763602Z",
+  "displayName": "REF-10;ENV-P;VER-2; Require daily sign-in frequency with no persistent sessions, for all cloud apps, for all browsers, excluding hybrid joined or compliant devices",
+  "grantControls": null,
+  "id": "7a7b43db-27fd-4cf8-8c7f-1a1171965974",
+  "modifiedDateTime": null,
+  "sessionControls": {
+    "applicationEnforcedRestrictions": null,
+    "cloudAppSecurity": null,
+    "signInFrequency": {
+      "value": 1,
+      "type": "days",
+      "isEnabled": true
+    },
+    "persistentBrowser": {
+      "mode": "never",
+      "isEnabled": true
+    }
+  },
+  "state": "disabled"
+}
