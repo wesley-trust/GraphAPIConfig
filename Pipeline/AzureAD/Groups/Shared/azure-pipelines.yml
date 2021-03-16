@@ -1,4 +1,6 @@
-
+variables:
+- group: 'GitHubAuth'
+- group: 'ServicePrincipal'
 stages:
 - stage: Validate
   pool:
