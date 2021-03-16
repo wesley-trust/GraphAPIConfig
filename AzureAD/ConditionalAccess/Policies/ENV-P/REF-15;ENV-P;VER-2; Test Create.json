@@ -38,7 +38,7 @@
     }
   },
   "createdDateTime": "2021-03-13T13:31:04.1098563Z",
-  "displayName": "REF-14;ENV-P;VER-2; REF-15;ENV-P;VER-2; Test Create",
+  "displayName": "REF-15;ENV-P;VER-2; Test Create",
   "grantControls": {
     "operator": "AND",
     "builtInControls": [
