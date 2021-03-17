@@ -96,9 +96,7 @@ stages:
               -ClientID ${env:CLIENTID} `
               -ClientSecret ${env:CLIENTSECRET} `
               -AzureADGroups $ValidateAzureADGroups `
-              -UpdateExistingGroups `
-              -RemoveExistingGroups `
-              -Force
+              -UpdateExistingGroups
 
           # Create directory for artifact, if it does not exist
           $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
@@ -172,7 +170,6 @@ stages:
                         -ClientSecret ${env:CLIENTSECRET} `
                         -AzureADGroups $PlanAzureADGroups `
                         -UpdateExistingGroups `
-                        -RemoveExistingGroups `
                         -Path $(Build.SourcesDirectory)\AzureAD\Groups `
                         -Pipeline
               pwsh: true

@@ -96,7 +96,9 @@ stages:
               -ClientID ${env:CLIENTID} `
               -ClientSecret ${env:CLIENTSECRET} `
               -ConditionalAccessPolicies $ValidateCAPolicies `
-              -UpdateExistingPolicies
+              -RemoveExistingPolicies `
+              -UpdateExistingPolicies `
+              -Force
 
           # Create directory for artifact, if it does not exist
           $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
@@ -169,6 +171,7 @@ stages:
                         -ClientID ${env:CLIENTID} `
                         -ClientSecret ${env:CLIENTSECRET} `
                         -ConditionalAccessPolicies $PlanCAPolicies `
+                        -RemoveExistingPolicies `
                         -UpdateExistingPolicies `
                         -Path $(Build.SourcesDirectory)\AzureAD\ConditionalAccess\Policies `
                         -Pipeline
