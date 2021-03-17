@@ -11,5 +11,5 @@ Configuration files for deployment with the GraphAPI and Pipeline definitions
 - Groups
 ### CI/CD Pipeline to Import, Plan and Deploy:
 - Validating the input
-- Evaluation the input to create a plan for approval
+- Evaluating the input against what is deployed, to create a plan for approval
 - Deploying to an environment, applying the plan
