@@ -1,5 +1,5 @@
 {
-  "REF": "14",
+  "REF": "15",
   "VER": "2",
   "ENV": "P",
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
@@ -28,17 +28,17 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "3d112666-281c-4b29-9c43-806d2cf6213e"
+        "c37ba092-04aa-482d-a87d-99296c8807e6"
       ],
       "excludeGroups": [
-        "86e54359-a9d6-49bb-a54c-64f530d0c5cb"
+        "dab1ff18-7d84-4c30-904a-531d70d4fa6a"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-03-16T18:19:14.6346613Z",
-  "displayName": "REF-14;ENV-P;VER-2; Require password change with MFA, for users at risk, for all cloud apps",
+  "createdDateTime": "2021-03-16T13:41:35.1214974Z",
+  "displayName": "REF-15;ENV-P;VER-2; Test Create",
   "grantControls": {
     "operator": "AND",
     "builtInControls": [
@@ -48,7 +48,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "c4ed634e-d421-4f40-a169-4e7f51acce08",
+  "id": "26086be9-1523-44a7-a6c2-6528c4ac9162",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
