@@ -10,6 +10,6 @@ Configuration files for deployment with the GraphAPI and Pipeline definitions
 - Conditional Access Locations
 - Groups
 ### CI/CD Pipeline to Import, Plan and Deploy:
-- Validating the input
-- Evaluating the input against what is deployed, to create a plan for approval
-- Deploying to an environment, applying the plan
+- Validating the input against set criteria
+- Evaluating the input against what is deployed, to create a change plan for approval
+- Deploying to a specified environment, applying the approved plan
