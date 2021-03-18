@@ -29,16 +29,16 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "9c476ed8-b513-41c7-9960-b64dc4e0074b"
+        "96e5dc8a-7bfc-4687-8907-cc634ad3ce4c"
       ],
       "excludeGroups": [
-        "acb3ed89-cf65-43ab-b6ef-b1b099ddb138"
+        "b38f879d-afe8-4667-b2e2-c2f8c77b5a95"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-03-16T18:19:12.806469Z",
+  "createdDateTime": "2021-03-18T14:29:52.7940881Z",
   "displayName": "REF-13;ENV-P;VER-2; Require MFA, for users with risky sign-in events, for all cloud apps",
   "grantControls": {
     "operator": "OR",
@@ -48,7 +48,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "d2a13a4a-7ac1-4fa2-8ebd-0d1fb9edd4db",
+  "id": "759adcc7-388a-45c2-a4d3-a5cdde04ca06",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

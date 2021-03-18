@@ -26,16 +26,16 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "b3a9bb31-e574-445c-a652-d644fc03d255"
+        "b98fbf27-466e-4baf-b1ad-8524dc7e3637"
       ],
       "excludeGroups": [
-        "a8056490-0be5-4ed6-8fe4-f27f46cb7244"
+        "d0954d7d-e840-4838-9811-77956fa95c82"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-03-16T18:19:10.7729804Z",
+  "createdDateTime": "2021-03-18T14:29:50.7561723Z",
   "displayName": "REF-12;ENV-P;VER-2; Require MFA, for Azure Management",
   "grantControls": {
     "operator": "OR",
@@ -45,7 +45,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "418b220e-7190-4a97-9990-7633b47a9df0",
+  "id": "16be1f73-72ad-450b-9744-b799d1db1d04",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

@@ -24,10 +24,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "af1b3eab-c410-43a1-b06b-6e437daa4695"
+        "6e036d14-54c6-41d9-97c0-8f8edd946cf4"
       ],
       "excludeGroups": [
-        "6b6b9b80-1fbe-460e-bb11-437f012c14ae"
+        "aac2f2c7-5e67-4754-821f-c086083efc46"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -54,7 +54,7 @@
       "deviceFilter": null
     }
   },
-  "createdDateTime": "2021-03-16T18:18:50.662908Z",
+  "createdDateTime": "2021-03-18T14:29:28.6036681Z",
   "displayName": "REF-02;ENV-P;VER-2; Block access, for registering security information, for any location, excluding trusted or named locations, hybrid joined or compliant devices",
   "grantControls": {
     "operator": "OR",
@@ -64,7 +64,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "4385103c-d71d-4d91-8ff8-cb000050b2e8",
+  "id": "32e0dc01-e609-4dec-af7c-80edfaea3a8b",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
