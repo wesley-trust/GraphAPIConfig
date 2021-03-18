@@ -1,6 +1,7 @@
 variables:
 - group: 'GitHubAuth'
 - group: 'ServicePrincipal'
+- group: 'MemberGroups'
 stages:
 - stage: Validate
   pool:
@@ -183,3 +184,6 @@ stages:
               GITHUBPAT: $(GitHubPAT)
               REPOHOME: $(Build.Repository.LocalPath)
               BRANCH: $(Branch)
+              INCLUDEGUESTGROUPID: $(IncludeGuestGroupID)
+              INCLUDEUSERGROUPID: $(IncludeUserGroupID)
+              EXCLUDEUSERGROUPID: $(ExcludeUserGroupID)
