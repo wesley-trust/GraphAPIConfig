@@ -1,0 +1,61 @@
+{
+  "REF": "07",
+  "VER": "2",
+  "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "mobileAppsAndDesktopClients"
+    ],
+    "locations": null,
+    "deviceStates": null,
+    "devices": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "1c060de3-279e-421a-bef4-93a36781220b"
+      ],
+      "excludeGroups": [
+        "6b5731f7-8204-4296-a4f1-52135d9a76db"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "platforms": {
+      "includePlatforms": [
+        "all"
+      ],
+      "excludePlatforms": [
+        "windows",
+        "macOS"
+      ]
+    }
+  },
+  "createdDateTime": "2021-03-16T18:19:00.0383249Z",
+  "displayName": "REF-07;ENV-P;VER-2; Require approved client app or compliant device, for all cloud apps, for all mobile devices",
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "compliantDevice",
+      "approvedApplication"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  },
+  "id": "3c796fdc-8d1c-410f-aa24-c9bd71799134",
+  "modifiedDateTime": null,
+  "sessionControls": null,
+  "state": "disabled"
+}
