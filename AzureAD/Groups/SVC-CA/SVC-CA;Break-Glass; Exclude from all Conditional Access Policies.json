@@ -1,0 +1,7 @@
+{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#groups/$entity",
+  "description": "Contains the Break Glass accounts that should all be excluded from Conditional Access",
+  "displayName": "SVC-CA;Break-Glass; Exclude from all Conditional Access Policies",
+  "mailEnabled": false,
+  "securityEnabled": true
+}
