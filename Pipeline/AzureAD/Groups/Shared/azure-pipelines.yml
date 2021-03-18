@@ -41,8 +41,13 @@ stages:
             New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
           }
 
-          # If there are Groups, convert to JSON and export
+          # If there are Groups (as if there are no groups to import, existing groups are not removed)
           if ($ValidateAzureADGroups){
+            
+            # Set ShouldRun variable to true, for plan stage
+            echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]true"
+            
+            # Convert to JSON and export
             $ValidateAzureADGroups | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Validate.json
           }
         pwsh: true
@@ -56,6 +61,7 @@ stages:
   pool:
     vmImage: 'windows-latest'
   dependsOn: Validate
+  condition: and(succeeded(), eq(dependencies.Validate.outputs['Import.Invoke-WTValidateAzureADGroup.ShouldRun'], 'true'))
   jobs:
   - job: Evaluate
     continueOnError: false
