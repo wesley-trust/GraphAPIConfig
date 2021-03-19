@@ -2,6 +2,7 @@ variables:
 - group: 'GitHubAuth'
 - group: 'ServicePrincipal'
 - group: 'MemberGroups'
+- group: 'Locations'
 stages:
 - stage: Validate
   pool:
@@ -187,3 +188,4 @@ stages:
               INCLUDEGUESTGROUPID: $(IncludeGuestGroupID)
               INCLUDEUSERGROUPID: $(IncludeUserGroupID)
               EXCLUDEUSERGROUPID: $(ExcludeUserGroupID)
+              LOCATIONEXCLUSIONID: $(LocationExclusionID)
