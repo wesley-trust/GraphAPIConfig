@@ -8,8 +8,8 @@ Configuration files for deployment with the GraphAPI and Pipeline definitions
 | Named Locations |[![Build Status](https://dev.azure.com/wesleytrust/GraphAPI/_apis/build/status/Azure%20AD/Named%20Locations/SVC-AD%3BENV-P%3B%20Named%20Locations?branchName=main)](https://dev.azure.com/wesleytrust/GraphAPI/_build/latest?definitionId=10&branchName=main)|[![Build Status](https://dev.azure.com/wesleytrust/GraphAPI/_apis/build/status/Azure%20AD/Named%20Locations/SVC-AD%3BENV-D%3B%20Named%20Locations?branchName=develop)](https://dev.azure.com/wesleytrust/GraphAPI/_build/latest?definitionId=11&branchName=develop)|
 ### JSON Definitions of:
 - Conditional Access Policies
-- Conditional Access Locations
 - Groups
+- Named Locations
 ### CI/CD Pipeline to Import, Plan and Deploy:
 - Validating the input against set criteria
 - Evaluating the input against what is deployed, to create a change plan for approval
