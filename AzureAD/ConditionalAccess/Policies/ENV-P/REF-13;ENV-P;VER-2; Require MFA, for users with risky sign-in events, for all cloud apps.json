@@ -1,0 +1,55 @@
+{
+  "REF": "13",
+  "VER": "2",
+  "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [
+      "high",
+      "medium"
+    ],
+    "clientAppTypes": [
+      "all"
+    ],
+    "platforms": null,
+    "locations": null,
+    "deviceStates": null,
+    "devices": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "742f24d5-4c05-4c1f-a6ca-710141442162"
+      ],
+      "excludeGroups": [
+        "e796cf89-8e8f-4551-a1c2-862d328d1563"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    }
+  },
+  "createdDateTime": "2021-03-19T19:59:27.3999557Z",
+  "displayName": "REF-13;ENV-P;VER-2; Require MFA, for users with risky sign-in events, for all cloud apps",
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "mfa"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  },
+  "id": "556d2622-2a4e-4a64-9122-97f30cfd420b",
+  "modifiedDateTime": null,
+  "sessionControls": null,
+  "state": "disabled"
+}

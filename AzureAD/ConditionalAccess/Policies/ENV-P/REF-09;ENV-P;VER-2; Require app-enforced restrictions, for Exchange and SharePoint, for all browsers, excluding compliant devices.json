@@ -1,0 +1,64 @@
+{
+  "REF": "09",
+  "VER": "2",
+  "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "browser"
+    ],
+    "platforms": null,
+    "locations": null,
+    "deviceStates": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "00000002-0000-0ff1-ce00-000000000000",
+        "00000003-0000-0ff1-ce00-000000000000"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "48aca88d-c2e8-469e-8172-f34f95b1f214"
+      ],
+      "excludeGroups": [
+        "349bf71c-8eeb-4ba0-b1dd-92610be95f45"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "devices": {
+      "includeDeviceStates": [],
+      "excludeDeviceStates": [],
+      "includeDevices": [
+        "All"
+      ],
+      "excludeDevices": [
+        "Compliant",
+        "DomainJoined"
+      ],
+      "deviceFilter": null
+    }
+  },
+  "createdDateTime": "2021-03-19T19:59:19.784128Z",
+  "displayName": "REF-09;ENV-P;VER-2; Require app-enforced restrictions, for Exchange and SharePoint, for all browsers, excluding compliant devices",
+  "grantControls": null,
+  "id": "b21423f0-fc78-43a1-a16c-803c08291962",
+  "modifiedDateTime": null,
+  "sessionControls": {
+    "cloudAppSecurity": null,
+    "signInFrequency": null,
+    "persistentBrowser": null,
+    "applicationEnforcedRestrictions": {
+      "isEnabled": true
+    }
+  },
+  "state": "disabled"
+}
