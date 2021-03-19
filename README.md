@@ -10,8 +10,8 @@ Configuration files for deployment with the GraphAPI and Pipeline definitions
 ## Endpoint Manager (Intune)
 | Service |  Main  | Develop |
 |:---| :----: | :-----: |
-| Device Compliance Policy: Windows 10 |  |
-| Device Configuration Policy: Windows 10 |  |
+| Device Compliance: Windows 10 |  |
+| Device Configuration: Windows 10 |  |
 ### JSON Definitions of:
 - Conditional Access Policies
 - Groups
