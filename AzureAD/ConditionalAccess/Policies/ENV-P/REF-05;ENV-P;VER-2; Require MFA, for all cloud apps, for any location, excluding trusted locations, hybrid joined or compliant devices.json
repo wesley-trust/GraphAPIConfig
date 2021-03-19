@@ -1,0 +1,70 @@
+{
+  "REF": "05",
+  "VER": "2",
+  "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "all"
+    ],
+    "platforms": null,
+    "deviceStates": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "e09e33e2-e53a-453d-8dc3-36d80ca53f51"
+      ],
+      "excludeGroups": [
+        "cc37131e-76ba-4e8f-967f-126ae345d444"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "locations": {
+      "includeLocations": [
+        "All"
+      ],
+      "excludeLocations": [
+        "AllTrusted"
+      ]
+    },
+    "devices": {
+      "includeDeviceStates": [],
+      "excludeDeviceStates": [],
+      "includeDevices": [
+        "All"
+      ],
+      "excludeDevices": [
+        "Compliant",
+        "DomainJoined"
+      ],
+      "deviceFilter": null
+    }
+  },
+  "createdDateTime": "2021-03-19T19:13:10.6903302Z",
+  "displayName": "REF-05;ENV-P;VER-2; Require MFA, for all cloud apps, for any location, excluding trusted locations, hybrid joined or compliant devices",
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "mfa"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  },
+  "id": "17d3bed1-f543-4fc2-81df-84878278adf2",
+  "modifiedDateTime": null,
+  "sessionControls": null,
+  "state": "disabled"
+}
