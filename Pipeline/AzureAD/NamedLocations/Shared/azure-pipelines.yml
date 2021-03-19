@@ -61,7 +61,7 @@ stages:
   pool:
     vmImage: 'windows-latest'
   dependsOn: Validate
-  condition: and(succeeded(), eq(dependencies.Validate.outputs['Import.Invoke-WTValidateAzureADNamedLocation.ShouldRun'], 'true'))
+  condition: and(succeeded(), eq(dependencies.Validate.outputs['Import.InvokeWTValidateAzureADNamedLocation.ShouldRun'], 'true'))
   jobs:
   - job: Evaluate
     continueOnError: false
