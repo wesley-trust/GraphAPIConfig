@@ -25,10 +25,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "27773e7e-d832-49ec-93ab-7ff3cb438fc0"
+        "fdcfdc2d-1107-4f3f-a035-bc618bdb476b"
       ],
       "excludeGroups": [
-        "e9c9f692-31b9-461f-864b-4423a695d004"
+        "5983bd07-f078-4f95-a0e5-501641a52093"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -46,10 +46,10 @@
       "deviceFilter": null
     }
   },
-  "createdDateTime": "2021-03-19T19:59:21.6511581Z",
+  "createdDateTime": "2021-03-19T20:10:45.4417413Z",
   "displayName": "REF-10;ENV-P;VER-2; Require daily sign-in frequency with no persistent sessions, for all cloud apps, for all browsers, excluding hybrid joined or compliant devices",
   "grantControls": null,
-  "id": "98a3227b-f8f9-4b79-83b9-86280ced2207",
+  "id": "ebbd0414-7ac5-4b79-8d36-b456cce0817d",
   "modifiedDateTime": null,
   "sessionControls": {
     "applicationEnforcedRestrictions": null,

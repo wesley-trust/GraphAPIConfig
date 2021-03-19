@@ -27,7 +27,7 @@
       "excludeUsers": [],
       "includeGroups": [],
       "excludeGroups": [
-        "425f88b4-8b70-49bb-ac2d-5cd20f18a8c3"
+        "53a7352b-c546-47dd-9880-3bca0aa36534"
       ],
       "includeRoles": [
         "fe930be7-5e62-47db-91af-98c3a49a38b1",
@@ -81,7 +81,7 @@
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-03-19T19:59:23.4596309Z",
+  "createdDateTime": "2021-03-19T20:10:46.9810516Z",
   "displayName": "REF-11;ENV-P;VER-2; Require MFA, for administrators, for all cloud apps",
   "grantControls": {
     "operator": "OR",
@@ -91,7 +91,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "e67028e6-0fd4-453b-9572-fd99ca82f5ce",
+  "id": "a3c22764-df26-412f-82c3-b3d9bcdbab63",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

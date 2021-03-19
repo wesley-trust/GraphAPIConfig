@@ -24,10 +24,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "66978ba6-8972-49c6-a935-bc3cb69bddb1"
+        "1217be06-fdb0-4ad4-bd2b-be95fa5cd39e"
       ],
       "excludeGroups": [
-        "0b2331e7-a75b-48c7-8539-25ec08ac2b70"
+        "1e578ca6-5b86-48e1-ab8a-63dfea8b7374"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -53,7 +53,7 @@
       "deviceFilter": null
     }
   },
-  "createdDateTime": "2021-03-19T19:59:11.7602786Z",
+  "createdDateTime": "2021-03-19T20:10:36.8989474Z",
   "displayName": "REF-05;ENV-P;VER-2; Require MFA, for all cloud apps, for any location, excluding trusted locations, hybrid joined or compliant devices",
   "grantControls": {
     "operator": "OR",
@@ -63,7 +63,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "b69761bd-82a8-4034-9f91-45b9999e8d2d",
+  "id": "457c0169-b8d3-4469-9c16-9415ebce5a52",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
