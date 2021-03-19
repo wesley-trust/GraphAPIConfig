@@ -25,10 +25,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "0fee47ef-0ae8-4ef3-a5f1-5e011a276723"
+        "d8d1ca26-2be4-4d0a-b46f-c26e58fc7f3a"
       ],
       "excludeGroups": [
-        "72d32f10-6b74-4503-a77e-28fb542a081a"
+        "8611f7ec-01cb-454c-8d3a-c7c26fc58dcc"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -43,7 +43,7 @@
       ]
     }
   },
-  "createdDateTime": "2021-03-19T19:13:14.737303Z",
+  "createdDateTime": "2021-03-19T19:59:15.9534595Z",
   "displayName": "REF-07;ENV-P;VER-2; Require approved client app or compliant device, for all cloud apps, for all mobile devices",
   "grantControls": {
     "operator": "OR",
@@ -54,7 +54,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "df9b4723-04fe-4cd3-85f1-4321a61b069e",
+  "id": "222e1910-31a4-4788-b73f-115f76ab72fd",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

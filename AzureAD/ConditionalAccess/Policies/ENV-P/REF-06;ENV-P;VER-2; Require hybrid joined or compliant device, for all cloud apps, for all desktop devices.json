@@ -25,10 +25,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "efdd4dbe-aa97-4ed7-9939-bab37e26ed78"
+        "b42359fd-cca1-4419-806c-8a19d87988d6"
       ],
       "excludeGroups": [
-        "196d44a9-4f03-4e4d-90d3-f910cdf4b811"
+        "1df47601-9134-41c8-ac3a-896fdec30781"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -44,7 +44,7 @@
       ]
     }
   },
-  "createdDateTime": "2021-03-19T19:13:12.3191647Z",
+  "createdDateTime": "2021-03-19T19:59:13.7644738Z",
   "displayName": "REF-06;ENV-P;VER-2; Require hybrid joined or compliant device, for all cloud apps, for all desktop devices",
   "grantControls": {
     "operator": "OR",
@@ -55,7 +55,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "580033d3-3f6e-4a2c-aafa-f13f00866a75",
+  "id": "d64728cc-de6a-4196-8715-fc34da31258b",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
