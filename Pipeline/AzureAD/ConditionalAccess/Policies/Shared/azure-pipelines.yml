@@ -188,4 +188,4 @@ stages:
               INCLUDEGUESTGROUPID: $(IncludeGuestGroupID)
               INCLUDEUSERGROUPID: $(IncludeUserGroupID)
               EXCLUDEUSERGROUPID: $(ExcludeUserGroupID)
-              LOCATIONEXCLUSIONID: $(LocationExclusionID)
+              EXCLUDELOCATIONID: $(ExcludeLocationID)
