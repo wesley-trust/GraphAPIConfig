@@ -12,6 +12,8 @@ Configuration files for deployment with the GraphAPI and Pipeline definitions
 |:---| :----: | :-----: |
 | Device Compliance: Windows 10 |  |
 | Device Configuration: Windows 10 |  |
+| App Protection: Android |  |
+| App Protection: iOS/iPadOS |  |
 ### JSON Definitions of:
 - Conditional Access Policies
 - Groups
