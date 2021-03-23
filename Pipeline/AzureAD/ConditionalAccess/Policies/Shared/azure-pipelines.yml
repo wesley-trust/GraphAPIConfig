@@ -189,3 +189,4 @@ stages:
               INCLUDEUSERGROUPID: $(IncludeUserGroupID)
               EXCLUDEUSERGROUPID: $(ExcludeUserGroupID)
               EXCLUDELOCATIONID: $(ExcludeLocationID)
+              GITHUBCONFIGREPO: $(GitHubConfigRepo)

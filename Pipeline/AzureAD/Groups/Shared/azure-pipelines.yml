@@ -186,3 +186,4 @@ stages:
               GITHUBPAT: $(GitHubPAT)
               REPOHOME: $(Build.Repository.LocalPath)
               BRANCH: $(Branch)
+              GITHUBCONFIGREPO: $(GitHubConfigRepo)
