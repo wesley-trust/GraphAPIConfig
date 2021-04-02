@@ -7,7 +7,7 @@
   "createdByAppId": "9cda5e7d-f6e9-4500-9b34-fb7f8b3472bd",
   "createdDateTime": "2021-03-18T17:01:14Z",
   "deletedDateTime": null,
-  "description": "Dynamic query that includes all users (including quests and external users) within the directory",
+  "description": "Dynamic query that includes all users (including guests and external users) within the directory",
   "displayName": "All Users",
   "expirationDateTime": null,
   "groupTypes": [
