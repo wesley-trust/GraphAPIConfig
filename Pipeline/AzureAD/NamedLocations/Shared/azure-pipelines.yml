@@ -17,12 +17,6 @@ stages:
       inputs:
         script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
         workingDirectory: '$(System.ArtifactsDirectory)'
-    - task: CmdLine@2
-      name: CloneToolKit
-      displayName: Clone Toolkit repo
-      inputs:
-        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/ToolKit.git'
-        workingDirectory: '$(System.ArtifactsDirectory)'
     - task: PowerShell@2
       name: InvokeWTValidateAzureADNamedLocation
       displayName: Invoke-WTValidateAzureADNamedLocation
