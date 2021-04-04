@@ -36,7 +36,7 @@
     }
   },
   "createdDateTime": "2021-04-04T12:54:42.2651265Z",
-  "displayName": "REF-15;ENV-P;VER-2; Require MFA for registering or joining devices",
+  "displayName": "REF-15;ENV-P;VER-2; Require MFA, for registering or joining devices",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
