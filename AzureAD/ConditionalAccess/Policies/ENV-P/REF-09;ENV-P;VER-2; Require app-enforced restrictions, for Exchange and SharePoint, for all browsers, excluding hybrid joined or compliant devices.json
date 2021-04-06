@@ -48,7 +48,7 @@
     }
   },
   "createdDateTime": "2021-03-19T20:10:43.4104464Z",
-  "displayName": "REF-09;ENV-P;VER-2; Require app-enforced restrictions, for Exchange and SharePoint, for all browsers, excluding compliant devices",
+  "displayName": "REF-09;ENV-P;VER-2; Require app-enforced restrictions, for Exchange and SharePoint, for all browsers, excluding hybrid joined or compliant devices",
   "grantControls": null,
   "id": "e9225761-c32b-4882-9c49-755508fdf427",
   "modifiedDateTime": null,
