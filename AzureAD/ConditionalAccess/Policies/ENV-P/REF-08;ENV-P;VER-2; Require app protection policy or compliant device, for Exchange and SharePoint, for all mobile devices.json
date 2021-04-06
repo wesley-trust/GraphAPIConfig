@@ -15,7 +15,8 @@
     "clientApplications": null,
     "applications": {
       "includeApplications": [
-        "All"
+        "00000002-0000-0ff1-ce00-000000000000",
+        "00000003-0000-0ff1-ce00-000000000000"
       ],
       "excludeApplications": [],
       "includeUserActions": [],
