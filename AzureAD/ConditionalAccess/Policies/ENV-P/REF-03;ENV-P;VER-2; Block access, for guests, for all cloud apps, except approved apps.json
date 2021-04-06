@@ -44,7 +44,7 @@
     }
   },
   "createdDateTime": "2021-03-19T20:10:33.1289159Z",
-  "displayName": "REF-03;ENV-P;VER-2; Block access, for guests, for all cloud apps, except approved collaboration apps",
+  "displayName": "REF-03;ENV-P;VER-2; Block access, for guests, for all cloud apps, except approved apps",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
