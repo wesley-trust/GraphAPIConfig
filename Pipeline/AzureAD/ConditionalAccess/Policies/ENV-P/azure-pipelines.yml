@@ -1,7 +1,9 @@
 # Trigger builds on commits and merges to branch
 trigger:
   batch: true
-  - main
+  branches:
+    include:
+    - main
 
 # Do not trigger builds on PRs
 pr: none
