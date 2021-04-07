@@ -1,6 +1,6 @@
 {
   "SVC": null,
-  "REF": null,
+  "REF": "06",
   "ENV": null,
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/namedLocations/$entity",
   "@odata.type": "#microsoft.graph.countryNamedLocation",
@@ -8,8 +8,9 @@
     "AU",
     "NZ"
   ],
-  "createdDateTime": "2021-03-19T16:34:42.012456Z",
+  "createdDateTime": "2021-04-07T17:44:34.6135093Z",
   "displayName": "REF-06; Trans-Tasman Travel Arrangement, IPv6 and Unknown",
+  "id": "12a1a810-77cc-4050-862d-caed0dca1b56",
   "includeUnknownCountriesAndRegions": true,
-  "modifiedDateTime": "2021-03-19T16:34:42.012456Z"
+  "modifiedDateTime": "2021-04-07T17:44:34.6135093Z"
 }
