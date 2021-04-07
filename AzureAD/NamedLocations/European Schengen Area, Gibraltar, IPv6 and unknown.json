@@ -5,19 +5,15 @@
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/namedLocations/$entity",
   "@odata.type": "#microsoft.graph.countryNamedLocation",
   "countriesAndRegions": [
-    "BE",
     "BG",
     "CZ",
     "DK",
     "DE",
     "EE",
-    "IE",
     "GR",
     "ES",
     "FR",
-    "HR",
     "IT",
-    "CY",
     "LV",
     "LT",
     "LU",
@@ -27,7 +23,6 @@
     "AT",
     "PL",
     "PT",
-    "RO",
     "SI",
     "SK",
     "FI",
@@ -35,11 +30,14 @@
     "IS",
     "LI",
     "NO",
-    "CH"
+    "CH",
+    "SM",
+    "MC",
+    "VA",
+    "GI"
   ],
-  "createdDateTime": "2021-04-07T14:43:00.2575629Z",
-  "displayName": "European Economic Area, Switzerland, IPv6 and unknown",
-  "id": "185c3f18-c730-4500-a023-4f57ca1456ea",
+  "createdDateTime": "2021-04-07T14:52:10.6673381Z",
+  "displayName": "European Schengen Area, Gibraltar, IPv6 and unknown",
   "includeUnknownCountriesAndRegions": true,
-  "modifiedDateTime": "2021-04-07T14:43:00.2575629Z"
+  "modifiedDateTime": "2021-04-07T14:52:10.6673381Z"
 }

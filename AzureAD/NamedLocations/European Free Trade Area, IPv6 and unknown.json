@@ -1,0 +1,18 @@
+{
+  "SVC": null,
+  "REF": null,
+  "ENV": null,
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/namedLocations/$entity",
+  "@odata.type": "#microsoft.graph.countryNamedLocation",
+  "countriesAndRegions": [
+    "IS",
+    "LI",
+    "NO",
+    "CH"
+  ],
+  "createdDateTime": "2021-04-07T14:43:00.2575629Z",
+  "displayName": "European Free Trade Area, IPv6 and unknown",
+  "id": "185c3f18-c730-4500-a023-4f57ca1456ea",
+  "includeUnknownCountriesAndRegions": true,
+  "modifiedDateTime": "2021-04-07T14:43:00.2575629Z"
+}
