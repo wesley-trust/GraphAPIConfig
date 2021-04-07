@@ -5,14 +5,11 @@
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/namedLocations/$entity",
   "@odata.type": "#microsoft.graph.countryNamedLocation",
   "countriesAndRegions": [
-    "IS",
-    "LI",
-    "NO",
-    "CH"
+    "AU",
+    "NZ"
   ],
-  "createdDateTime": "2021-04-07T14:43:00.2575629Z",
-  "displayName": "European Free Trade Area, IPv6 and unknown",
-  "id": "185c3f18-c730-4500-a023-4f57ca1456ea",
+  "createdDateTime": "2021-03-19T16:34:42.012456Z",
+  "displayName": "REF-06; Trans-Tasman Travel Arrangement, IPv6 and Unknown",
   "includeUnknownCountriesAndRegions": true,
-  "modifiedDateTime": "2021-04-07T14:43:00.2575629Z"
+  "modifiedDateTime": "2021-03-19T16:34:42.012456Z"
 }

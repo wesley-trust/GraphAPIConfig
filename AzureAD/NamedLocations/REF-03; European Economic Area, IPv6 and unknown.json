@@ -31,11 +31,14 @@
     "SI",
     "SK",
     "FI",
-    "SE"
+    "SE",
+    "IS",
+    "LI",
+    "NO"
   ],
-  "createdDateTime": "2021-04-07T14:43:02.3787977Z",
-  "displayName": "European Union, IPv6 and unknown",
-  "id": "13f4c7af-8f08-4b97-9d62-8cf21e6e521d",
+  "createdDateTime": "2021-04-07T14:42:58.5561438Z",
+  "displayName": "REF-03; European Economic Area, IPv6 and unknown",
+  "id": "189ca541-390a-4a36-843e-d6ee76c45b2b",
   "includeUnknownCountriesAndRegions": true,
-  "modifiedDateTime": "2021-04-07T14:43:02.3787977Z"
+  "modifiedDateTime": "2021-04-07T14:42:58.5561438Z"
 }

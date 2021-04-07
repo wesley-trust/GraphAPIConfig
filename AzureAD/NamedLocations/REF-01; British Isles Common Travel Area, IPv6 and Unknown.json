@@ -5,11 +5,15 @@
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/namedLocations/$entity",
   "@odata.type": "#microsoft.graph.countryNamedLocation",
   "countriesAndRegions": [
-    "GB"
+    "GB",
+    "IE",
+    "IM",
+    "JE",
+    "GG"
   ],
-  "createdDateTime": "2021-04-07T17:00:27.1836021Z",
-  "displayName": "United Kingdom, IPv6 and Unknown",
-  "id": "1f090c87-d633-4118-bf6f-3f18a8e9be30",
+  "createdDateTime": "2021-03-19T16:34:42.012456Z",
+  "displayName": "REF-01; British Isles Common Travel Area, IPv6 and Unknown",
+  "id": "102afe99-db6a-49d1-bdb6-45f973812aaf",
   "includeUnknownCountriesAndRegions": true,
-  "modifiedDateTime": "2021-04-07T17:00:27.1836021Z"
+  "modifiedDateTime": "2021-03-19T16:34:42.012456Z"
 }
