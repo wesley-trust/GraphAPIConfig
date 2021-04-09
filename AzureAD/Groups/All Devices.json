@@ -8,7 +8,7 @@
   "createdDateTime": "2021-03-18T17:01:14Z",
   "deletedDateTime": null,
   "description": "Dynamic query that includes all devices within the directory",
-  "displayName": "All Users",
+  "displayName": "All Devices",
   "expirationDateTime": null,
   "groupTypes": [
     "DynamicMembership"
