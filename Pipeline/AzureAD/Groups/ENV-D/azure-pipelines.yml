@@ -4,6 +4,9 @@ trigger:
   branches:
     include:
     - develop
+  paths:
+    include:
+      - AzureAD/Groups/
 
 # Do not trigger builds on PRs
 pr: none
