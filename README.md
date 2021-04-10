@@ -13,11 +13,17 @@ Configuration files for deployment with the GraphAPI and Pipeline definitions
 | Device Compliance for Windows 10 |  |
 | App Protection for Android |  |
 | App Protection for iOS (including iPadOS) |  |
-### JSON Definitions of:
+## JSON Definitions of:
+### Azure AD
 - Conditional Access Policies
 - Groups
 - Named Locations
-### CI/CD Pipeline to Import, Plan and Deploy:
+### Endpoint Manager (Intune)
+- Device Compliance
+- App Protection
+  - Android Apps
+  - iOS Apps
+## CI/CD Pipeline to Import, Plan and Deploy:
 - Validating the input against set criteria
 - Evaluating the input against what is deployed, to create a change plan for approval
 - Deploying to a specified environment, applying the approved plan
