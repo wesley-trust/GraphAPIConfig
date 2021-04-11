@@ -1,0 +1,7 @@
+{
+    "id": "8d58f1bf-ded5-4985-9b53-46f81cab75ea",
+    "gracePeriodHours": 24,
+    "actionType": "block",
+    "notificationTemplateId": "00000000-0000-0000-0000-000000000000",
+    "notificationMessageCCList": []
+}

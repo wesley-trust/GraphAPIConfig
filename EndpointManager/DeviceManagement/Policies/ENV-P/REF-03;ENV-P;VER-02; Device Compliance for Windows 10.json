@@ -1,7 +1,5 @@
 {
-    "SVC": null,
-    "REF": "03",
-    "ENV": "P",
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceCompliancePolicies(scheduledActionsForRule(scheduledActionConfigurations()))/$entity",
     "@odata.type": "#microsoft.graph.windows10CompliancePolicy",
     "roleScopeTagIds": [
         "0"
@@ -10,7 +8,7 @@
     "createdDateTime": "2020-07-07T15:08:20.0938467Z",
     "description": null,
     "lastModifiedDateTime": "2020-11-01T13:56:55.5928833Z",
-    "displayName": "REF-03;ENV-P;VER-02; Device Compliance for Windows 10",
+    "displayName": "Windows 10 Compliance Policy",
     "version": 6,
     "passwordRequired": true,
     "passwordBlockSimple": true,
