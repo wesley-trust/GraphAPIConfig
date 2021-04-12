@@ -1,9 +1,0 @@
-{
-    "id": "69e2d210-0fb3-40ac-930d-4a8c30c1af81",
-    "gracePeriodHours": 0,
-    "actionType": "notification",
-    "notificationTemplateId": "5fd70dda-7e3a-4210-84c3-854880f3d0af",
-    "notificationMessageCCList": [
-        "5b817480-2ff4-436f-bd4a-3c33dda41200"
-    ]
-}

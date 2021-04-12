@@ -1,9 +1,0 @@
-{
-    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/notificationMessageTemplates('5fd70dda-7e3a-4210-84c3-854880f3d0af')/localizedNotificationMessages/$entity",
-    "id": "5fd70dda-7e3a-4210-84c3-854880f3d0af_en-gb",
-    "lastModifiedDateTime": "2020-12-11T20:37:46Z",
-    "locale": "en-gb",
-    "subject": "Action Required: Device not compliant",
-    "messageTemplate": "Your device has reported that it is not compliant with the required security settings to keep data and information safe.Access to services may be restricted whilst your device is non-compliant.Please contact us as soon as possible to help. Thanks.",
-    "isDefault": true
-}

@@ -8,7 +8,7 @@
     "createdDateTime": "2020-07-07T15:08:20.0938467Z",
     "description": null,
     "lastModifiedDateTime": "2020-11-01T13:56:55.5928833Z",
-    "displayName": "Windows 10 Compliance Policy",
+    "displayName": "REF-03;ENV-P;VER-01; Device Compliance for Windows",
     "version": 6,
     "passwordRequired": true,
     "passwordBlockSimple": true,

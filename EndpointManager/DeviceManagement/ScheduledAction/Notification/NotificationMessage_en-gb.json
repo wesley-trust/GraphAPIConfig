@@ -1,0 +1,6 @@
+{
+    "locale": "en-gb",
+    "subject": "Action Required: Device not compliant",
+    "messageTemplate": "Your device has reported that it is not compliant with the required security settings to keep data and information safe. Access to services may be restricted within 24 hours if your device continues to be non-compliant. Please contact us as soon as possible to help. Thanks.",
+    "isDefault": true
+}

@@ -1,0 +1,7 @@
+{
+    "displayName": "Endpoint Manager",
+    "brandingOptions": "includeCompanyLogo,includeCompanyName,includeContactInformation",
+    "roleScopeTagIds": [
+        "0"
+    ]
+}
