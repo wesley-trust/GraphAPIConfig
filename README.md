@@ -10,7 +10,7 @@ Configuration files for deployment with the GraphAPI and Pipeline definitions
 ## Endpoint Manager (Intune)
 |  |  main  | develop |
 |:---| :----: | :-----: |
-| Device Compliance for Windows 10 |  |
+| Device Compliance for Windows (10) |  |
 | App Protection for Android |  |
 | App Protection for iOS (including iPadOS) |  |
 ## JSON Definitions of:
