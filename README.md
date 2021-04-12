@@ -1,5 +1,5 @@
 # GraphAPIConfig
-Configuration files for deployment with the GraphAPI and Pipeline definitions
+Configuration files for deployment with the [GraphAPI][graphapi-link] and [Pipeline][pipeline-link] definitions
 ## Azure AD
 |  |  main  | develop |
 |:---| :----: | :-----: |
@@ -23,7 +23,10 @@ Configuration files for deployment with the GraphAPI and Pipeline definitions
 - App Protection
   - Android Apps
   - iOS Apps
-## CI/CD Pipeline to Import, Plan and Deploy:
+## [CI/CD Pipeline][pipeline-link] to Import, Plan and Deploy:
 - Validating the input against set criteria
 - Evaluating the input against what is deployed, to create a change plan for approval
 - Deploying to a specified environment, applying the approved plan
+
+[graphapi-link]: /wesley-trust/GraphAPI
+[pipeline-link]: https://dev.azure.com/wesleytrust/GraphAPI
