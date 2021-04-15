@@ -1,0 +1,184 @@
+variables:
+- group: 'GitHubAuth'
+- group: 'ServicePrincipal'
+- group: 'EMMemberGroups'
+stages:
+- stage: Validate
+  pool:
+    vmImage: 'windows-latest'
+  jobs:
+  - job: Import
+    pool:
+      vmImage: 'windows-latest'
+    continueOnError: false
+    steps:
+    - task: CmdLine@2
+      name: CloneGraphAPI
+      displayName: Clone Graph API repo
+      inputs:
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PowerShell@2
+      name: InvokeWTValidateEMDevicePolicy
+      displayName: Invoke-WTValidateEMDevicePolicy
+      inputs:
+        targetType: 'inline'
+        script: |
+
+          # Dot source and execute function
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\EndpointManager\DeviceManagement\Pipeline\Invoke-WTValidateEMDevicePolicy.ps1
+          $ValidateEMDevicePolicies = Invoke-WTValidateEMDevicePolicy `
+            -Path $(Build.Repository.LocalPath)\EndpointManager\DeviceManagement\Policies
+          
+          # Create directory for artifact, if it does not exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+          if (!$TestPath){
+            New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+          }
+
+          # If there are policies, convert to JSON and export
+          if ($ValidateEMDevicePolicies){
+            $ValidateEMDevicePolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Validate.json
+          }
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)\Output'
+        artifact: 'Import'
+        publishLocation: 'pipeline'
+- stage: Plan
+  pool:
+    vmImage: 'windows-latest'
+  dependsOn: Validate
+  jobs:
+  - job: Evaluate
+    continueOnError: false
+    steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        targetPath: '$(Pipeline.Workspace)'
+    - task: CmdLine@2
+      name: CloneGraphAPI
+      displayName: Clone Graph API repo
+      inputs:
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: CmdLine@2
+      name: CloneToolKit
+      displayName: Clone Toolkit repo
+      inputs:
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/ToolKit.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PowerShell@2
+      name: InvokeWTPlanEMDevicePolicy
+      displayName: Invoke-WTPlanEMDevicePolicy
+      inputs:
+        targetType: 'inline'
+        script: |
+
+          # Import and convert policies from JSON, should they exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
+          if ($TestPath){
+              $ValidateEMDevicePolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
+          }
+
+          # Dot source and execute function
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\EndpointManager\DeviceManagement\Pipeline\Invoke-WTPlanEMDevicePolicy.ps1
+            $PlanEMDevicePolicies = Invoke-WTPlanEMDevicePolicy `
+              -TenantDomain $(TenantDomain) `
+              -ClientID ${env:CLIENTID} `
+              -ClientSecret ${env:CLIENTSECRET} `
+              -EMDevicePolicies $ValidateEMDevicePolicies `
+              -RemoveExistingPolicies `
+              -UpdateExistingPolicies `
+              -Force
+
+          # Create directory for artifact, if it does not exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+          if (!$TestPath){
+              New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+          }
+
+          # If there are policies
+          if ($PlanEMDevicePolicies.RemovePolicies -or $PlanEMDevicePolicies.UpdatePolicies -or $PlanEMDevicePolicies.CreatePolicies){
+
+            # Set ShouldRun variable to true, for Devicely stage
+            echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]true"
+
+            # Convert to JSON and export
+            $PlanEMDevicePolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Plan.json
+          }
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
+      env:
+        CLIENTID: $(ClientID)
+        CLIENTSECRET: $(ClientSecret)
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)\Output'
+        artifact: 'Evaluate'
+        publishLocation: 'pipeline'
+- stage: Devicely
+  pool:
+    vmImage: 'windows-latest'
+  dependsOn: Plan
+  condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.InvokeWTPlanEMDevicePolicy.ShouldRun'], 'true'))
+  jobs:
+  - deployment: Deploy
+    continueOnError: false
+    environment: $(Environment)
+    strategy:
+     runOnce:
+       deploy:
+        steps:
+          - checkout: self
+          - task: CmdLine@2
+            name: CloneGraphAPI
+            displayName: Clone Graph API repo
+            inputs:
+              script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: CmdLine@2
+            name: CloneToolKit
+            displayName: Clone Toolkit repo
+            inputs:
+              script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/ToolKit.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: PowerShell@2
+            name: InvokeWTDevicelyEMDevicePolicy
+            displayName: Invoke-WTDevicelyEMDevicePolicy
+            inputs:
+              targetType: 'inline'
+              script: |
+
+                # Import and convert policies from JSON, should they exist
+                $TestPath = Test-Path $(Pipeline.Workspace)\Evaluate\Plan.json -PathType Leaf
+                if ($TestPath){
+                    $PlanEMDevicePolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Evaluate\Plan.json | ConvertFrom-Json -Depth 10
+                }
+                
+                # Dot source and execute function
+                . $(System.ArtifactsDirectory)\GraphAPI\Public\EndpointManager\DeviceManagement\Pipeline\Invoke-WTDevicelyEMDevicePolicy.ps1
+                      Invoke-WTDevicelyEMDevicePolicy `
+                        -TenantDomain $(TenantDomain) `
+                        -ClientID ${env:CLIENTID} `
+                        -ClientSecret ${env:CLIENTSECRET} `
+                        -EMDevicePolicies $PlanEMDevicePolicies `
+                        -NotificationGroupId $(DeviceComplianceNotificationGroupID) `
+                        -RemoveExistingPolicies `
+                        -UpdateExistingPolicies `
+                        -Path $(Build.SourcesDirectory)\EndpointManager\DeviceManagement\Policies `
+                        -Pipeline
+              pwsh: true
+              workingDirectory: '$(System.ArtifactsDirectory)'
+            env:
+              CLIENTID: $(ClientID)
+              CLIENTSECRET: $(ClientSecret)
+              GITHUBPAT: $(GitHubPAT)
+              REPOHOME: $(Build.Repository.LocalPath)
+              BRANCH: $(Branch)
+              INCLUDEDEVICEGROUPID: $(IncludeDeviceDeviceGroupID)
+              EXCLUDEDEVICEGROUPID: $(ExcludeDeviceDeviceGroupID)
+              GITHUBCONFIGREPO: $(GitHubConfigRepo)
