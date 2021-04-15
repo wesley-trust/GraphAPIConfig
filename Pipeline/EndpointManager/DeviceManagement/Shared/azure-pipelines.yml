@@ -104,7 +104,7 @@ stages:
           # If there are policies
           if ($PlanEMDevicePolicies.RemovePolicies -or $PlanEMDevicePolicies.UpdatePolicies -or $PlanEMDevicePolicies.CreatePolicies){
 
-            # Set ShouldRun variable to true, for Devicely stage
+            # Set ShouldRun variable to true, for Apply stage
             echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]true"
 
             # Convert to JSON and export
@@ -120,7 +120,7 @@ stages:
         targetPath: '$(Pipeline.Workspace)\Output'
         artifact: 'Evaluate'
         publishLocation: 'pipeline'
-- stage: Devicely
+- stage: Apply
   pool:
     vmImage: 'windows-latest'
   dependsOn: Plan
@@ -147,8 +147,8 @@ stages:
               script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/ToolKit.git'
               workingDirectory: '$(System.ArtifactsDirectory)'
           - task: PowerShell@2
-            name: InvokeWTDevicelyEMDevicePolicy
-            displayName: Invoke-WTDevicelyEMDevicePolicy
+            name: InvokeWTApplyEMDevicePolicy
+            displayName: Invoke-WTApplyEMDevicePolicy
             inputs:
               targetType: 'inline'
               script: |
@@ -160,8 +160,8 @@ stages:
                 }
                 
                 # Dot source and execute function
-                . $(System.ArtifactsDirectory)\GraphAPI\Public\EndpointManager\DeviceManagement\Pipeline\Invoke-WTDevicelyEMDevicePolicy.ps1
-                      Invoke-WTDevicelyEMDevicePolicy `
+                . $(System.ArtifactsDirectory)\GraphAPI\Public\EndpointManager\DeviceManagement\Pipeline\Invoke-WTApplyEMDevicePolicy.ps1
+                      Invoke-WTApplyEMDevicePolicy `
                         -TenantDomain $(TenantDomain) `
                         -ClientID ${env:CLIENTID} `
                         -ClientSecret ${env:CLIENTSECRET} `
