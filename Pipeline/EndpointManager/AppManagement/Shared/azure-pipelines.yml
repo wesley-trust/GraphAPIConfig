@@ -1,0 +1,195 @@
+variables:
+- group: 'GitHubAuth'
+- group: 'ServicePrincipal'
+- group: 'EMMemberGroups'
+stages:
+- stage: Validate
+  pool:
+    vmImage: 'windows-latest'
+  jobs:
+  - job: Import
+    pool:
+      vmImage: 'windows-latest'
+    continueOnError: false
+    steps:
+    - task: CmdLine@2
+      name: CloneGraphAPI
+      displayName: Clone Graph API repo
+      inputs:
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PowerShell@2
+      name: InvokeWTValidateEMAppPolicy
+      displayName: Invoke-WTValidateEMAppPolicy
+      inputs:
+        targetType: 'inline'
+        script: |
+
+          # Dot source and execute function
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\EndpointManager\AppManagement\Pipeline\Invoke-WTValidateEMAppPolicy.ps1
+          $ValidateEMAppPolicies = Invoke-WTValidateEMAppPolicy `
+            -Path $(Build.Repository.LocalPath)\EndpointManager\AppManagement\Policies
+          
+          # Create directory for artifact, if it does not exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+          if (!$TestPath){
+            New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+          }
+
+          # If there are policies, convert to JSON and export
+          if ($ValidateEMAppPolicies){
+            $ValidateEMAppPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Validate.json
+          }
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)\Output'
+        artifact: 'Import'
+        publishLocation: 'pipeline'
+- stage: Plan
+  pool:
+    vmImage: 'windows-latest'
+  dependsOn: Validate
+  jobs:
+  - job: Evaluate
+    continueOnError: false
+    steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        targetPath: '$(Pipeline.Workspace)'
+    - task: CmdLine@2
+      name: CloneGraphAPI
+      displayName: Clone Graph API repo
+      inputs:
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: CmdLine@2
+      name: CloneToolKit
+      displayName: Clone Toolkit repo
+      inputs:
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/ToolKit.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PowerShell@2
+      name: InvokeWTPlanEMAppPolicy
+      displayName: Invoke-WTPlanEMAppPolicy
+      inputs:
+        targetType: 'inline'
+        script: |
+
+          # Import and convert policies from JSON, should they exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
+          if ($TestPath){
+              $ValidateEMAppPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
+          }
+
+          # Dot source and execute function
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\EndpointManager\AppManagement\Pipeline\Invoke-WTPlanEMAppPolicy.ps1
+            $PlanEMAppPolicies = Invoke-WTPlanEMAppPolicy `
+              -TenantDomain $(TenantDomain) `
+              -ClientID ${env:CLIENTID} `
+              -ClientSecret ${env:CLIENTSECRET} `
+              -EMAppPolicies $ValidateEMAppPolicies `
+              -RemoveExistingPolicies `
+              -UpdateExistingPolicies `
+              -Force
+
+          # Create directory for artifact, if it does not exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+          if (!$TestPath){
+              New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+          }
+
+          # If there are policies
+          if ($PlanEMAppPolicies.RemovePolicies -or $PlanEMAppPolicies.UpdatePolicies -or $PlanEMAppPolicies.CreatePolicies){
+
+            # Set ShouldRun variable to true, for apply stage
+            echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]true"
+
+            # Convert to JSON and export
+            $PlanEMAppPolicies | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Plan.json
+          }
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
+      env:
+        CLIENTID: $(ClientID)
+        CLIENTSECRET: $(ClientSecret)
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)\Output'
+        artifact: 'Evaluate'
+        publishLocation: 'pipeline'
+- stage: Apply
+  pool:
+    vmImage: 'windows-latest'
+  dependsOn: Plan
+  condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.InvokeWTPlanEMAppPolicy.ShouldRun'], 'true'))
+  jobs:
+  - deployment: Deploy
+    continueOnError: false
+    environment: $(Environment)
+    strategy:
+     runOnce:
+       deploy:
+        steps:
+          - checkout: self
+          - task: CmdLine@2
+            name: CloneGraphAPI
+            displayName: Clone Graph API repo
+            inputs:
+              script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: CmdLine@2
+            name: CloneToolKit
+            displayName: Clone Toolkit repo
+            inputs:
+              script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/ToolKit.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: PowerShell@2
+            name: InvokeWTApplyEMAppPolicy
+            displayName: Invoke-WTApplyEMAppPolicy
+            inputs:
+              targetType: 'inline'
+              script: |
+
+                # Import and convert policies from JSON, should they exist
+                $TestPath = Test-Path $(Pipeline.Workspace)\Evaluate\Plan.json -PathType Leaf
+                if ($TestPath){
+                    $PlanEMAppPolicies = Get-Content -Raw -Path $(Pipeline.Workspace)\Evaluate\Plan.json | ConvertFrom-Json -Depth 10
+                }
+                
+                # Import and convert app definitions from JSON, should they exist
+                $TestPath = Test-Path $(Build.Repository.LocalPath)\EndpointManager\AppManagement\Apps\Android.json -PathType Leaf
+                if ($TestPath){
+                    $AndroidApps = Get-Content -Raw -Path $(Build.Repository.LocalPath)\EndpointManager\AppManagement\Apps\Android.json | ConvertFrom-Json -Depth 10
+                }
+                $TestPath = Test-Path $(Build.Repository.LocalPath)\EndpointManager\AppManagement\Apps\iOS.jso -PathType Leaf
+                if ($TestPath){
+                    $iOSApps = Get-Content -Raw -Path $(Build.Repository.LocalPath)\EndpointManager\AppManagement\Apps\iOS.json | ConvertFrom-Json -Depth 10
+                }
+                
+                # Dot source and execute function
+                . $(System.ArtifactsDirectory)\GraphAPI\Public\EndpointManager\AppManagement\Pipeline\Invoke-WTApplyEMAppPolicy.ps1
+                      Invoke-WTApplyEMAppPolicy `
+                        -TenantDomain $(TenantDomain) `
+                        -ClientID ${env:CLIENTID} `
+                        -ClientSecret ${env:CLIENTSECRET} `
+                        -EMAppPolicies $PlanEMAppPolicies `
+                        -AndroidApps $AndroidApps `
+                        -iOSApps $iOSApps `
+                        -RemoveExistingPolicies `
+                        -UpdateExistingPolicies `
+                        -Path $(Build.SourcesDirectory)\EndpointManager\AppManagement\Policies `
+                        -Pipeline
+              pwsh: true
+              workingDirectory: '$(System.ArtifactsDirectory)'
+            env:
+              CLIENTID: $(ClientID)
+              CLIENTSECRET: $(ClientSecret)
+              GITHUBPAT: $(GitHubPAT)
+              REPOHOME: $(Build.Repository.LocalPath)
+              BRANCH: $(Branch)
+              INCLUDEUSERGROUPID: $(IncludeAppUserGroupID)
+              EXCLUDEUSERGROUPID: $(ExcludeAppUserGroupID)
+              GITHUBCONFIGREPO: $(GitHubConfigRepo)
