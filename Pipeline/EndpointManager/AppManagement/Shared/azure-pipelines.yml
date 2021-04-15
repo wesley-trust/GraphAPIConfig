@@ -164,7 +164,7 @@ stages:
                 if ($TestPath){
                     $AndroidApps = Get-Content -Raw -Path $(Build.Repository.LocalPath)\EndpointManager\AppManagement\Apps\Android.json | ConvertFrom-Json -Depth 10
                 }
-                $TestPath = Test-Path $(Build.Repository.LocalPath)\EndpointManager\AppManagement\Apps\iOS.jso -PathType Leaf
+                $TestPath = Test-Path $(Build.Repository.LocalPath)\EndpointManager\AppManagement\Apps\iOS.json -PathType Leaf
                 if ($TestPath){
                     $iOSApps = Get-Content -Raw -Path $(Build.Repository.LocalPath)\EndpointManager\AppManagement\Apps\iOS.json | ConvertFrom-Json -Depth 10
                 }
