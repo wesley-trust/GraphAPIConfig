@@ -22,7 +22,7 @@
   "appDataEncryptionType": "whenDeviceLocked",
   "blockDataIngestionIntoOrganizationDocuments": false,
   "contactSyncBlocked": false,
-  "createdDateTime": "2021-04-15T16:39:32.6001039Z",
+  "createdDateTime": "2021-04-15T16:46:10.0321927Z",
   "customBrowserProtocol": "",
   "customDialerAppProtocol": "",
   "dataBackupBlocked": false,
@@ -42,9 +42,9 @@
   "faceIdBlocked": false,
   "filterOpenInToOnlyManagedApps": false,
   "fingerprintBlocked": false,
-  "id": "T_4a84c9fd-cb8f-4324-82fe-f8c277d9f700",
+  "id": "T_496557c3-e459-484a-b96e-90781a300572",
   "isAssigned": false,
-  "lastModifiedDateTime": "2021-04-15T16:39:32.6001039Z",
+  "lastModifiedDateTime": "2021-04-15T16:46:10.0321927Z",
   "managedBrowser": "notConfigured",
   "managedBrowserToOpenLinksRequired": false,
   "maximumAllowedDeviceThreatLevel": "notConfigured",
@@ -81,5 +81,5 @@
   "simplePinBlocked": false,
   "targetedAppManagementLevels": "unspecified",
   "thirdPartyKeyboardsBlocked": false,
-  "version": "\"e645bb6e-7f7f-44c3-88e0-43cce60042f6\""
+  "version": "\"fb6b7774-09ee-4a1f-8db7-8866ca45b49e\""
 }
