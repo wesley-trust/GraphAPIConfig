@@ -19,6 +19,7 @@ Configuration files for deployment with the [GraphAPI][graphapi-link] and [Pipel
 - Named Locations
 ### Endpoint Manager (Intune)
 - Device Compliance
+  - Windows 10
 - App Protection
   - Android Apps
   - iOS Apps
