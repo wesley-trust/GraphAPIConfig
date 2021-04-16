@@ -34,6 +34,9 @@ stages:
             $ValidateEMDevicePolicies = Invoke-WTValidateEMDevicePolicy `
               -Path $(Build.Repository.LocalPath)\EndpointManager\DeviceManagement\Policies
           }
+          else {
+            $ValidateEMDevicePolicies = Invoke-WTValidateEMDevicePolicy
+          }
           
           # Create directory for artifact, if it does not exist
           $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
