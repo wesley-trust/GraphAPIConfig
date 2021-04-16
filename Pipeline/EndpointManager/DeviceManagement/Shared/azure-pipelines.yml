@@ -25,10 +25,15 @@ stages:
         targetType: 'inline'
         script: |
 
-          # Dot source and execute function
+          # Dot source function
           . $(System.ArtifactsDirectory)\GraphAPI\Public\EndpointManager\DeviceManagement\Pipeline\Invoke-WTValidateEMDevicePolicy.ps1
-          $ValidateEMDevicePolicies = Invoke-WTValidateEMDevicePolicy `
-            -Path $(Build.Repository.LocalPath)\EndpointManager\DeviceManagement\Policies
+          
+          # Test if any policies exist and execute function as appropriate
+          $TestPath = Test-Path $(Build.Repository.LocalPath)\EndpointManager\DeviceManagement\Policies -PathType Container
+          if ($TestPath){
+            $ValidateEMDevicePolicies = Invoke-WTValidateEMDevicePolicy `
+              -Path $(Build.Repository.LocalPath)\EndpointManager\DeviceManagement\Policies
+          }
           
           # Create directory for artifact, if it does not exist
           $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
