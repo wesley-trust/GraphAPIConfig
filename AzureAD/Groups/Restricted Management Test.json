@@ -12,7 +12,7 @@
   "expirationDateTime": null,
   "groupTypes": [],
   "infoCatalogs": [],
-  "isAssignableToRole": null,
+  "isAssignableToRole": true,
   "isManagementRestricted": true,
   "mail": null,
   "mailEnabled": false,
