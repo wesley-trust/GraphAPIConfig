@@ -34,7 +34,7 @@
   "securityEnabled": true,
   "securityIdentifier": "S-1-12-1-3081977619-1169106496-687729799-4089197676",
   "theme": null,
-  "visibility": null,
+  "visibility": "Private",
   "writebackConfiguration": {
     "isEnabled": null,
     "onPremisesGroupType": null
