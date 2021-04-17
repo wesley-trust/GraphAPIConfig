@@ -18,7 +18,7 @@
   "isManagementRestricted": null,
   "mail": null,
   "mailEnabled": false,
-  "membershipRule": "(device.deviceId -ne null) and (device.deviceOSType -eq 'Windows')",
+  "membershipRule": "(device.deviceId -ne null) and (device.deviceOSType -eq \"Windows\")",
   "membershipRuleProcessingState": "On",
   "onPremisesDomainName": null,
   "onPremisesLastSyncDateTime": null,
