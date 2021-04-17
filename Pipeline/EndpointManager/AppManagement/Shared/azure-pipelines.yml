@@ -25,11 +25,16 @@ stages:
         targetType: 'inline'
         script: |
 
-          # Dot source and execute function
+          # Dot source function
           . $(System.ArtifactsDirectory)\GraphAPI\Public\EndpointManager\AppManagement\Pipeline\Invoke-WTValidateEMAppPolicy.ps1
-          $ValidateEMAppPolicies = Invoke-WTValidateEMAppPolicy `
-            -Path $(Build.Repository.LocalPath)\EndpointManager\AppManagement\Policies
-          
+
+          # Test if directory exist and execute function as appropriate
+          $TestPath = Test-Path $(Build.Repository.LocalPath)\EndpointManager\AppManagement\Policies -PathType Container
+          if ($TestPath){
+            $ValidateEMAppPolicies = Invoke-WTValidateEMAppPolicy `
+              -Path $(Build.Repository.LocalPath)\EndpointManager\AppManagement\Policies
+          }
+
           # Create directory for artifact, if it does not exist
           $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
           if (!$TestPath){

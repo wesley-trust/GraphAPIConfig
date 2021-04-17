@@ -26,11 +26,16 @@ stages:
         targetType: 'inline'
         script: |
 
-          # Dot source and execute function
+          # Dot source function
           . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\ConditionalAccess\Policies\Pipeline\Invoke-WTValidateCAPolicy.ps1
-          $ValidateCAPolicies = Invoke-WTValidateCAPolicy `
-            -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess\Policies
           
+          # Test if directory exist and execute function as appropriate
+          $TestPath = Test-Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess\Policies -PathType Container
+          if ($TestPath){
+            $ValidateCAPolicies = Invoke-WTValidateCAPolicy `
+              -Path $(Build.Repository.LocalPath)\AzureAD\ConditionalAccess\Policies
+          }
+
           # Create directory for artifact, if it does not exist
           $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
           if (!$TestPath){

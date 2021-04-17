@@ -24,11 +24,16 @@ stages:
         targetType: 'inline'
         script: |
 
-          # Dot source and execute function
+          # Dot source function
           . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\NamedLocations\Pipeline\Invoke-WTValidateAzureADNamedLocation.ps1
-          $ValidateAzureADNamedLocations = Invoke-WTValidateAzureADNamedLocation `
-            -Path $(Build.Repository.LocalPath)\AzureAD\NamedLocations
           
+          # Test if directory exist and execute function as appropriate
+          $TestPath = Test-Path $(Build.Repository.LocalPath)\AzureAD\NamedLocations -PathType Container
+          if ($TestPath){
+            $ValidateAzureADNamedLocations = Invoke-WTValidateAzureADNamedLocation `
+              -Path $(Build.Repository.LocalPath)\AzureAD\NamedLocations
+          }
+
           # Create directory for artifact, if it does not exist
           $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
           if (!$TestPath){

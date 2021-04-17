@@ -28,7 +28,7 @@ stages:
           # Dot source function
           . $(System.ArtifactsDirectory)\GraphAPI\Public\EndpointManager\DeviceManagement\Pipeline\Invoke-WTValidateEMDevicePolicy.ps1
           
-          # Test if any policies exist and execute function as appropriate
+          # Test if directory exist and execute function as appropriate
           $TestPath = Test-Path $(Build.Repository.LocalPath)\EndpointManager\DeviceManagement\Policies -PathType Container
           if ($TestPath){
             $ValidateEMDevicePolicies = Invoke-WTValidateEMDevicePolicy `

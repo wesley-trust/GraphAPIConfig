@@ -24,11 +24,16 @@ stages:
         targetType: 'inline'
         script: |
 
-          # Dot source and execute function
+          # Dot source function
           . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\Groups\Pipeline\Invoke-WTValidateAzureADGroup.ps1
-          $ValidateAzureADGroups = Invoke-WTValidateAzureADGroup `
-            -Path $(Build.Repository.LocalPath)\AzureAD\Groups
           
+          # Test if directory exist and execute function as appropriate
+          $TestPath = Test-Path $(Build.Repository.LocalPath)\AzureAD\Groups -PathType Container
+          if ($TestPath){
+            $ValidateAzureADGroups = Invoke-WTValidateAzureADGroup `
+              -Path $(Build.Repository.LocalPath)\AzureAD\Groups
+          }
+
           # Create directory for artifact, if it does not exist
           $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
           if (!$TestPath){
