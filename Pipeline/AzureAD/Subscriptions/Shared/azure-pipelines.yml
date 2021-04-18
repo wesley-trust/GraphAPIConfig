@@ -1,0 +1,191 @@
+variables:
+- group: 'GitHubAuth'
+- group: 'ServicePrincipal'
+- group: 'SubscriptionMemberGroups'
+stages:
+- stage: Validate
+  pool:
+    vmImage: 'windows-latest'
+  jobs:
+  - job: Import
+    pool:
+      vmImage: 'windows-latest'
+    continueOnError: false
+    steps:
+    - task: CmdLine@2
+      name: CloneGraphAPI
+      displayName: Clone Graph API repo
+      inputs:
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PowerShell@2
+      name: InvokeWTValidateSubscription
+      displayName: Invoke-WTValidateSubscription
+      inputs:
+        targetType: 'inline'
+        script: |
+
+          # Dot source function
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\Subscriptions\Pipeline\Invoke-WTValidateSubscription.ps1
+          
+          # Test if directory exist and execute function as appropriate
+          $TestPath = Test-Path $(Build.Repository.LocalPath)\AzureAD\Subscriptions -PathType Container
+          if ($TestPath){
+            $ValidateDefinedSubscriptions = Invoke-WTValidateSubscription `
+              -Path $(Build.Repository.LocalPath)\AzureAD\Subscriptions
+          }
+
+          # Create directory for artifact, if it does not exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+          if (!$TestPath){
+            New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+          }
+
+          # If there are Subscriptions (as if there are no Subscriptions to import, existing Subscriptions are not removed)
+          if ($ValidateDefinedSubscriptions){
+            
+            # Set ShouldRun variable to true, for plan stage
+            echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]true"
+            
+            # Convert to JSON and export
+            $ValidateDefinedSubscriptions | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Validate.json
+          }
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)\Output'
+        artifact: 'Import'
+        publishLocation: 'pipeline'
+- stage: Plan
+  pool:
+    vmImage: 'windows-latest'
+  dependsOn: Validate
+  condition: and(succeeded(), eq(dependencies.Validate.outputs['Import.InvokeWTValidateSubscription.ShouldRun'], 'true'))
+  jobs:
+  - job: Evaluate
+    continueOnError: false
+    steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        targetPath: '$(Pipeline.Workspace)'
+    - task: CmdLine@2
+      name: CloneGraphAPI
+      displayName: Clone Graph API repo
+      inputs:
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: CmdLine@2
+      name: CloneToolKit
+      displayName: Clone Toolkit repo
+      inputs:
+        script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/ToolKit.git'
+        workingDirectory: '$(System.ArtifactsDirectory)'
+    - task: PowerShell@2
+      name: InvokeWTPlanSubscription
+      displayName: Invoke-WTPlanSubscription
+      inputs:
+        targetType: 'inline'
+        script: |
+
+          # Import and convert Subscriptions from JSON, should they exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Import\Validate.json -PathType Leaf
+          if ($TestPath){
+              $ValidateDefinedSubscriptions = Get-Content -Raw -Path $(Pipeline.Workspace)\Import\Validate.json | ConvertFrom-Json -Depth 10
+          }
+
+          # Dot source and execute function
+          . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\Subscriptions\Pipeline\Invoke-WTPlanSubscription.ps1
+            $PlanDefinedSubscriptions = Invoke-WTPlanSubscription `
+              -TenantDomain $(TenantDomain) `
+              -ClientID ${env:CLIENTID} `
+              -ClientSecret ${env:CLIENTSECRET} `
+              -DefinedSubscriptions $ValidateDefinedSubscriptions `
+              -RemoveDefinedSubscriptions `
+              -Force
+
+          # Create directory for artifact, if it does not exist
+          $TestPath = Test-Path $(Pipeline.Workspace)\Output -PathType Container
+          if (!$TestPath){
+              New-Item -Path $(Pipeline.Workspace)\Output -ItemType Directory | Out-Null
+          }
+
+          # If there are Subscriptions
+          if ($PlanDefinedSubscriptions.RemoveSubscriptions -or $PlanDefinedSubscriptions.CreateSubscriptions){
+
+            # Set ShouldRun variable to true, for apply stage
+            echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]true"
+
+            # Convert to JSON and export
+            $PlanDefinedSubscriptions | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Plan.json
+          }
+        pwsh: true
+        workingDirectory: '$(System.ArtifactsDirectory)'
+      env:
+        CLIENTID: $(ClientID)
+        CLIENTSECRET: $(ClientSecret)
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)\Output'
+        artifact: 'Evaluate'
+        publishLocation: 'pipeline'
+- stage: Apply
+  pool:
+    vmImage: 'windows-latest'
+  dependsOn: Plan
+  condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.InvokeWTPlanSubscription.ShouldRun'], 'true'))
+  jobs:
+  - deployment: Deploy
+    continueOnError: false
+    environment: $(Environment)
+    strategy:
+     runOnce:
+       deploy:
+        steps:
+          - checkout: self
+          - task: CmdLine@2
+            name: CloneGraphAPI
+            displayName: Clone Graph API repo
+            inputs:
+              script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/GraphAPI.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: CmdLine@2
+            name: CloneToolKit
+            displayName: Clone Toolkit repo
+            inputs:
+              script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/ToolKit.git'
+              workingDirectory: '$(System.ArtifactsDirectory)'
+          - task: PowerShell@2
+            name: InvokeWTApplySubscription
+            displayName: Invoke-WTApplySubscription
+            inputs:
+              targetType: 'inline'
+              script: |
+
+                # Import and convert Subscriptions from JSON, should they exist
+                $TestPath = Test-Path $(Pipeline.Workspace)\Evaluate\Plan.json -PathType Leaf
+                if ($TestPath){
+                    $PlanDefinedSubscriptions = Get-Content -Raw -Path $(Pipeline.Workspace)\Evaluate\Plan.json | ConvertFrom-Json -Depth 10
+                }
+                
+                # Dot source and execute function
+                . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\Subscriptions\Pipeline\Invoke-WTApplySubscription.ps1
+                      Invoke-WTApplySubscription `
+                        -TenantDomain $(TenantDomain) `
+                        -ClientID ${env:CLIENTID} `
+                        -ClientSecret ${env:CLIENTSECRET} `
+                        -DefinedSubscriptions $PlanDefinedSubscriptions `
+                        -RemoveDefinedSubscriptions `
+                        -Path $(Build.SourcesDirectory)\AzureAD\Subscriptions `
+                        -Pipeline
+              pwsh: true
+              workingDirectory: '$(System.ArtifactsDirectory)'
+            env:
+              CLIENTID: $(ClientID)
+              CLIENTSECRET: $(ClientSecret)
+              GITHUBPAT: $(GitHubPAT)
+              REPOHOME: $(Build.Repository.LocalPath)
+              BRANCH: $(Branch)
+              USERGROUPID: $(UserGroupID)
+              GITHUBCONFIGREPO: $(GitHubConfigRepo)
