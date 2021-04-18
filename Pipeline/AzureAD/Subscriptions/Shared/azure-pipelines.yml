@@ -44,9 +44,6 @@ stages:
           # If there are Subscriptions (as if there are no Subscriptions to import, existing Subscriptions are not removed)
           if ($ValidateDefinedSubscriptions){
             
-            # Set ShouldRun variable to true, for plan stage
-            echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]true"
-            
             # Convert to JSON and export
             $ValidateDefinedSubscriptions | ConvertTo-Json -Depth 10 | Out-File -Force -FilePath $(Pipeline.Workspace)\Output\Validate.json
           }
@@ -61,7 +58,7 @@ stages:
   pool:
     vmImage: 'windows-latest'
   dependsOn: Validate
-  condition: and(succeeded(), eq(dependencies.Validate.outputs['Import.InvokeWTValidateSubscription.ShouldRun'], 'true'))
+  condition: succeeded()
   jobs:
   - job: Evaluate
     continueOnError: false
