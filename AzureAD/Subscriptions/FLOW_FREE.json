@@ -1,0 +1,33 @@
+{
+  "capabilityStatus": "Enabled",
+  "consumedUnits": 1,
+  "id": "e34b9973-c809-418e-8069-b8195926f669_f30db892-07e9-47e9-837c-80727f46fd3d",
+  "skuId": "f30db892-07e9-47e9-837c-80727f46fd3d",
+  "skuPartNumber": "FLOW_FREE",
+  "appliesTo": "User",
+  "prepaidUnits": {
+    "enabled": 10000,
+    "suspended": 0,
+    "warning": 0
+  },
+  "servicePlans": [
+    {
+      "servicePlanId": "113feb6c-3fe4-4440-bddc-54d774bf0318",
+      "servicePlanName": "EXCHANGE_S_FOUNDATION",
+      "provisioningStatus": "Success",
+      "appliesTo": "Company"
+    },
+    {
+      "servicePlanId": "17ab22cd-a0b3-4536-910a-cb6eb12696c0",
+      "servicePlanName": "DYN365_CDS_VIRAL",
+      "provisioningStatus": "Success",
+      "appliesTo": "User"
+    },
+    {
+      "servicePlanId": "50e68c76-46c6-4674-81f9-75456511b170",
+      "servicePlanName": "FLOW_P2_VIRAL",
+      "provisioningStatus": "Success",
+      "appliesTo": "User"
+    }
+  ]
+}
