@@ -1,0 +1,8 @@
+{
+  "servicePlanName": "AAD_PREMIUM_P2",
+  "dependency": {
+    "servicePlanName": [
+      "AAD_PREMIUM"
+    ]
+  }
+}

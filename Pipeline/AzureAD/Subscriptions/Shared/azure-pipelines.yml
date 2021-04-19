@@ -29,10 +29,10 @@ stages:
           . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\Subscriptions\Pipeline\Invoke-WTValidateSubscription.ps1
           
           # Test if directory exist and execute function as appropriate
-          $TestPath = Test-Path $(Build.Repository.LocalPath)\AzureAD\Subscriptions -PathType Container
+          $TestPath = Test-Path $(Build.Repository.LocalPath)\AzureAD\Subscriptions\Definitions -PathType Container
           if ($TestPath){
             $ValidateDefinedSubscriptions = Invoke-WTValidateSubscription `
-              -Path $(Build.Repository.LocalPath)\AzureAD\Subscriptions
+              -Path $(Build.Repository.LocalPath)\AzureAD\Subscriptions\Definitions
           }
 
           # Create directory for artifact, if it does not exist

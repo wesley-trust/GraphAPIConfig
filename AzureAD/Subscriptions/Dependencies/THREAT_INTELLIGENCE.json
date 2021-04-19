@@ -1,0 +1,8 @@
+{
+  "servicePlanName": "THREAT_INTELLIGENCE",
+  "dependency": {
+    "servicePlanName": [
+      "EXCHANGE_S_ENTERPRISE"
+    ]
+  }
+}
