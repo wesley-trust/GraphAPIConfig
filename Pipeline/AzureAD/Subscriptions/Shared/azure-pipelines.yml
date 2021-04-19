@@ -190,7 +190,7 @@ stages:
                         -DefinedSubscriptions $PlanDefinedSubscriptions `
                         -DependentServicePlans $DependentServicePlans `
                         -RemoveDefinedSubscriptions `
-                        -Path $(Build.SourcesDirectory)\AzureAD\Subscriptions `
+                        -Path $(Build.SourcesDirectory)\AzureAD\Subscriptions\Definitions `
                         -Pipeline
               pwsh: true
               workingDirectory: '$(System.ArtifactsDirectory)'
