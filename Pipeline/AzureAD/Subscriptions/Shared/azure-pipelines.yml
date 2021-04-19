@@ -167,7 +167,7 @@ stages:
                 }
 
                 # Import service plan dependencies if they exist and convert from JSON
-                $DependentServicePlansPath = $(Build.Repository.LocalPath)\AzureAD\Subscriptions\Dependencies
+                $DependentServicePlansPath = "$(Build.Repository.LocalPath)\AzureAD\Subscriptions\Dependencies"
                 $PathExists = Test-Path -Path $DependentServicePlansPath
                 if ($PathExists) {
                     $DependentServicePlansFilePath = (Get-ChildItem -Path $DependentServicePlansPath -Filter "*.json").FullName
