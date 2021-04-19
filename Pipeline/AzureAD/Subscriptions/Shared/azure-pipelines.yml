@@ -165,7 +165,22 @@ stages:
                 if ($TestPath){
                     $PlanDefinedSubscriptions = Get-Content -Raw -Path $(Pipeline.Workspace)\Evaluate\Plan.json | ConvertFrom-Json -Depth 10
                 }
-                
+
+                # Import service plan dependencies if they exist and convert from JSON
+                $DependentServicePlansPath = $(Build.Repository.LocalPath)\AzureAD\Subscriptions\Dependencies
+                $PathExists = Test-Path -Path $DependentServicePlansPath
+                if ($PathExists) {
+                    $DependentServicePlansFilePath = (Get-ChildItem -Path $DependentServicePlansPath -Filter "*.json").FullName
+                }
+                if ($DependentServicePlansFilePath) {
+                    $DependentServicePlansImport = foreach ($DependentServicePlanFile in $DependentServicePlansFilePath) {
+                        Get-Content -Raw -Path $DependentServicePlanFile
+                    }
+                }
+                if ($DependentServicePlansImport) {
+                    $DependentServicePlans = $DependentServicePlansImport | ConvertFrom-Json -Depth 10
+                }
+
                 # Dot source and execute function
                 . $(System.ArtifactsDirectory)\GraphAPI\Public\AzureAD\Subscriptions\Pipeline\Invoke-WTApplySubscription.ps1
                       Invoke-WTApplySubscription `
@@ -173,6 +188,7 @@ stages:
                         -ClientID ${env:CLIENTID} `
                         -ClientSecret ${env:CLIENTSECRET} `
                         -DefinedSubscriptions $PlanDefinedSubscriptions `
+                        -DependentServicePlans $DependentServicePlans `
                         -RemoveDefinedSubscriptions `
                         -Path $(Build.SourcesDirectory)\AzureAD\Subscriptions `
                         -Pipeline
