@@ -15,6 +15,7 @@ schedules:
   branches:
     include:
     - main
+  always: true
 
 # Do not trigger builds on PRs
 pr: none
