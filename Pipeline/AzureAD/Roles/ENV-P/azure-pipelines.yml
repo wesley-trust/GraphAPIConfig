@@ -1,0 +1,24 @@
+# Trigger builds on commits and merges to branch
+trigger:
+  batch: true
+  branches:
+    include:
+    - main
+  paths:
+    include:
+      - AzureAD/Roles/Definitions
+
+# Execute on a schedule
+schedules:
+- cron: "0 */1 * * *"
+  displayName: Run hourly every day
+  branches:
+    include:
+    - main
+  always: true
+
+# Do not trigger builds on PRs
+pr: none
+
+extends:
+  template: ../Shared/azure-pipelines.yml

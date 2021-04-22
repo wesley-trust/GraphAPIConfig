@@ -1,0 +1,15 @@
+# Trigger builds on commits and merges to branch
+trigger:
+  batch: true
+  branches:
+    include:
+    - develop
+  paths:
+    include:
+      - AzureAD/Roles/Definitions
+
+# Do not trigger builds on PRs
+pr: none
+
+extends:
+  template: ../Shared/azure-pipelines.yml
