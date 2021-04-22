@@ -1,0 +1,7 @@
+{
+  "id": "fbae0ebc-5f2c-49e4-82dd-3bb5f83bb522",
+  "deletedDateTime": null,
+  "description": "Can manage all aspects of Azure AD and Microsoft services that use Azure AD identities.",
+  "displayName": "Global Administrator",
+  "roleTemplateId": "62e90394-69f5-4237-9190-012177145e10"
+}

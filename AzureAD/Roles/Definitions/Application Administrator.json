@@ -1,0 +1,7 @@
+{
+  "id": "57f05a66-23f6-4cf3-b284-a7813d2c9158",
+  "deletedDateTime": null,
+  "description": "Can create and manage all aspects of app registrations and enterprise apps.",
+  "displayName": "Application Administrator",
+  "roleTemplateId": "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3"
+}

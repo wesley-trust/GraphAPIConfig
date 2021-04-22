@@ -1,0 +1,7 @@
+{
+  "id": "53192afb-4233-49b2-b7c4-4f2970852c47",
+  "deletedDateTime": null,
+  "description": "Can reset passwords for non-administrators and Helpdesk Administrators.",
+  "displayName": "Helpdesk Administrator",
+  "roleTemplateId": "729827e3-9c14-49f7-bb1b-9608f156bbb8"
+}

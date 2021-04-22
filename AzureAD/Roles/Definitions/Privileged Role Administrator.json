@@ -1,0 +1,7 @@
+{
+  "id": "e5d732bb-c6e6-4230-8f1c-99d10eb56d0c",
+  "deletedDateTime": null,
+  "description": "Can manage role assignments in Azure AD, and all aspects of Privileged Identity Management.",
+  "displayName": "Privileged Role Administrator",
+  "roleTemplateId": "e8611ab8-c189-46e8-94e1-60213ab1f814"
+}
