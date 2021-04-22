@@ -25,6 +25,7 @@ Configuration files for deployment with the [GraphAPI][graphapi-link] and [Pipel
 - Named Locations
 - Subscriptions
   - Dependencies
+- Directory Roles
 ### Endpoint Manager (Intune)
 - Device Compliance
   - Windows 10
