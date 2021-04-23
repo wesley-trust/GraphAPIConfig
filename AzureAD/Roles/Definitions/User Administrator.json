@@ -1,0 +1,8 @@
+{
+  "id": "bd3cd464-e403-4c2b-b760-ac0bcb0d06d0",
+  "deletedDateTime": null,
+  "description": "Can manage all aspects of users and groups, including resetting passwords for limited admins.",
+  "displayName": "User Administrator",
+  "roleTemplateId": "fe930be7-5e62-47db-91af-98c3a49a38b1",
+  "SideIndicator": "<="
+}

@@ -1,0 +1,8 @@
+{
+  "id": "357f32ff-79f7-4e93-9c25-5a2b8150f40c",
+  "deletedDateTime": null,
+  "description": "Can manage all aspects of the Azure Information Protection product.",
+  "displayName": "Azure Information Protection Administrator",
+  "roleTemplateId": "7495fdc4-34c4-4d15-a289-98788ce399fd",
+  "SideIndicator": "<="
+}
