@@ -8,8 +8,6 @@ stages:
     vmImage: 'windows-latest'
   jobs:
   - job: Import
-    pool:
-      vmImage: 'windows-latest'
     continueOnError: false
     steps:
     - task: CmdLine@2
