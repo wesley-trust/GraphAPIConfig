@@ -9,6 +9,7 @@
     "clientAppTypes": [
       "mobileAppsAndDesktopClients"
     ],
+    "servicePrincipalRiskLevels": [],
     "locations": null,
     "deviceStates": null,
     "devices": null,
@@ -25,10 +26,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "aa1ab765-496c-4920-871f-96835e961771"
+        "07ada44f-aec2-4577-bb66-60a83df02313"
       ],
       "excludeGroups": [
-        "3c1b73af-a7a2-4670-8dbb-5827184cc849"
+        "326dcfa3-3445-40cd-a580-0d7fe554ae63"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -44,7 +45,7 @@
       ]
     }
   },
-  "createdDateTime": "2021-03-19T20:10:38.6351451Z",
+  "createdDateTime": "2021-12-03T20:13:23.4580766Z",
   "displayName": "REF-06;ENV-P;VER-2; Require hybrid joined or compliant device, for all cloud apps, for all desktop devices",
   "grantControls": {
     "operator": "OR",
@@ -55,7 +56,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "97458381-1ece-4bc6-8a0e-7bd00ea53ab5",
+  "id": "bd39ebb2-87e8-4af9-b223-88ae0c1b13b6",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

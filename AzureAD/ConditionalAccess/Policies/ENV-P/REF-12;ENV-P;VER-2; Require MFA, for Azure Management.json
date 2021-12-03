@@ -9,6 +9,7 @@
     "clientAppTypes": [
       "all"
     ],
+    "servicePrincipalRiskLevels": [],
     "platforms": null,
     "locations": null,
     "deviceStates": null,
@@ -26,16 +27,16 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "8a9e3089-a6f2-4ce7-8376-d367c9a80315"
+        "600647f5-55d5-4b61-8732-3cfc35d0e284"
       ],
       "excludeGroups": [
-        "75e2b7ce-45d6-4fd2-a88f-24e2711ab456"
+        "6d8789a3-90f4-45a3-940e-1539cd933703"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-03-19T20:10:48.5904465Z",
+  "createdDateTime": "2021-12-03T20:13:35.0695098Z",
   "displayName": "REF-12;ENV-P;VER-2; Require MFA, for Azure Management",
   "grantControls": {
     "operator": "OR",
@@ -45,7 +46,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "c8107af6-4fd4-47d5-b52a-5608c43ee2d7",
+  "id": "678c3455-37c3-448a-ba0e-0de70b4590a1",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
