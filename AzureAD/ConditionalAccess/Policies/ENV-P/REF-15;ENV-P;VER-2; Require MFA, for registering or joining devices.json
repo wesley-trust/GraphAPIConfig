@@ -1,0 +1,52 @@
+{
+  "REF": "15",
+  "VER": "2",
+  "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "all"
+    ],
+    "platforms": null,
+    "locations": null,
+    "deviceStates": null,
+    "devices": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [],
+      "excludeApplications": [],
+      "includeUserActions": [
+        "urn:user:registerdevice"
+      ],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "1a00c4a2-e3c9-4d9e-a91e-2e69f828a2e6"
+      ],
+      "excludeGroups": [
+        "c61e4a0b-56c8-4cc6-96ec-0878f929f56c"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    }
+  },
+  "createdDateTime": "2021-04-04T12:54:42.2651265Z",
+  "displayName": "REF-15;ENV-P;VER-2; Require MFA, for registering or joining devices",
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "mfa"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  },
+  "id": "c9c3eb48-2d32-4014-aae7-aa613b529d07",
+  "modifiedDateTime": null,
+  "sessionControls": null,
+  "state": "disabled"
+}
