@@ -56,7 +56,7 @@
     }
   },
   "createdDateTime": "2021-12-03T20:13:15.4741136Z",
-  "displayName": "REF-02;ENV-P;VER-2; Block access, for registering security information, for any location, excluding trusted or named locations, hybrid joined or compliant devices",
+  "displayName": "REF-02;ENV-P;VER-2; I should be renamed",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
