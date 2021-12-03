@@ -45,7 +45,7 @@
     }
   },
   "createdDateTime": "2021-12-03T13:04:46.9857322Z",
-  "displayName": "REF-07;ENV-P;VER-2; Require approved client app or compliant device, for all cloud apps, for all mobile devices",
+  "displayName": "REF-07;ENV-P;VER-2; I should now be renamed",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
