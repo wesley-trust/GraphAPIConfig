@@ -10,6 +10,7 @@
       "exchangeActiveSync",
       "other"
     ],
+    "servicePrincipalRiskLevels": [],
     "platforms": null,
     "locations": null,
     "deviceStates": null,
@@ -27,16 +28,16 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "e3560bd8-19a9-464a-a37b-61a05fa6fef7"
+        "92e7090d-057f-4aa5-9299-9afd1419b30b"
       ],
       "excludeGroups": [
-        "d77bcccc-1a7e-4d71-80d3-64bbcbff2bfc"
+        "876ac768-40e1-49cc-b4df-ba8a59f3bbe3"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-03-19T20:10:35.0719324Z",
+  "createdDateTime": "2021-12-03T13:04:41.120656Z",
   "displayName": "REF-04;ENV-P;VER-2; Block access, for all cloud apps, for all client apps supporting legacy authentication",
   "grantControls": {
     "operator": "OR",
@@ -46,7 +47,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "794fdafa-39cc-4219-9df3-7d3e804dd779",
+  "id": "0bc630d3-7a76-43cf-85aa-57a43bc9fda1",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

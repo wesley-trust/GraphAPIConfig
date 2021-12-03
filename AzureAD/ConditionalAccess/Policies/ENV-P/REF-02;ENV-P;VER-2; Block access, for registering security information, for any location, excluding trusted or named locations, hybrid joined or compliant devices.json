@@ -9,6 +9,7 @@
     "clientAppTypes": [
       "all"
     ],
+    "servicePrincipalRiskLevels": [],
     "platforms": null,
     "deviceStates": null,
     "clientApplications": null,
@@ -24,10 +25,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "0e9ab8c1-c538-446a-8ad9-0b2113d10ac7"
+        "6726d324-8787-4444-b34f-f36ed4e26855"
       ],
       "excludeGroups": [
-        "b623e336-1aca-4837-a36d-c4feeb3d2a2d"
+        "c428770f-c1e2-4535-afb7-509710db473e"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -54,7 +55,7 @@
       "deviceFilter": null
     }
   },
-  "createdDateTime": "2021-03-19T20:10:31.5706787Z",
+  "createdDateTime": "2021-12-03T13:04:36.7774585Z",
   "displayName": "REF-02;ENV-P;VER-2; Block access, for registering security information, for any location, excluding trusted or named locations, hybrid joined or compliant devices",
   "grantControls": {
     "operator": "OR",
@@ -64,7 +65,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "50352922-ee14-4374-9378-2c275dce663b",
+  "id": "fcac2791-3ab9-463b-ae4e-9bc398a30b03",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

@@ -12,6 +12,7 @@
     "clientAppTypes": [
       "all"
     ],
+    "servicePrincipalRiskLevels": [],
     "platforms": null,
     "locations": null,
     "deviceStates": null,
@@ -29,16 +30,16 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "09497c93-b02b-41c5-acf9-2fa24f1c61df"
+        "748b3542-f774-4fb6-a9ed-77ce450ea986"
       ],
       "excludeGroups": [
-        "34ffdbb1-0807-4c2c-8b8c-6892f6ac2103"
+        "b483959d-7018-4e58-81ee-4fb04a573d67"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-03-19T20:10:50.463577Z",
+  "createdDateTime": "2021-12-03T13:04:58.2936451Z",
   "displayName": "REF-13;ENV-P;VER-2; Require MFA, for risky sign-in events, for all cloud apps",
   "grantControls": {
     "operator": "OR",
@@ -48,7 +49,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "0671dc87-ed32-44f7-80c4-b8d75d4e492e",
+  "id": "972c5b2d-63d2-4429-af0e-ebdab0dc882a",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
