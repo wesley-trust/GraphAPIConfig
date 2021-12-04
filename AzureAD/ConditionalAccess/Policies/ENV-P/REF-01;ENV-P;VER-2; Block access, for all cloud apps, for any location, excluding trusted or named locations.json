@@ -45,7 +45,7 @@
     }
   },
   "createdDateTime": "2021-12-04T14:10:15.1032112Z",
-  "displayName": "REF-01;ENV-P;VER-2; Block access, for all cloud apps, for any location, excluding trusted or named locations",
+  "displayName": "I should be renamed",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
