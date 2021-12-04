@@ -27,16 +27,16 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "814a7261-5df3-4402-afb8-d5b600d17daf"
+        "30d205f2-6611-4074-a37b-a4595af055a4"
       ],
       "excludeGroups": [
-        "a3fcb19d-1afb-480b-b98d-a66fd7ea8a7e"
+        "6dc6db3c-e8ec-4a77-9e99-b72698cc604f"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-12-04T14:10:42.416347Z",
+  "createdDateTime": "2021-12-04T14:21:21.0352022Z",
   "displayName": "REF-15;ENV-P;VER-2; Require MFA, for registering or joining devices",
   "grantControls": {
     "operator": "OR",
@@ -46,7 +46,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "1abdfcb3-0cbc-4203-aaf3-ceb4a1e9cfaa",
+  "id": "d2ddf4fb-cd8f-4368-8959-344e2ad0e98a",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
