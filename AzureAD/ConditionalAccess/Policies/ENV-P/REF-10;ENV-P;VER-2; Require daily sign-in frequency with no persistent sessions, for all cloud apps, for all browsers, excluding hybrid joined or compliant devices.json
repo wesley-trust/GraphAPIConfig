@@ -9,6 +9,7 @@
     "clientAppTypes": [
       "browser"
     ],
+    "servicePrincipalRiskLevels": [],
     "platforms": null,
     "locations": null,
     "deviceStates": null,
@@ -25,10 +26,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "fdcfdc2d-1107-4f3f-a035-bc618bdb476b"
+        "885a359f-4b2a-4508-9c89-48fb59c0c069"
       ],
       "excludeGroups": [
-        "5983bd07-f078-4f95-a0e5-501641a52093"
+        "847efa6a-d93f-4bce-8ab8-ea4a8d6552f3"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -46,14 +47,16 @@
       "deviceFilter": null
     }
   },
-  "createdDateTime": "2021-03-19T20:10:45.4417413Z",
+  "createdDateTime": "2021-12-04T14:10:32.6868618Z",
   "displayName": "REF-10;ENV-P;VER-2; Require daily sign-in frequency with no persistent sessions, for all cloud apps, for all browsers, excluding hybrid joined or compliant devices",
   "grantControls": null,
-  "id": "ebbd0414-7ac5-4b79-8d36-b456cce0817d",
+  "id": "68d056da-38c5-4472-a0dd-5fc5c7388209",
   "modifiedDateTime": null,
   "sessionControls": {
+    "disableResilienceDefaults": false,
     "applicationEnforcedRestrictions": null,
     "cloudAppSecurity": null,
+    "continuousAccessEvaluation": null,
     "signInFrequency": {
       "value": 1,
       "type": "days",

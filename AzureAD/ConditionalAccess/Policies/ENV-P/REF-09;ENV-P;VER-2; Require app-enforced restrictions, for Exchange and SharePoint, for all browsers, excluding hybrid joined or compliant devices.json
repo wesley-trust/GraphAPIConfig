@@ -9,6 +9,7 @@
     "clientAppTypes": [
       "browser"
     ],
+    "servicePrincipalRiskLevels": [],
     "platforms": null,
     "locations": null,
     "deviceStates": null,
@@ -26,10 +27,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "e0f518ce-ce0a-41f7-87cf-13d2d33aa896"
+        "5c52a170-f860-4b52-a953-5e0c6d89d7ae"
       ],
       "excludeGroups": [
-        "e57028b1-8e6d-4cdf-8f04-88fa78a3a694"
+        "f2286407-baa9-489e-b880-5ecf4af0e7ed"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -47,15 +48,17 @@
       "deviceFilter": null
     }
   },
-  "createdDateTime": "2021-03-19T20:10:43.4104464Z",
+  "createdDateTime": "2021-12-04T14:10:30.854114Z",
   "displayName": "REF-09;ENV-P;VER-2; Require app-enforced restrictions, for Exchange and SharePoint, for all browsers, excluding hybrid joined or compliant devices",
   "grantControls": null,
-  "id": "e9225761-c32b-4882-9c49-755508fdf427",
+  "id": "834a1327-d887-4025-a690-6e838077e216",
   "modifiedDateTime": null,
   "sessionControls": {
+    "disableResilienceDefaults": false,
     "cloudAppSecurity": null,
     "signInFrequency": null,
     "persistentBrowser": null,
+    "continuousAccessEvaluation": null,
     "applicationEnforcedRestrictions": {
       "isEnabled": true
     }

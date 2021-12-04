@@ -9,6 +9,7 @@
     "clientAppTypes": [
       "all"
     ],
+    "servicePrincipalRiskLevels": [],
     "platforms": null,
     "locations": null,
     "deviceStates": null,
@@ -26,16 +27,16 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "1a00c4a2-e3c9-4d9e-a91e-2e69f828a2e6"
+        "814a7261-5df3-4402-afb8-d5b600d17daf"
       ],
       "excludeGroups": [
-        "c61e4a0b-56c8-4cc6-96ec-0878f929f56c"
+        "a3fcb19d-1afb-480b-b98d-a66fd7ea8a7e"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-04-04T12:54:42.2651265Z",
+  "createdDateTime": "2021-12-04T14:10:42.416347Z",
   "displayName": "REF-15;ENV-P;VER-2; Require MFA, for registering or joining devices",
   "grantControls": {
     "operator": "OR",
@@ -45,7 +46,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "c9c3eb48-2d32-4014-aae7-aa613b529d07",
+  "id": "1abdfcb3-0cbc-4203-aaf3-ceb4a1e9cfaa",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
