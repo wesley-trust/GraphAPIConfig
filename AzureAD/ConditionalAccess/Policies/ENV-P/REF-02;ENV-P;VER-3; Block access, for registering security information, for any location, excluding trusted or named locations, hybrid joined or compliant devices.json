@@ -1,8 +1,7 @@
 {
   "REF": "02",
-  "VER": "2",
+  "VER": "3",
   "ENV": "P",
-  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -25,10 +24,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "eb2063a2-1c31-48d7-9414-e63387db31a2"
+        "fc7215ea-09b6-4e5b-8f88-4bf9936aceea"
       ],
       "excludeGroups": [
-        "6e41d1b7-779c-4e02-a2d3-4a7ca4f9368c"
+        "70a47767-7695-4c8f-9a29-75ffdc342070"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -45,18 +44,16 @@
     "devices": {
       "includeDeviceStates": [],
       "excludeDeviceStates": [],
-      "includeDevices": [
-        "All"
-      ],
-      "excludeDevices": [
-        "Compliant",
-        "DomainJoined"
-      ],
-      "deviceFilter": null
+      "includeDevices": [],
+      "excludeDevices": [],
+      "deviceFilter": {
+        "mode": "include",
+        "rule": "device.trustType -ne \"ServerAD\" -or device.isCompliant -ne True"
+      }
     }
   },
-  "createdDateTime": "2021-12-04T14:10:17.1708312Z",
-  "displayName": "REF-02;ENV-P;VER-2; Block access, for registering security information, for any location, excluding trusted or named locations, hybrid joined or compliant devices",
+  "createdDateTime": "2021-12-04T17:25:54.1526214Z",
+  "displayName": "REF-02;ENV-P;VER-3; Block access, for registering security information, for any location, excluding trusted or named locations, hybrid joined or compliant devices",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
@@ -65,8 +62,8 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "9b6b18a5-24f7-402b-9782-c29a93feca4a",
-  "modifiedDateTime": null,
+  "id": "1d726d53-dc91-4a80-a6f9-f8069deef869",
+  "modifiedDateTime": "2021-12-05T16:33:31.0686966Z",
   "sessionControls": null,
   "state": "disabled"
 }

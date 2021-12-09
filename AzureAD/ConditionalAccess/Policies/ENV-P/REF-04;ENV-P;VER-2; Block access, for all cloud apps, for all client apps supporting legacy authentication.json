@@ -2,7 +2,6 @@
   "REF": "04",
   "VER": "2",
   "ENV": "P",
-  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -28,16 +27,16 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "019832e1-d3d9-4b44-86c6-a31d7f9d8ee9"
+        "dba009ef-b17d-4887-8d74-51921f91d64e"
       ],
       "excludeGroups": [
-        "5e348233-60dd-4aaa-a051-907acde07bcd"
+        "6177ea9b-ecef-4a5d-9edb-91b26b1cb3ae"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-12-04T14:10:21.1376746Z",
+  "createdDateTime": "2021-12-04T17:25:58.5717425Z",
   "displayName": "REF-04;ENV-P;VER-2; Block access, for all cloud apps, for all client apps supporting legacy authentication",
   "grantControls": {
     "operator": "OR",
@@ -47,7 +46,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "b5fa5bc7-8ff9-4774-9b6e-9a018d759c30",
+  "id": "c7b2ef04-4168-4442-a918-1b66626e838e",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

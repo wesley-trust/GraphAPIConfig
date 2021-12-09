@@ -1,8 +1,7 @@
 {
   "REF": "05",
-  "VER": "2",
+  "VER": "3",
   "ENV": "P",
-  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -25,10 +24,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "8099a486-e418-4f5b-8fb5-e5487927ccec"
+        "e4a506cf-18e4-4520-b34e-80e14e30dafe"
       ],
       "excludeGroups": [
-        "6785b364-d76f-4360-966f-ba1dc6e44d29"
+        "a19cb4c1-f74c-4d89-ac9a-e2a46d4e79de"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -44,18 +43,16 @@
     "devices": {
       "includeDeviceStates": [],
       "excludeDeviceStates": [],
-      "includeDevices": [
-        "All"
-      ],
-      "excludeDevices": [
-        "Compliant",
-        "DomainJoined"
-      ],
-      "deviceFilter": null
+      "includeDevices": [],
+      "excludeDevices": [],
+      "deviceFilter": {
+        "mode": "include",
+        "rule": "device.trustType -ne \"ServerAD\" -or device.isCompliant -ne True"
+      }
     }
   },
-  "createdDateTime": "2021-12-04T14:10:23.5234449Z",
-  "displayName": "REF-05;ENV-P;VER-2; Require MFA, for all cloud apps, for any location, excluding trusted locations, hybrid joined or compliant devices",
+  "createdDateTime": "2021-12-04T17:26:00.4496469Z",
+  "displayName": "REF-05;ENV-P;VER-3; Require MFA, for all cloud apps, for any location, excluding trusted locations, hybrid joined or compliant devices",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
@@ -64,8 +61,8 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "f0c9affb-eb33-4832-9200-af8d6ca96cf1",
-  "modifiedDateTime": null,
+  "id": "1c73971b-1199-4089-bddc-4376f8f7fdde",
+  "modifiedDateTime": "2021-12-05T16:33:34.2765313Z",
   "sessionControls": null,
   "state": "disabled"
 }

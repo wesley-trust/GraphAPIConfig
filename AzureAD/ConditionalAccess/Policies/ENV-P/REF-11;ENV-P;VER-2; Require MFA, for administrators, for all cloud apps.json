@@ -2,7 +2,6 @@
   "REF": "11",
   "VER": "2",
   "ENV": "P",
-  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -28,7 +27,7 @@
       "excludeUsers": [],
       "includeGroups": [],
       "excludeGroups": [
-        "d59efa9a-8a49-4f58-bc00-33d01a1dcd49"
+        "12113b86-e5e2-4d82-a138-7a7467dd8ba4"
       ],
       "includeRoles": [
         "fe930be7-5e62-47db-91af-98c3a49a38b1",
@@ -82,7 +81,7 @@
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-12-04T15:21:35.9158842Z",
+  "createdDateTime": "2021-12-04T17:26:13.560942Z",
   "displayName": "REF-11;ENV-P;VER-2; Require MFA, for administrators, for all cloud apps",
   "grantControls": {
     "operator": "OR",
@@ -92,7 +91,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "0bead2c6-7805-4458-b252-31073a9dd40b",
+  "id": "c4999c86-695e-4b21-8d0d-1104d024ccc0",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
