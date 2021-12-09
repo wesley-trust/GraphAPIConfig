@@ -1,6 +1,6 @@
 {
-  "REF": "09",
-  "VER": "2",
+  "REF": "10",
+  "VER": "3",
   "ENV": "P",
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
@@ -12,12 +12,12 @@
     "servicePrincipalRiskLevels": [],
     "platforms": null,
     "locations": null,
+    "times": null,
     "deviceStates": null,
     "clientApplications": null,
     "applications": {
       "includeApplications": [
-        "00000002-0000-0ff1-ce00-000000000000",
-        "00000003-0000-0ff1-ce00-000000000000"
+        "All"
       ],
       "excludeApplications": [],
       "includeUserActions": [],
@@ -27,10 +27,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "5c52a170-f860-4b52-a953-5e0c6d89d7ae"
+        "b5a9e8c9-77fd-4808-8586-e2951250dad8"
       ],
       "excludeGroups": [
-        "f2286407-baa9-489e-b880-5ecf4af0e7ed"
+        "0192a883-8347-4b83-8127-cc306875c624"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -38,28 +38,31 @@
     "devices": {
       "includeDeviceStates": [],
       "excludeDeviceStates": [],
-      "includeDevices": [
-        "All"
-      ],
-      "excludeDevices": [
-        "Compliant",
-        "DomainJoined"
-      ],
-      "deviceFilter": null
+      "includeDevices": [],
+      "excludeDevices": [],
+      "deviceFilter": {
+        "mode": "include",
+        "rule": "device.trustType -ne \"ServerAD\" -or device.isCompliant -ne True"
+      }
     }
   },
-  "createdDateTime": "2021-12-04T14:10:30.854114Z",
-  "displayName": "REF-09;ENV-P;VER-2; Require app-enforced restrictions, for Exchange and SharePoint, for all browsers, excluding hybrid joined or compliant devices",
+  "createdDateTime": "2021-12-09T22:03:38.951879Z",
+  "displayName": "REF-10;ENV-P;VER-3; Require hourly sign-in frequency with no persistent sessions, for all cloud apps, for all browsers, excluding hybrid joined or compliant devices",
   "grantControls": null,
-  "id": "834a1327-d887-4025-a690-6e838077e216",
+  "id": "bd107ebc-aa15-4a58-aa9b-564276f7e280",
   "modifiedDateTime": null,
   "sessionControls": {
     "disableResilienceDefaults": false,
+    "applicationEnforcedRestrictions": null,
     "cloudAppSecurity": null,
-    "signInFrequency": null,
-    "persistentBrowser": null,
     "continuousAccessEvaluation": null,
-    "applicationEnforcedRestrictions": {
+    "signInFrequency": {
+      "value": 1,
+      "type": "hours",
+      "isEnabled": true
+    },
+    "persistentBrowser": {
+      "mode": "never",
       "isEnabled": true
     }
   },

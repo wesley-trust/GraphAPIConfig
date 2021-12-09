@@ -1,24 +1,22 @@
 {
-  "REF": "08",
-  "VER": "2",
+  "REF": "05",
+  "VER": "3",
   "ENV": "P",
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
     "clientAppTypes": [
-      "mobileAppsAndDesktopClients"
+      "all"
     ],
     "servicePrincipalRiskLevels": [],
-    "locations": null,
+    "platforms": null,
     "times": null,
     "deviceStates": null,
-    "devices": null,
     "clientApplications": null,
     "applications": {
       "includeApplications": [
-        "00000002-0000-0ff1-ce00-000000000000",
-        "00000003-0000-0ff1-ce00-000000000000"
+        "All"
       ],
       "excludeApplications": [],
       "includeUserActions": [],
@@ -28,36 +26,44 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "accbb23e-00c4-4808-819f-bc941bfa8139"
+        "5ae8f6de-72c3-44a3-90c3-77d15c079248"
       ],
       "excludeGroups": [
-        "ce63b4f4-232f-47a8-bf4a-e40c56c45d67"
+        "ffd76bdd-f03f-43a1-9fa3-3593bbaafb82"
       ],
       "includeRoles": [],
       "excludeRoles": []
     },
-    "platforms": {
-      "includePlatforms": [
-        "all"
+    "locations": {
+      "includeLocations": [
+        "All"
       ],
-      "excludePlatforms": [
-        "windows",
-        "macOS"
+      "excludeLocations": [
+        "AllTrusted"
       ]
+    },
+    "devices": {
+      "includeDeviceStates": [],
+      "excludeDeviceStates": [],
+      "includeDevices": [],
+      "excludeDevices": [],
+      "deviceFilter": {
+        "mode": "include",
+        "rule": "device.trustType -ne \"ServerAD\" -or device.isCompliant -ne True"
+      }
     }
   },
-  "createdDateTime": "2021-12-09T22:03:34.8111541Z",
-  "displayName": "REF-08;ENV-P;VER-2; Require app protection policy or compliant device, for Exchange and SharePoint, for all mobile devices",
+  "createdDateTime": "2021-12-09T22:03:27.6398546Z",
+  "displayName": "REF-05;ENV-P;VER-3; Require MFA, for all cloud apps, for any location, excluding trusted locations, hybrid joined or compliant devices",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
-      "compliantDevice",
-      "compliantApplication"
+      "mfa"
     ],
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "0846f22d-afe7-465e-ad1a-e3588d1975ea",
+  "id": "4eae501c-879a-45cb-937c-8308fc1cb795",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

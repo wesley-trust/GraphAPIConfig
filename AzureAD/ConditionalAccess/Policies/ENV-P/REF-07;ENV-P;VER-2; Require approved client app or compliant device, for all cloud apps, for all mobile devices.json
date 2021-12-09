@@ -11,6 +11,7 @@
     ],
     "servicePrincipalRiskLevels": [],
     "locations": null,
+    "times": null,
     "deviceStates": null,
     "devices": null,
     "clientApplications": null,
@@ -26,10 +27,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "a4b81494-21c3-4494-a50b-6fd6d136f54a"
+        "df5e36e7-2234-42eb-85e8-f1adf5124752"
       ],
       "excludeGroups": [
-        "8aab27df-b4fd-402c-8648-95135dde92cd"
+        "8f2278fc-0259-4e76-8f8b-c21308f63b85"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -44,7 +45,7 @@
       ]
     }
   },
-  "createdDateTime": "2021-12-04T14:10:27.1155464Z",
+  "createdDateTime": "2021-12-09T22:03:31.7807445Z",
   "displayName": "REF-07;ENV-P;VER-2; Require approved client app or compliant device, for all cloud apps, for all mobile devices",
   "grantControls": {
     "operator": "OR",
@@ -55,7 +56,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "749e1087-b0eb-494d-8d67-6790d51ca0ae",
+  "id": "894ca52a-f6fd-4b8e-9af6-d03d07035f5c",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

@@ -1,52 +1,63 @@
 {
-  "REF": "15",
-  "VER": "2",
+  "REF": "16",
+  "VER": "1",
   "ENV": "P",
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
     "clientAppTypes": [
-      "all"
+      "mobileAppsAndDesktopClients"
     ],
     "servicePrincipalRiskLevels": [],
-    "platforms": null,
     "locations": null,
+    "times": null,
     "deviceStates": null,
     "devices": null,
     "clientApplications": null,
     "applications": {
-      "includeApplications": [],
-      "excludeApplications": [],
-      "includeUserActions": [
-        "urn:user:registerdevice"
+      "includeApplications": [
+        "All"
       ],
+      "excludeApplications": [],
+      "includeUserActions": [],
       "includeAuthenticationContextClassReferences": []
     },
     "users": {
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "30d205f2-6611-4074-a37b-a4595af055a4"
+        "f5d03515-27a0-40cd-adb1-e14a0783dd4d"
       ],
       "excludeGroups": [
-        "6dc6db3c-e8ec-4a77-9e99-b72698cc604f"
+        "e686476e-ce69-4e87-a485-fb29eff7a75a"
       ],
       "includeRoles": [],
       "excludeRoles": []
+    },
+    "platforms": {
+      "includePlatforms": [
+        "all"
+      ],
+      "excludePlatforms": [
+        "android",
+        "iOS",
+        "windows",
+        "macOS"
+      ]
     }
   },
-  "createdDateTime": "2021-12-04T14:21:21.0352022Z",
-  "displayName": "REF-15;ENV-P;VER-2; Require MFA, for registering or joining devices",
+  "createdDateTime": "2021-12-09T22:03:51.6718982Z",
+  "displayName": "REF-16;ENV-P;VER-1; Block access, for all cloud apps, for mobile app and desktop clients on unknown or unsupported devices",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
-      "mfa"
+      "block"
     ],
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "d2ddf4fb-cd8f-4368-8959-344e2ad0e98a",
+  "id": "469f5e6b-1490-425a-87a5-c0b1348f2d9f",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

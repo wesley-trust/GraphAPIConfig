@@ -1,6 +1,6 @@
 {
-  "REF": "02",
-  "VER": "2",
+  "REF": "15",
+  "VER": "1",
   "ENV": "P",
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
@@ -11,13 +11,16 @@
     ],
     "servicePrincipalRiskLevels": [],
     "platforms": null,
+    "locations": null,
+    "times": null,
     "deviceStates": null,
+    "devices": null,
     "clientApplications": null,
     "applications": {
       "includeApplications": [],
       "excludeApplications": [],
       "includeUserActions": [
-        "urn:user:registersecurityinfo"
+        "urn:user:registerdevice"
       ],
       "includeAuthenticationContextClassReferences": []
     },
@@ -25,47 +28,26 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "eb2063a2-1c31-48d7-9414-e63387db31a2"
+        "0da6887f-7fba-41f7-b780-25f35cd37b3e"
       ],
       "excludeGroups": [
-        "6e41d1b7-779c-4e02-a2d3-4a7ca4f9368c"
+        "6067ad4a-ff72-452d-8f7f-8b291b29cb8e"
       ],
       "includeRoles": [],
       "excludeRoles": []
-    },
-    "locations": {
-      "includeLocations": [
-        "All"
-      ],
-      "excludeLocations": [
-        "00000000-0000-0000-0000-000000000000",
-        "102afe99-db6a-49d1-bdb6-45f973812aaf"
-      ]
-    },
-    "devices": {
-      "includeDeviceStates": [],
-      "excludeDeviceStates": [],
-      "includeDevices": [
-        "All"
-      ],
-      "excludeDevices": [
-        "Compliant",
-        "DomainJoined"
-      ],
-      "deviceFilter": null
     }
   },
-  "createdDateTime": "2021-12-04T14:10:17.1708312Z",
-  "displayName": "REF-02;ENV-P;VER-2; Block access, for registering security information, for any location, excluding trusted or named locations, hybrid joined or compliant devices",
+  "createdDateTime": "2021-12-09T22:03:49.557924Z",
+  "displayName": "REF-15;ENV-P;VER-1; Require MFA, for registering or joining devices",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
-      "block"
+      "mfa"
     ],
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "9b6b18a5-24f7-402b-9782-c29a93feca4a",
+  "id": "b03c4259-4e20-4e97-a0a2-aa4072e971e3",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
