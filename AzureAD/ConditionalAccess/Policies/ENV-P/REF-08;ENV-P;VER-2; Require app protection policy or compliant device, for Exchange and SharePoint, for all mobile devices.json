@@ -1,0 +1,63 @@
+{
+  "REF": "08",
+  "VER": "2",
+  "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "mobileAppsAndDesktopClients"
+    ],
+    "servicePrincipalRiskLevels": [],
+    "locations": null,
+    "deviceStates": null,
+    "devices": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "00000002-0000-0ff1-ce00-000000000000",
+        "00000003-0000-0ff1-ce00-000000000000"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "6ccee7bd-93a4-4168-9108-2ab233fa6abe"
+      ],
+      "excludeGroups": [
+        "766adb65-8c4c-436a-8263-fc1858eb2cbe"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "platforms": {
+      "includePlatforms": [
+        "all"
+      ],
+      "excludePlatforms": [
+        "windows",
+        "macOS"
+      ]
+    }
+  },
+  "createdDateTime": "2021-12-04T14:10:29.0148919Z",
+  "displayName": "REF-08;ENV-P;VER-2; Require app protection policy or compliant device, for Exchange and SharePoint, for all mobile devices",
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "compliantDevice",
+      "compliantApplication"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  },
+  "id": "d7556197-614c-4d78-b0cd-9634c2fd0604",
+  "modifiedDateTime": null,
+  "sessionControls": null,
+  "state": "disabled"
+}

@@ -1,0 +1,63 @@
+{
+  "REF": "06",
+  "VER": "2",
+  "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "mobileAppsAndDesktopClients"
+    ],
+    "servicePrincipalRiskLevels": [],
+    "locations": null,
+    "deviceStates": null,
+    "devices": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "6b5e5d35-04d3-45e9-ab9d-62809cbe8603"
+      ],
+      "excludeGroups": [
+        "e3ea6f85-4bba-4719-8b89-7c8d156b6401"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "platforms": {
+      "includePlatforms": [
+        "all"
+      ],
+      "excludePlatforms": [
+        "android",
+        "iOS",
+        "windowsPhone"
+      ]
+    }
+  },
+  "createdDateTime": "2021-12-04T14:10:25.286507Z",
+  "displayName": "REF-06;ENV-P;VER-2; Require hybrid joined or compliant device, for all cloud apps, for all desktop devices",
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "compliantDevice",
+      "domainJoinedDevice"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  },
+  "id": "bcfd012f-fafd-4755-9dc6-81182421a6dd",
+  "modifiedDateTime": null,
+  "sessionControls": null,
+  "state": "disabled"
+}
