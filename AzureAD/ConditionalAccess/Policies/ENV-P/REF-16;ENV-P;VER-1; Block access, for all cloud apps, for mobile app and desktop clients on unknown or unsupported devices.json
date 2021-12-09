@@ -1,0 +1,62 @@
+{
+  "REF": "16",
+  "VER": "1",
+  "ENV": "P",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "mobileAppsAndDesktopClients"
+    ],
+    "servicePrincipalRiskLevels": [],
+    "locations": null,
+    "deviceStates": null,
+    "devices": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "59ea0a83-5b7a-4030-86dd-7111580bb7e7"
+      ],
+      "excludeGroups": [
+        "04efa47b-5d8f-45af-8ae9-2f4f6139393f"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "platforms": {
+      "includePlatforms": [
+        "all"
+      ],
+      "excludePlatforms": [
+        "android",
+        "iOS",
+        "windows",
+        "macOS"
+      ]
+    }
+  },
+  "createdDateTime": "2021-12-04T17:37:23.3310685Z",
+  "displayName": "REF-16;ENV-P;VER-1; Block access, for all cloud apps, for mobile app and desktop clients on unknown or unsupported devices",
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "block"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  },
+  "id": "5593efb7-b7e4-44fe-a7e8-5f975c998591",
+  "modifiedDateTime": "2021-12-05T16:33:42.4829482Z",
+  "sessionControls": null,
+  "state": "disabled"
+}
