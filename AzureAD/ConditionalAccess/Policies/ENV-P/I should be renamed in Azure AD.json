@@ -55,7 +55,7 @@
     }
   },
   "createdDateTime": "2021-12-10T13:15:02.0953654Z",
-  "displayName": "REF-02;ENV-P;VER-3; Block access, for registering security information, for any location, excluding trusted or named locations, hybrid joined or compliant devices",
+  "displayName": "I should be renamed in Azure AD",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
