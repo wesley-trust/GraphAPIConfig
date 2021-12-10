@@ -2,6 +2,7 @@
   "REF": "05",
   "VER": "3",
   "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -10,6 +11,7 @@
     ],
     "servicePrincipalRiskLevels": [],
     "platforms": null,
+    "times": null,
     "deviceStates": null,
     "clientApplications": null,
     "applications": {
@@ -24,10 +26,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "e4a506cf-18e4-4520-b34e-80e14e30dafe"
+        "140b734f-3c5b-49fc-88e3-1ae3973feeff"
       ],
       "excludeGroups": [
-        "a19cb4c1-f74c-4d89-ac9a-e2a46d4e79de"
+        "0e319669-003a-4fe4-a198-827d36f3326d"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -51,7 +53,7 @@
       }
     }
   },
-  "createdDateTime": "2021-12-04T17:26:00.4496469Z",
+  "createdDateTime": "2021-12-10T13:15:08.5911506Z",
   "displayName": "REF-05;ENV-P;VER-3; Require MFA, for all cloud apps, for any location, excluding trusted locations, hybrid joined or compliant devices",
   "grantControls": {
     "operator": "OR",
@@ -61,8 +63,8 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "1c73971b-1199-4089-bddc-4376f8f7fdde",
-  "modifiedDateTime": "2021-12-05T16:33:34.2765313Z",
+  "id": "a2e1ea13-2790-44a8-b25b-e95e98150d42",
+  "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
 }

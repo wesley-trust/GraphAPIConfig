@@ -2,6 +2,7 @@
   "REF": "02",
   "VER": "3",
   "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -10,6 +11,7 @@
     ],
     "servicePrincipalRiskLevels": [],
     "platforms": null,
+    "times": null,
     "deviceStates": null,
     "clientApplications": null,
     "applications": {
@@ -24,10 +26,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "fc7215ea-09b6-4e5b-8f88-4bf9936aceea"
+        "348f61c6-8b26-436a-8b0f-db263b18c108"
       ],
       "excludeGroups": [
-        "70a47767-7695-4c8f-9a29-75ffdc342070"
+        "c64bb698-1080-4f3f-b48f-4d5363489958"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -52,7 +54,7 @@
       }
     }
   },
-  "createdDateTime": "2021-12-04T17:25:54.1526214Z",
+  "createdDateTime": "2021-12-10T13:15:02.0953654Z",
   "displayName": "REF-02;ENV-P;VER-3; Block access, for registering security information, for any location, excluding trusted or named locations, hybrid joined or compliant devices",
   "grantControls": {
     "operator": "OR",
@@ -62,8 +64,8 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "1d726d53-dc91-4a80-a6f9-f8069deef869",
-  "modifiedDateTime": "2021-12-05T16:33:31.0686966Z",
+  "id": "0d8cbdd0-dd7d-4ce0-9a5d-8e06f713dcae",
+  "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
 }

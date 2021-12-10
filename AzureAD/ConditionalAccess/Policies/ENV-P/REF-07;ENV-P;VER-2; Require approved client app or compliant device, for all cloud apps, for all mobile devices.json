@@ -2,6 +2,7 @@
   "REF": "07",
   "VER": "2",
   "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -10,6 +11,7 @@
     ],
     "servicePrincipalRiskLevels": [],
     "locations": null,
+    "times": null,
     "deviceStates": null,
     "devices": null,
     "clientApplications": null,
@@ -25,10 +27,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "9ac11945-55f9-4981-94ac-da03e27e2628"
+        "633b157b-1793-4fe3-bb8d-f5314458e513"
       ],
       "excludeGroups": [
-        "df0c58d6-5c19-4db1-961d-9be12d3bd197"
+        "9411df8e-d1f1-449e-8ee0-b2375abe35d7"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -43,7 +45,7 @@
       ]
     }
   },
-  "createdDateTime": "2021-12-04T17:26:05.3478593Z",
+  "createdDateTime": "2021-12-10T13:15:13.0018682Z",
   "displayName": "REF-07;ENV-P;VER-2; Require approved client app or compliant device, for all cloud apps, for all mobile devices",
   "grantControls": {
     "operator": "OR",
@@ -54,7 +56,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "0ee9ef33-c6fe-4429-b1f4-b72465ff44ff",
+  "id": "a070c42f-f38e-4c86-a109-7586eaa030f8",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

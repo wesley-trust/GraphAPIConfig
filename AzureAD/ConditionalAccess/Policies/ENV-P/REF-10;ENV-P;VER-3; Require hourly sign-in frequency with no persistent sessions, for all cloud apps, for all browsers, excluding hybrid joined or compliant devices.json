@@ -2,6 +2,7 @@
   "REF": "10",
   "VER": "3",
   "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -11,6 +12,7 @@
     "servicePrincipalRiskLevels": [],
     "platforms": null,
     "locations": null,
+    "times": null,
     "deviceStates": null,
     "clientApplications": null,
     "applications": {
@@ -25,10 +27,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "57da0464-9dd1-48a0-a0ec-fb8249a9c79a"
+        "18835d72-412d-4040-a821-23499f35fd63"
       ],
       "excludeGroups": [
-        "b15e531f-31e2-4dca-bb64-66c2cafc0c1a"
+        "3e31118d-0502-4b01-9d7b-2e542cf5e6cb"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -44,11 +46,11 @@
       }
     }
   },
-  "createdDateTime": "2021-12-04T17:26:11.2936981Z",
+  "createdDateTime": "2021-12-10T13:15:19.5154784Z",
   "displayName": "REF-10;ENV-P;VER-3; Require hourly sign-in frequency with no persistent sessions, for all cloud apps, for all browsers, excluding hybrid joined or compliant devices",
   "grantControls": null,
-  "id": "44e0586d-9761-42b8-9ada-32a033723a55",
-  "modifiedDateTime": "2021-12-05T16:33:38.4438963Z",
+  "id": "795527e9-fea3-484f-bfc5-c51e42495caf",
+  "modifiedDateTime": null,
   "sessionControls": {
     "disableResilienceDefaults": false,
     "applicationEnforcedRestrictions": null,
