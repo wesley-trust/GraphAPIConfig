@@ -2,7 +2,6 @@
   "REF": "15",
   "VER": "1",
   "ENV": "P",
-  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -37,7 +36,6 @@
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-12-09T22:03:49.557924Z",
   "displayName": "REF-15;ENV-P;VER-1; Require MFA, for registering or joining devices",
   "grantControls": {
     "operator": "OR",
@@ -48,7 +46,6 @@
     "termsOfUse": []
   },
   "id": "b03c4259-4e20-4e97-a0a2-aa4072e971e3",
-  "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
 }
