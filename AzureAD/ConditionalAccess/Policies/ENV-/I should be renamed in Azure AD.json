@@ -1,7 +1,7 @@
 {
-  "REF": "15",
-  "VER": "1",
-  "ENV": "P",
+  "REF": null,
+  "VER": null,
+  "ENV": null,
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -10,16 +10,14 @@
     ],
     "servicePrincipalRiskLevels": [],
     "platforms": null,
-    "locations": null,
     "times": null,
     "deviceStates": null,
-    "devices": null,
     "clientApplications": null,
     "applications": {
       "includeApplications": [],
       "excludeApplications": [],
       "includeUserActions": [
-        "urn:user:registerdevice"
+        "urn:user:registersecurityinfo"
       ],
       "includeAuthenticationContextClassReferences": []
     },
@@ -27,25 +25,44 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "6c095da5-113c-4aaa-97c7-66996c380e29"
+        "348f61c6-8b26-436a-8b0f-db263b18c108"
       ],
       "excludeGroups": [
-        "81ca85e9-1ff1-4aba-ace1-72aaec4aac55"
+        "c64bb698-1080-4f3f-b48f-4d5363489958"
       ],
       "includeRoles": [],
       "excludeRoles": []
+    },
+    "locations": {
+      "includeLocations": [
+        "All"
+      ],
+      "excludeLocations": [
+        "00000000-0000-0000-0000-000000000000",
+        "102afe99-db6a-49d1-bdb6-45f973812aaf"
+      ]
+    },
+    "devices": {
+      "includeDeviceStates": [],
+      "excludeDeviceStates": [],
+      "includeDevices": [],
+      "excludeDevices": [],
+      "deviceFilter": {
+        "mode": "include",
+        "rule": "device.trustType -ne \"ServerAD\" -or device.isCompliant -ne True"
+      }
     }
   },
-  "displayName": "REF-15;ENV-P;VER-1; Require MFA, for registering or joining devices",
+  "displayName": "I should be renamed in Azure AD",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
-      "mfa"
+      "block"
     ],
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "148f4796-8f8c-4744-a6df-5bf012c5ace7",
+  "id": "0d8cbdd0-dd7d-4ce0-9a5d-8e06f713dcae",
   "sessionControls": null,
   "state": "disabled"
 }
