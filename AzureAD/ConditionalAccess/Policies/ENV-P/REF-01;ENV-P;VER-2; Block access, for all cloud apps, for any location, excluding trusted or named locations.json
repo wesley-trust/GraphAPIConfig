@@ -1,7 +1,8 @@
 {
-  "REF": "05",
-  "VER": "3",
+  "REF": "01",
+  "VER": "2",
   "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -11,6 +12,7 @@
     "servicePrincipalRiskLevels": [],
     "platforms": null,
     "deviceStates": null,
+    "devices": null,
     "clientApplications": null,
     "applications": {
       "includeApplications": [
@@ -24,10 +26,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "e4a506cf-18e4-4520-b34e-80e14e30dafe"
+        "fc7215ea-09b6-4e5b-8f88-4bf9936aceea"
       ],
       "excludeGroups": [
-        "a19cb4c1-f74c-4d89-ac9a-e2a46d4e79de"
+        "bb93f7da-1c84-4664-85f7-f532bb60f109"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -37,32 +39,23 @@
         "All"
       ],
       "excludeLocations": [
-        "AllTrusted"
+        "00000000-0000-0000-0000-000000000000",
+        "102afe99-db6a-49d1-bdb6-45f973812aaf"
       ]
-    },
-    "devices": {
-      "includeDeviceStates": [],
-      "excludeDeviceStates": [],
-      "includeDevices": [],
-      "excludeDevices": [],
-      "deviceFilter": {
-        "mode": "include",
-        "rule": "device.trustType -ne \"ServerAD\" -or device.isCompliant -ne True"
-      }
     }
   },
-  "createdDateTime": "2021-12-04T17:26:00.4496469Z",
-  "displayName": "REF-05;ENV-P;VER-3; Require MFA, for all cloud apps, for any location, excluding trusted locations, hybrid joined or compliant devices",
+  "createdDateTime": "2021-12-04T17:25:51.9682894Z",
+  "displayName": "REF-01;ENV-P;VER-2; Block access, for all cloud apps, for any location, excluding trusted or named locations",
   "grantControls": {
     "operator": "OR",
     "builtInControls": [
-      "mfa"
+      "block"
     ],
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "1c73971b-1199-4089-bddc-4376f8f7fdde",
-  "modifiedDateTime": "2021-12-05T16:33:34.2765313Z",
+  "id": "9f891d73-a35d-4a22-999a-0a326c31dcb6",
+  "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
 }

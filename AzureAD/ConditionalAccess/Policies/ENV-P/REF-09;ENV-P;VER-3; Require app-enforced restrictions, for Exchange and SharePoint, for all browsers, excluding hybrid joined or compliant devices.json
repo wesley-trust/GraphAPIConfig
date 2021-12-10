@@ -2,7 +2,6 @@
   "REF": "09",
   "VER": "3",
   "ENV": "P",
-  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -12,7 +11,6 @@
     "servicePrincipalRiskLevels": [],
     "platforms": null,
     "locations": null,
-    "times": null,
     "deviceStates": null,
     "clientApplications": null,
     "applications": {
@@ -28,10 +26,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "07edf035-07f7-40d9-9784-f5af0e7177c9"
+        "5802c7fe-4f08-4b93-8fa7-520118a86477"
       ],
       "excludeGroups": [
-        "734041cc-46cf-4213-a5ba-3e98394f6cd5"
+        "30cf8599-a4c6-4d74-beca-08af01bc961d"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -47,11 +45,11 @@
       }
     }
   },
-  "createdDateTime": "2021-12-10T13:15:17.2810498Z",
+  "createdDateTime": "2021-12-04T17:26:09.2939511Z",
   "displayName": "REF-09;ENV-P;VER-3; Require app-enforced restrictions, for Exchange and SharePoint, for all browsers, excluding hybrid joined or compliant devices",
   "grantControls": null,
-  "id": "19ecee93-ff3d-4f39-b332-bb84b0ddc138",
-  "modifiedDateTime": null,
+  "id": "3b1e9833-cfe4-49e4-826a-26dcd5add403",
+  "modifiedDateTime": "2021-12-05T16:33:36.5144131Z",
   "sessionControls": {
     "disableResilienceDefaults": false,
     "cloudAppSecurity": null,

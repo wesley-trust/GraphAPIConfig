@@ -2,7 +2,6 @@
   "REF": "08",
   "VER": "2",
   "ENV": "P",
-  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -11,7 +10,6 @@
     ],
     "servicePrincipalRiskLevels": [],
     "locations": null,
-    "times": null,
     "deviceStates": null,
     "devices": null,
     "clientApplications": null,
@@ -28,10 +26,10 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "654a4443-ce1f-44c2-86ef-799537c48f04"
+        "53496762-e6e2-48e1-8dea-23bc3e470a71"
       ],
       "excludeGroups": [
-        "a7116af3-2584-4004-8c0a-d6262da78046"
+        "88cd6876-08e1-472e-a79f-52a2303ebd4c"
       ],
       "includeRoles": [],
       "excludeRoles": []
@@ -46,7 +44,7 @@
       ]
     }
   },
-  "createdDateTime": "2021-12-10T13:15:15.0778556Z",
+  "createdDateTime": "2021-12-04T17:26:07.1817552Z",
   "displayName": "REF-08;ENV-P;VER-2; Require app protection policy or compliant device, for Exchange and SharePoint, for all mobile devices",
   "grantControls": {
     "operator": "OR",
@@ -57,7 +55,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "9838b8f3-d533-48ed-a489-ffd1a2f1d5a9",
+  "id": "354241f9-6940-43ca-90ed-d4f78a7d717a",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

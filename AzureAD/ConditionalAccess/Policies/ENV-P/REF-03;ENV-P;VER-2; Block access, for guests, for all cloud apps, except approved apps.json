@@ -2,7 +2,6 @@
   "REF": "03",
   "VER": "2",
   "ENV": "P",
-  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -13,26 +12,48 @@
     "servicePrincipalRiskLevels": [],
     "platforms": null,
     "locations": null,
-    "times": null,
     "deviceStates": null,
     "devices": null,
     "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [
+        "00000002-0000-0ff1-ce00-000000000000",
+        "00000003-0000-0ff1-ce00-000000000000",
+        "09abbdfd-ed23-44ee-a2d9-a627aa1c90f3",
+        "2634dd23-5e5a-431c-81ca-11710d9079f4",
+        "cc15fd57-2c6c-4117-a88c-83b1d56b4bbe"
+      ],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
     "users": {
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "8421744c-8c55-45f9-a95b-bb2f896dc1d0"
+        "41cee7e4-6cb4-4ca3-bea8-676088698fe4"
       ],
       "excludeGroups": [
-        "57731cfd-ff4d-494e-a5c8-a21eef2c2657"
+        "0b326e92-9df6-465f-b276-a2c847d55560"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-12-10T13:15:04.3856568Z",
-  "id": "a8b67fcb-7308-4e93-8dfd-db740a9aca5c",
+  "createdDateTime": "2021-12-04T17:25:56.044861Z",
+  "displayName": "REF-03;ENV-P;VER-2; Block access, for guests, for all cloud apps, except approved apps",
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "block"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  },
+  "id": "f1c31c8b-2c20-47ff-8d80-b4a578a1081a",
   "modifiedDateTime": null,
   "sessionControls": null,
-  "state": null
+  "state": "disabled"
 }
