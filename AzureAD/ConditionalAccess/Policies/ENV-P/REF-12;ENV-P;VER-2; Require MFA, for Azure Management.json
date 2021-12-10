@@ -2,6 +2,7 @@
   "REF": "12",
   "VER": "2",
   "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -11,6 +12,7 @@
     "servicePrincipalRiskLevels": [],
     "platforms": null,
     "locations": null,
+    "times": null,
     "deviceStates": null,
     "devices": null,
     "clientApplications": null,
@@ -26,16 +28,16 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "ff64669c-513a-4808-90c1-eaa4dba4e318"
+        "331f76e7-93c9-4aff-8d85-5b8d9b3f4ca5"
       ],
       "excludeGroups": [
-        "d3651a47-cf50-4c5a-b93d-e78002e75909"
+        "4f003581-6ba7-41f9-8497-babb2345eda5"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-12-04T17:26:15.6074601Z",
+  "createdDateTime": "2021-12-10T14:59:35.8767924Z",
   "displayName": "REF-12;ENV-P;VER-2; Require MFA, for Azure Management",
   "grantControls": {
     "operator": "OR",
@@ -45,7 +47,7 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "57dd9599-e0bf-44eb-a9f3-b5b3313ac679",
+  "id": "09640bfe-46ed-47d6-bac1-6c3cb1ebfd8e",
   "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"

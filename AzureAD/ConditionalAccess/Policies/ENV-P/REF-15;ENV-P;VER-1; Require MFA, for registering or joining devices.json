@@ -2,6 +2,7 @@
   "REF": "15",
   "VER": "1",
   "ENV": "P",
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#identity/conditionalAccess/policies/$entity",
   "conditions": {
     "userRiskLevels": [],
     "signInRiskLevels": [],
@@ -11,6 +12,7 @@
     "servicePrincipalRiskLevels": [],
     "platforms": null,
     "locations": null,
+    "times": null,
     "deviceStates": null,
     "devices": null,
     "clientApplications": null,
@@ -26,16 +28,16 @@
       "includeUsers": [],
       "excludeUsers": [],
       "includeGroups": [
-        "beb29bd3-4261-423b-b71f-716973cbb122"
+        "c4e5b2a6-7f04-4d81-a1cc-3e9e2738262b"
       ],
       "excludeGroups": [
-        "d8c81348-86cd-417c-bff4-24a8fbf3110b"
+        "3eb3910c-1af5-4de3-bb54-4cb19f39125b"
       ],
       "includeRoles": [],
       "excludeRoles": []
     }
   },
-  "createdDateTime": "2021-12-04T17:26:21.5439738Z",
+  "createdDateTime": "2021-12-10T14:59:41.6292416Z",
   "displayName": "REF-15;ENV-P;VER-1; Require MFA, for registering or joining devices",
   "grantControls": {
     "operator": "OR",
@@ -45,8 +47,8 @@
     "customAuthenticationFactors": [],
     "termsOfUse": []
   },
-  "id": "68a19c79-4fd1-4004-ac86-80a7d9f9dd89",
-  "modifiedDateTime": "2021-12-05T16:33:40.3120225Z",
+  "id": "ef01e75b-bcf1-4e9d-be1e-c6f00047abac",
+  "modifiedDateTime": null,
   "sessionControls": null,
   "state": "disabled"
 }
