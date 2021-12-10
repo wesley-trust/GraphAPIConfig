@@ -1,0 +1,61 @@
+{
+  "REF": "07",
+  "VER": "2",
+  "ENV": "P",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "mobileAppsAndDesktopClients"
+    ],
+    "servicePrincipalRiskLevels": [],
+    "locations": null,
+    "deviceStates": null,
+    "devices": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "9ac11945-55f9-4981-94ac-da03e27e2628"
+      ],
+      "excludeGroups": [
+        "df0c58d6-5c19-4db1-961d-9be12d3bd197"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "platforms": {
+      "includePlatforms": [
+        "all"
+      ],
+      "excludePlatforms": [
+        "windows",
+        "macOS"
+      ]
+    }
+  },
+  "createdDateTime": "2021-12-04T17:26:05.3478593Z",
+  "displayName": "REF-07;ENV-P;VER-2; Require approved client app or compliant device, for all cloud apps, for all mobile devices",
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "compliantDevice",
+      "approvedApplication"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  },
+  "id": "0ee9ef33-c6fe-4429-b1f4-b72465ff44ff",
+  "modifiedDateTime": null,
+  "sessionControls": null,
+  "state": "disabled"
+}

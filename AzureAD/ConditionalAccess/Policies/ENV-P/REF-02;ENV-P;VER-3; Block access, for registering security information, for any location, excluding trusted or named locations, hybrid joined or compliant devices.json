@@ -1,0 +1,69 @@
+{
+  "REF": "02",
+  "VER": "3",
+  "ENV": "P",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "all"
+    ],
+    "servicePrincipalRiskLevels": [],
+    "platforms": null,
+    "deviceStates": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [],
+      "excludeApplications": [],
+      "includeUserActions": [
+        "urn:user:registersecurityinfo"
+      ],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "fc7215ea-09b6-4e5b-8f88-4bf9936aceea"
+      ],
+      "excludeGroups": [
+        "70a47767-7695-4c8f-9a29-75ffdc342070"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "locations": {
+      "includeLocations": [
+        "All"
+      ],
+      "excludeLocations": [
+        "00000000-0000-0000-0000-000000000000",
+        "102afe99-db6a-49d1-bdb6-45f973812aaf"
+      ]
+    },
+    "devices": {
+      "includeDeviceStates": [],
+      "excludeDeviceStates": [],
+      "includeDevices": [],
+      "excludeDevices": [],
+      "deviceFilter": {
+        "mode": "include",
+        "rule": "device.trustType -ne \"ServerAD\" -or device.isCompliant -ne True"
+      }
+    }
+  },
+  "createdDateTime": "2021-12-04T17:25:54.1526214Z",
+  "displayName": "REF-02;ENV-P;VER-3; Block access, for registering security information, for any location, excluding trusted or named locations, hybrid joined or compliant devices",
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "block"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  },
+  "id": "1d726d53-dc91-4a80-a6f9-f8069deef869",
+  "modifiedDateTime": "2021-12-05T16:33:31.0686966Z",
+  "sessionControls": null,
+  "state": "disabled"
+}

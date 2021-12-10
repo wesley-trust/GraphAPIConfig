@@ -1,0 +1,62 @@
+{
+  "REF": "06",
+  "VER": "2",
+  "ENV": "P",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "mobileAppsAndDesktopClients"
+    ],
+    "servicePrincipalRiskLevels": [],
+    "locations": null,
+    "deviceStates": null,
+    "devices": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "9959788a-5904-4a90-9062-c3ef8b6eeb57"
+      ],
+      "excludeGroups": [
+        "7b97198f-7c4d-4fe4-bd4f-4cb06c791d99"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "platforms": {
+      "includePlatforms": [
+        "all"
+      ],
+      "excludePlatforms": [
+        "android",
+        "iOS",
+        "windowsPhone"
+      ]
+    }
+  },
+  "createdDateTime": "2021-12-04T17:26:02.6677106Z",
+  "displayName": "REF-06;ENV-P;VER-2; Require hybrid joined or compliant device, for all cloud apps, for all desktop devices",
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "compliantDevice",
+      "domainJoinedDevice"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  },
+  "id": "3faebc1a-accf-4311-a30d-c6e7ed1761fd",
+  "modifiedDateTime": null,
+  "sessionControls": null,
+  "state": "disabled"
+}

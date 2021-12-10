@@ -1,0 +1,68 @@
+{
+  "REF": "10",
+  "VER": "3",
+  "ENV": "P",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "browser"
+    ],
+    "servicePrincipalRiskLevels": [],
+    "platforms": null,
+    "locations": null,
+    "deviceStates": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "57da0464-9dd1-48a0-a0ec-fb8249a9c79a"
+      ],
+      "excludeGroups": [
+        "b15e531f-31e2-4dca-bb64-66c2cafc0c1a"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "devices": {
+      "includeDeviceStates": [],
+      "excludeDeviceStates": [],
+      "includeDevices": [],
+      "excludeDevices": [],
+      "deviceFilter": {
+        "mode": "include",
+        "rule": "device.trustType -ne \"ServerAD\" -or device.isCompliant -ne True"
+      }
+    }
+  },
+  "createdDateTime": "2021-12-04T17:26:11.2936981Z",
+  "displayName": "REF-10;ENV-P;VER-3; Require hourly sign-in frequency with no persistent sessions, for all cloud apps, for all browsers, excluding hybrid joined or compliant devices",
+  "grantControls": null,
+  "id": "44e0586d-9761-42b8-9ada-32a033723a55",
+  "modifiedDateTime": "2021-12-05T16:33:38.4438963Z",
+  "sessionControls": {
+    "disableResilienceDefaults": false,
+    "applicationEnforcedRestrictions": null,
+    "cloudAppSecurity": null,
+    "continuousAccessEvaluation": null,
+    "signInFrequency": {
+      "value": 1,
+      "type": "hours",
+      "isEnabled": true
+    },
+    "persistentBrowser": {
+      "mode": "never",
+      "isEnabled": true
+    }
+  },
+  "state": "disabled"
+}

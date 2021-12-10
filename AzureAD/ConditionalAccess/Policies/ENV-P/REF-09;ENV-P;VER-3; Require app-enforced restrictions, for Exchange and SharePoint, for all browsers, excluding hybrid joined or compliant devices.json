@@ -1,0 +1,64 @@
+{
+  "REF": "09",
+  "VER": "3",
+  "ENV": "P",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "browser"
+    ],
+    "servicePrincipalRiskLevels": [],
+    "platforms": null,
+    "locations": null,
+    "deviceStates": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "00000002-0000-0ff1-ce00-000000000000",
+        "00000003-0000-0ff1-ce00-000000000000"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "5802c7fe-4f08-4b93-8fa7-520118a86477"
+      ],
+      "excludeGroups": [
+        "30cf8599-a4c6-4d74-beca-08af01bc961d"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "devices": {
+      "includeDeviceStates": [],
+      "excludeDeviceStates": [],
+      "includeDevices": [],
+      "excludeDevices": [],
+      "deviceFilter": {
+        "mode": "include",
+        "rule": "device.trustType -ne \"ServerAD\" -or device.isCompliant -ne True"
+      }
+    }
+  },
+  "createdDateTime": "2021-12-04T17:26:09.2939511Z",
+  "displayName": "REF-09;ENV-P;VER-3; Require app-enforced restrictions, for Exchange and SharePoint, for all browsers, excluding hybrid joined or compliant devices",
+  "grantControls": null,
+  "id": "3b1e9833-cfe4-49e4-826a-26dcd5add403",
+  "modifiedDateTime": "2021-12-05T16:33:36.5144131Z",
+  "sessionControls": {
+    "disableResilienceDefaults": false,
+    "cloudAppSecurity": null,
+    "signInFrequency": null,
+    "persistentBrowser": null,
+    "continuousAccessEvaluation": null,
+    "applicationEnforcedRestrictions": {
+      "isEnabled": true
+    }
+  },
+  "state": "disabled"
+}

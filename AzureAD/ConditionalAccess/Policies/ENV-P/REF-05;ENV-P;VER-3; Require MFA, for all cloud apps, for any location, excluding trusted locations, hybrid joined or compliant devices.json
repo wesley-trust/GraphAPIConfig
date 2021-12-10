@@ -1,0 +1,68 @@
+{
+  "REF": "05",
+  "VER": "3",
+  "ENV": "P",
+  "conditions": {
+    "userRiskLevels": [],
+    "signInRiskLevels": [],
+    "clientAppTypes": [
+      "all"
+    ],
+    "servicePrincipalRiskLevels": [],
+    "platforms": null,
+    "deviceStates": null,
+    "clientApplications": null,
+    "applications": {
+      "includeApplications": [
+        "All"
+      ],
+      "excludeApplications": [],
+      "includeUserActions": [],
+      "includeAuthenticationContextClassReferences": []
+    },
+    "users": {
+      "includeUsers": [],
+      "excludeUsers": [],
+      "includeGroups": [
+        "e4a506cf-18e4-4520-b34e-80e14e30dafe"
+      ],
+      "excludeGroups": [
+        "a19cb4c1-f74c-4d89-ac9a-e2a46d4e79de"
+      ],
+      "includeRoles": [],
+      "excludeRoles": []
+    },
+    "locations": {
+      "includeLocations": [
+        "All"
+      ],
+      "excludeLocations": [
+        "AllTrusted"
+      ]
+    },
+    "devices": {
+      "includeDeviceStates": [],
+      "excludeDeviceStates": [],
+      "includeDevices": [],
+      "excludeDevices": [],
+      "deviceFilter": {
+        "mode": "include",
+        "rule": "device.trustType -ne \"ServerAD\" -or device.isCompliant -ne True"
+      }
+    }
+  },
+  "createdDateTime": "2021-12-04T17:26:00.4496469Z",
+  "displayName": "REF-05;ENV-P;VER-3; Require MFA, for all cloud apps, for any location, excluding trusted locations, hybrid joined or compliant devices",
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "mfa"
+    ],
+    "customAuthenticationFactors": [],
+    "termsOfUse": []
+  },
+  "id": "1c73971b-1199-4089-bddc-4376f8f7fdde",
+  "modifiedDateTime": "2021-12-05T16:33:34.2765313Z",
+  "sessionControls": null,
+  "state": "disabled"
+}
